@@ -12,6 +12,8 @@ namespace APO_Projekt
 {
     public partial class PictureWindow : Form
     {
+        private bool isGrey = true;
+
         public PictureWindow()
         {
             InitializeComponent();
@@ -27,8 +29,13 @@ namespace APO_Projekt
         {
             // Adjust image to window size
             pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            // initalize bitmap
+            Bitmap bitmap = new Bitmap(open.FileName);
+            // set isGrey
+            isGrey = Operations.isGrayScale(bitmap);
             // display picture in picture box
-            pictureBox.Image = new Bitmap(open.FileName);
+            pictureBox.Image = bitmap;
+           
         }
     }
 }
