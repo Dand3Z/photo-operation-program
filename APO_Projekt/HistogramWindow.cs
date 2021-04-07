@@ -10,16 +10,44 @@ using System.Windows.Forms;
 
 namespace APO_Projekt
 {
-    public partial class HistogramWindow : Form
+    public abstract partial class HistogramWindow : Form
     {
-        public HistogramWindow()
+        private readonly PictureWindow pictureWindow;
+        // private int[] lutTable;
+        public HistogramWindow(PictureWindow pictureWindow)
         {
             InitializeComponent();
+            this.pictureWindow = pictureWindow;
         }
 
-        public void SetHistogram()
+        public abstract void SetHistogram();
+       
+    }
+
+    public partial class GreyHistogramWindow : HistogramWindow
+    {
+        public GreyHistogramWindow(PictureWindow pictureWindow) : base(pictureWindow)
+        {
+
+        }
+
+        public override void SetHistogram()
         {
 
         }
     }
+
+    public partial class ColorHistogramWindow : HistogramWindow
+    {
+        public ColorHistogramWindow(PictureWindow pictureWindow) : base(pictureWindow)
+        {
+
+        }
+
+        public override void SetHistogram()
+        {
+
+        }
+    }
+
 }
