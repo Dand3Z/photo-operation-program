@@ -32,11 +32,9 @@ namespace APO_Projekt
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.test1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.test11ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.test12ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.test13ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.test2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.test21ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.test22ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lab1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lab2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -44,7 +42,9 @@ namespace APO_Projekt
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.test1ToolStripMenuItem,
-            this.test2ToolStripMenuItem});
+            this.test2ToolStripMenuItem,
+            this.lab1ToolStripMenuItem,
+            this.lab2ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1008, 24);
@@ -54,51 +54,35 @@ namespace APO_Projekt
             // test1ToolStripMenuItem
             // 
             this.test1ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.test11ToolStripMenuItem,
-            this.test12ToolStripMenuItem,
-            this.test13ToolStripMenuItem});
+            this.test11ToolStripMenuItem});
             this.test1ToolStripMenuItem.Name = "test1ToolStripMenuItem";
-            this.test1ToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.test1ToolStripMenuItem.Text = "test1";
+            this.test1ToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.test1ToolStripMenuItem.Text = "File";
             // 
             // test11ToolStripMenuItem
             // 
             this.test11ToolStripMenuItem.Name = "test11ToolStripMenuItem";
             this.test11ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.test11ToolStripMenuItem.Text = "test11";
-            // 
-            // test12ToolStripMenuItem
-            // 
-            this.test12ToolStripMenuItem.Name = "test12ToolStripMenuItem";
-            this.test12ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.test12ToolStripMenuItem.Text = "test12";
-            // 
-            // test13ToolStripMenuItem
-            // 
-            this.test13ToolStripMenuItem.Name = "test13ToolStripMenuItem";
-            this.test13ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.test13ToolStripMenuItem.Text = "test13";
+            this.test11ToolStripMenuItem.Text = "Open";
+            this.test11ToolStripMenuItem.Click += new System.EventHandler(this.test11ToolStripMenuItem_Click);
             // 
             // test2ToolStripMenuItem
             // 
-            this.test2ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.test21ToolStripMenuItem,
-            this.test22ToolStripMenuItem});
             this.test2ToolStripMenuItem.Name = "test2ToolStripMenuItem";
-            this.test2ToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.test2ToolStripMenuItem.Text = "test2";
+            this.test2ToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.test2ToolStripMenuItem.Text = "Empty";
             // 
-            // test21ToolStripMenuItem
+            // lab1ToolStripMenuItem
             // 
-            this.test21ToolStripMenuItem.Name = "test21ToolStripMenuItem";
-            this.test21ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.test21ToolStripMenuItem.Text = "test21";
+            this.lab1ToolStripMenuItem.Name = "lab1ToolStripMenuItem";
+            this.lab1ToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.lab1ToolStripMenuItem.Text = "Lab1";
             // 
-            // test22ToolStripMenuItem
+            // lab2ToolStripMenuItem
             // 
-            this.test22ToolStripMenuItem.Name = "test22ToolStripMenuItem";
-            this.test22ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.test22ToolStripMenuItem.Text = "test22";
+            this.lab2ToolStripMenuItem.Name = "lab2ToolStripMenuItem";
+            this.lab2ToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.lab2ToolStripMenuItem.Text = "Lab2";
             // 
             // MainWindow
             // 
@@ -121,11 +105,9 @@ namespace APO_Projekt
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem test1ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem test11ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem test12ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem test13ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem test2ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem test21ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem test22ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem lab1ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem lab2ToolStripMenuItem;
     }
 }
 

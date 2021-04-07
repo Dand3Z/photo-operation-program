@@ -16,5 +16,24 @@ namespace APO_Projekt
         {
             InitializeComponent();
         }
+
+        private void test11ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // open file dialog
+            OpenFileDialog open = new OpenFileDialog();
+            
+            //image filters
+            open.Filter = "Image Files(*jpg; *.jpeg; *.gif; *.bmp)|*jpg; *.jpeg; *.gif; *.bmp";
+            if (open.ShowDialog() == DialogResult.OK)
+            {
+                // create Picture window
+                PictureWindow pictureWindow = new PictureWindow();
+
+                // display image in picture box
+                pictureWindow.SetPicture(open);
+                // image file path
+                pictureWindow.Show();
+            }
+        }
     }
 }
