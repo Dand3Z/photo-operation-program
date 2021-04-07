@@ -17,7 +17,7 @@ namespace APO_Projekt
             InitializeComponent();
         }
 
-        private void test11ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void MenuOpen_Click(object sender, EventArgs e)
         {
             // open file dialog
             OpenFileDialog open = new OpenFileDialog();
@@ -34,6 +34,11 @@ namespace APO_Projekt
                 // image file path
                 pictureWindow.Show();
             }
+        }
+
+        private void MenuClone_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

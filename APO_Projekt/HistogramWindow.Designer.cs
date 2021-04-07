@@ -1,7 +1,7 @@
 ﻿
 namespace APO_Projekt
 {
-    partial class PictureWindow
+    partial class HistogramWindow
     {
         /// <summary>
         /// Required designer variable.
@@ -38,20 +38,20 @@ namespace APO_Projekt
             this.pictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox.Location = new System.Drawing.Point(12, 12);
+            this.pictureBox.Location = new System.Drawing.Point(11, 15);
             this.pictureBox.Name = "pictureBox";
             this.pictureBox.Size = new System.Drawing.Size(302, 302);
-            this.pictureBox.TabIndex = 0;
+            this.pictureBox.TabIndex = 1;
             this.pictureBox.TabStop = false;
             // 
-            // PictureWindow
+            // HistogramWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(325, 333);
             this.Controls.Add(this.pictureBox);
-            this.Name = "PictureWindow";
-            this.Text = "Picture";
+            this.Name = "HistogramWindow";
+            this.Text = "Histogram";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
 

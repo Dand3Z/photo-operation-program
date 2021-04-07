@@ -17,10 +17,17 @@ namespace APO_Projekt
             InitializeComponent();
         }
 
+        public PictureWindow(PictureWindow pc)
+        {
+            InitializeComponent();
+            // ...
+        }
+
         public void SetPicture(OpenFileDialog open)
         {
-            // display picture in picture box
+            // Adjust image to window size
             pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            // display picture in picture box
             pictureBox.Image = new Bitmap(open.FileName);
         }
     }

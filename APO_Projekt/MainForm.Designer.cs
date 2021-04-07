@@ -30,8 +30,9 @@ namespace APO_Projekt
         private void InitializeComponent()
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.test1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.test11ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuOpen = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuClone = new System.Windows.Forms.ToolStripMenuItem();
             this.test2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lab1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lab2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -41,7 +42,7 @@ namespace APO_Projekt
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.test1ToolStripMenuItem,
+            this.MenuFile,
             this.test2ToolStripMenuItem,
             this.lab1ToolStripMenuItem,
             this.lab2ToolStripMenuItem});
@@ -51,20 +52,28 @@ namespace APO_Projekt
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // test1ToolStripMenuItem
+            // MenuFile
             // 
-            this.test1ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.test11ToolStripMenuItem});
-            this.test1ToolStripMenuItem.Name = "test1ToolStripMenuItem";
-            this.test1ToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.test1ToolStripMenuItem.Text = "File";
+            this.MenuFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MenuOpen,
+            this.MenuClone});
+            this.MenuFile.Name = "MenuFile";
+            this.MenuFile.Size = new System.Drawing.Size(37, 20);
+            this.MenuFile.Text = "File";
             // 
-            // test11ToolStripMenuItem
+            // MenuOpen
             // 
-            this.test11ToolStripMenuItem.Name = "test11ToolStripMenuItem";
-            this.test11ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.test11ToolStripMenuItem.Text = "Open";
-            this.test11ToolStripMenuItem.Click += new System.EventHandler(this.test11ToolStripMenuItem_Click);
+            this.MenuOpen.Name = "MenuOpen";
+            this.MenuOpen.Size = new System.Drawing.Size(180, 22);
+            this.MenuOpen.Text = "Open";
+            this.MenuOpen.Click += new System.EventHandler(this.MenuOpen_Click);
+            // 
+            // MenuClone
+            // 
+            this.MenuClone.Name = "MenuClone";
+            this.MenuClone.Size = new System.Drawing.Size(180, 22);
+            this.MenuClone.Text = "Clone";
+            this.MenuClone.Click += new System.EventHandler(this.MenuClone_Click);
             // 
             // test2ToolStripMenuItem
             // 
@@ -103,11 +112,12 @@ namespace APO_Projekt
         #endregion
 
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem test1ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem test11ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem MenuFile;
+        private System.Windows.Forms.ToolStripMenuItem MenuOpen;
         private System.Windows.Forms.ToolStripMenuItem test2ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem lab1ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem lab2ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem MenuClone;
     }
 }
 
