@@ -12,7 +12,7 @@ namespace APO_Projekt
 {
     public partial class PictureWindow : Form
     {
-        private bool isGrey = true;
+        public bool isGrey { get; set; } = true;
 
         public PictureWindow()
         {
@@ -36,6 +36,11 @@ namespace APO_Projekt
             // display picture in picture box
             pictureBox.Image = bitmap;
            
+        }
+
+        public bool getIsGrey()
+        {
+            return this.isGrey;
         }
     }
 }

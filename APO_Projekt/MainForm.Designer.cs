@@ -36,6 +36,7 @@ namespace APO_Projekt
             this.test2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lab1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lab2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnLog = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,14 +65,14 @@ namespace APO_Projekt
             // MenuOpen
             // 
             this.MenuOpen.Name = "MenuOpen";
-            this.MenuOpen.Size = new System.Drawing.Size(180, 22);
+            this.MenuOpen.Size = new System.Drawing.Size(105, 22);
             this.MenuOpen.Text = "Open";
             this.MenuOpen.Click += new System.EventHandler(this.MenuOpen_Click);
             // 
             // MenuClone
             // 
             this.MenuClone.Name = "MenuClone";
-            this.MenuClone.Size = new System.Drawing.Size(180, 22);
+            this.MenuClone.Size = new System.Drawing.Size(105, 22);
             this.MenuClone.Text = "Clone";
             this.MenuClone.Click += new System.EventHandler(this.MenuClone_Click);
             // 
@@ -93,11 +94,23 @@ namespace APO_Projekt
             this.lab2ToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.lab2ToolStripMenuItem.Text = "Lab2";
             // 
+            // btnLog
+            // 
+            this.btnLog.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLog.Location = new System.Drawing.Point(921, 515);
+            this.btnLog.Name = "btnLog";
+            this.btnLog.Size = new System.Drawing.Size(75, 23);
+            this.btnLog.TabIndex = 1;
+            this.btnLog.Text = "Log";
+            this.btnLog.UseVisualStyleBackColor = true;
+            this.btnLog.Click += new System.EventHandler(this.btnLog_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 550);
+            this.Controls.Add(this.btnLog);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainWindow";
@@ -118,6 +131,7 @@ namespace APO_Projekt
         private System.Windows.Forms.ToolStripMenuItem lab1ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem lab2ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem MenuClone;
+        private System.Windows.Forms.Button btnLog;
     }
 }
 

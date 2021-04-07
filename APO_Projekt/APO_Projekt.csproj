@@ -55,12 +55,19 @@
     <Compile Include="HistogramWindow.Designer.cs">
       <DependentUpon>HistogramWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="LogWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LogWindow.Designer.cs">
+      <DependentUpon>LogWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Operations.cs" />
     <Compile Include="PictureWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,6 +78,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="HistogramWindow.resx">
       <DependentUpon>HistogramWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LogWindow.resx">
+      <DependentUpon>LogWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
