@@ -12,53 +12,34 @@ namespace APO_Projekt
 {
     public partial class HistogramWindow : Form
     {
+        private PictureWindow pictureWindow;
+
         private int[] red = null, green = null, blue = null;
         private int[] yellow = null, pink = null, turquoise = null;
         private int[] allColors = null;
+       
         
-        private PictureWindow pictureWindow;
         public HistogramWindow(PictureWindow pictureWindow)
         {
             InitializeComponent();
             this.pictureWindow = pictureWindow;
+            red = pictureWindow.getRed();
+            green = pictureWindow.getGreen();
+            blue = pictureWindow.getBlue();
+            yellow = pictureWindow.getYellow();
+            pink = pictureWindow.getPink();
+            turquoise = pictureWindow.getTurquoise();
+            allColors = pictureWindow.getAllColors();
 
             if (pictureWindow.getIsGrey()) showGreyHistogram();
             else showColorHistogram();
-
-
-
         }
 
-        private void fillColorTables()
-        {
-            red = new int[256];
-            green = new int[256];
-            blue = new int[256];
-            yellow = new int[256];
-            pink = new int[256];
-            turquoise = new int[256];
-            allColors = new int[256];
-
-            Bitmap img = pictureWindow.GetBitmap();
-            for (Int32 h = 0; h < img.Height; h++)
-                for (Int32 w = 0; w < img.Width; w++)
-                {
-                    Color color = img.GetPixel(w, h);
-                    red[color.R]++;
-                    green[color.G]++;
-                    blue[color.B]++;
-
-                    if (color.R == color.G) yellow[color.R]++;
-                    if (color.R == color.B) pink[color.R]++;
-                    if (color.G == color.B) turquoise[color.G]++;
-                    
-                    if ((color.R == color.G) && (color.G == color.B)) allColors[color.G]++;
-                }
-        } // make new tables and fill it
+        
 
         private void showColorHistogram()
         {
-            fillColorTables();
+            //fillColorTables();
 
             // clear charm
             chart.Series["red"].Points.Clear();
@@ -83,22 +64,10 @@ namespace APO_Projekt
             chart.Invalidate();
         }
 
-        private void fillGreyTables()
-        {
-            red = new int[256];
-            Bitmap img = pictureWindow.GetBitmap();
-            for (Int32 h = 0; h < img.Height; h++)
-                for (Int32 w = 0; w < img.Width; w++)
-                {
-                    Color color = img.GetPixel(w, h);
-                    red[color.R]++;
-                }
-        } // make new tables and fill it
-    
 
         private void showGreyHistogram()
         {
-            fillGreyTables();
+            //fillGreyTables();
             //chart.Series["red"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
             chart.Series["green"].Enabled = false;
             chart.Series["blue"].Enabled = false;
@@ -114,6 +83,9 @@ namespace APO_Projekt
             chart.Invalidate();
         }
 
+        
+        
+        
 
     }
 }
