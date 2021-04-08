@@ -12,11 +12,15 @@ namespace APO_Projekt
 {
     public partial class PictureWindow : Form
     {
-        public bool isGrey { get; set; } = true;
+        private bool isGrey { get; set; } = true;
+        private Bitmap bitmap;
 
         public PictureWindow()
         {
             InitializeComponent();
+            // temp
+            new WzorHistogramuTEMP().Show();
+
         }
 
         public PictureWindow(PictureWindow pc)
@@ -30,7 +34,7 @@ namespace APO_Projekt
             // Adjust image to window size
             pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
             // initalize bitmap
-            Bitmap bitmap = new Bitmap(open.FileName);
+            bitmap = new Bitmap(open.FileName);
             // set isGrey
             isGrey = Operations.isGrayScale(bitmap);
             // display picture in picture box
@@ -41,6 +45,11 @@ namespace APO_Projekt
         public bool getIsGrey()
         {
             return this.isGrey;
+        }
+
+        public Bitmap GetBitmap()
+        {
+            return this.bitmap;
         }
     }
 }

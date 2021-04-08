@@ -48,7 +48,7 @@ namespace APO_Projekt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(325, 333);
+            this.ClientSize = new System.Drawing.Size(325, 386);
             this.Controls.Add(this.pictureBox);
             this.Name = "PictureWindow";
             this.Text = "Picture";
