@@ -30,6 +30,7 @@ namespace APO_Projekt
         private void InitializeComponent()
         {
             this.pictureBox = new System.Windows.Forms.PictureBox();
+            this.btnTest = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -44,11 +45,22 @@ namespace APO_Projekt
             this.pictureBox.TabIndex = 0;
             this.pictureBox.TabStop = false;
             // 
+            // btnTest
+            // 
+            this.btnTest.Location = new System.Drawing.Point(12, 351);
+            this.btnTest.Name = "btnTest";
+            this.btnTest.Size = new System.Drawing.Size(75, 23);
+            this.btnTest.TabIndex = 1;
+            this.btnTest.Text = "Test";
+            this.btnTest.UseVisualStyleBackColor = true;
+            this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
+            // 
             // PictureWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(325, 386);
+            this.Controls.Add(this.btnTest);
             this.Controls.Add(this.pictureBox);
             this.Name = "PictureWindow";
             this.Text = "Picture";
@@ -61,5 +73,6 @@ namespace APO_Projekt
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox;
+        private System.Windows.Forms.Button btnTest;
     }
 }

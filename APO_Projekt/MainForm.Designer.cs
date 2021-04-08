@@ -37,6 +37,7 @@ namespace APO_Projekt
             this.lab1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lab2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnLog = new System.Windows.Forms.Button();
+            this.negationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -90,6 +91,8 @@ namespace APO_Projekt
             // 
             // lab2ToolStripMenuItem
             // 
+            this.lab2ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.negationToolStripMenuItem});
             this.lab2ToolStripMenuItem.Name = "lab2ToolStripMenuItem";
             this.lab2ToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.lab2ToolStripMenuItem.Text = "Lab2";
@@ -104,6 +107,12 @@ namespace APO_Projekt
             this.btnLog.Text = "Log";
             this.btnLog.UseVisualStyleBackColor = true;
             this.btnLog.Click += new System.EventHandler(this.btnLog_Click);
+            // 
+            // negationToolStripMenuItem
+            // 
+            this.negationToolStripMenuItem.Name = "negationToolStripMenuItem";
+            this.negationToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.negationToolStripMenuItem.Text = "Negation";
             // 
             // MainWindow
             // 
@@ -132,6 +141,7 @@ namespace APO_Projekt
         private System.Windows.Forms.ToolStripMenuItem lab2ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem MenuClone;
         private System.Windows.Forms.Button btnLog;
+        private System.Windows.Forms.ToolStripMenuItem negationToolStripMenuItem;
     }
 }
 

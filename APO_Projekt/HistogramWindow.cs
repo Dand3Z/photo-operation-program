@@ -23,6 +23,7 @@ namespace APO_Projekt
         {
             InitializeComponent();
             this.pictureWindow = pictureWindow;
+            // get LutTable for each colors
             red = pictureWindow.getRed();
             green = pictureWindow.getGreen();
             blue = pictureWindow.getBlue();
@@ -30,13 +31,16 @@ namespace APO_Projekt
             pink = pictureWindow.getPink();
             turquoise = pictureWindow.getTurquoise();
             allColors = pictureWindow.getAllColors();
+            setChartValues();
+        }
 
+        public void setChartValues()
+        {
             if (pictureWindow.getIsGrey()) showGreyHistogram();
             else showColorHistogram();
         }
-
         
-
+        // set chart values
         private void showColorHistogram()
         {
             //fillColorTables();
@@ -75,6 +79,7 @@ namespace APO_Projekt
             chart.Series["turquoise"].Enabled = false;
             chart.Series["pink"].Enabled = false;
             chart.Series["black"].Enabled = false;
+
             chart.Series["red"].Points.Clear();
             for (int i = 0; i < 256; ++i)
             {

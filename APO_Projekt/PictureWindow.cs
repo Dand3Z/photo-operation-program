@@ -12,12 +12,13 @@ namespace APO_Projekt
 {
     public partial class PictureWindow : Form
     {
-        private int[] red = null, green = null, blue = null;
-        private int[] yellow = null, pink = null, turquoise = null;
-        private int[] allColors = null;
+        private int[] red = new int[256], green = new int[256], blue = new int[256];
+        private int[] yellow = new int[256], pink = new int[256], turquoise = new int[256];
+        private int[] allColors = new int[256];
 
         private bool isGrey { get; set; } = true;
-        private Bitmap bitmap;
+        private Bitmap bitmap; // current state of picture
+        private HistogramWindow histogramWindow = null;
 
         public PictureWindow()
         {
@@ -58,17 +59,18 @@ namespace APO_Projekt
 
         private void PictureWindow_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            new HistogramWindow(this).Show();
+            histogramWindow = new HistogramWindow(this);
+            histogramWindow.Show();
         }
         private void fillColorTables()
         {
-            red = new int[256];
-            green = new int[256];
-            blue = new int[256];
-            yellow = new int[256];
-            pink = new int[256];
-            turquoise = new int[256];
-            allColors = new int[256];
+            Array.Clear(red, 0, red.Length);
+            Array.Clear(green, 0, green.Length);
+            Array.Clear(blue, 0, blue.Length);
+            Array.Clear(yellow, 0, yellow.Length);
+            Array.Clear(pink, 0, pink.Length);
+            Array.Clear(turquoise, 0, turquoise.Length);
+            Array.Clear(allColors, 0, allColors.Length);
 
             for (Int32 h = 0; h < bitmap.Height; h++)
                 for (Int32 w = 0; w < bitmap.Width; w++)
@@ -97,10 +99,19 @@ namespace APO_Projekt
                 }
         } // make new tables and fill it
 
+        // use it to reset lutTables after changes
         private void resetLutTables()
         {
             if (isGrey) fillGreyTables();
             else fillColorTables();
+        }
+
+        private void btnTest_Click(object sender, EventArgs e)
+        {
+            Operations.negation(bitmap, isGrey);
+            resetLutTables();
+            pictureBox.Image = bitmap;
+            if (histogramWindow != null) histogramWindow.setChartValues();
         }
 
         public int[] getRed() { return red; }
