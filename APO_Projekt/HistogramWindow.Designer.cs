@@ -85,7 +85,7 @@ namespace APO_Projekt
             series6.Name = "pink";
             series7.ChartArea = "ChartArea1";
             series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
-            series7.Color = System.Drawing.Color.White;
+            series7.Color = System.Drawing.Color.Black;
             series7.Legend = "Legend1";
             series7.Name = "black";
             this.chart.Series.Add(series1);

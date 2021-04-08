@@ -21,8 +21,11 @@ namespace APO_Projekt
         {
             InitializeComponent();
             this.pictureWindow = pictureWindow;
-            fillColorTables();
-            showHistogram();
+
+            if (pictureWindow.getIsGrey()) showGreyHistogram();
+            else showColorHistogram();
+
+
 
         }
 
@@ -53,8 +56,10 @@ namespace APO_Projekt
                 }
         } // make new tables and fill it
 
-        private void showHistogram()
+        private void showColorHistogram()
         {
+            fillColorTables();
+
             // clear charm
             chart.Series["red"].Points.Clear();
             chart.Series["green"].Points.Clear();
@@ -66,14 +71,45 @@ namespace APO_Projekt
             // print new values
             for(int i = 0; i < 256; ++i)
             {
-                //chart.Series["red"].Points.AddXY(i, red[i]);
-                //chart.Series["green"].Points.AddXY(i, green[i]);
-                //chart.Series["blue"].Points.AddXY(i, blue[i]);
-                //chart.Series["yellow"].Points.AddXY(i, yellow[i]);
-                //chart.Series["turquoise"].Points.AddXY(i, turquoise[i]);
-                //chart.Series["pink"].Points.AddXY(i, pink[i]);
+                chart.Series["red"].Points.AddXY(i, red[i]);
+                chart.Series["green"].Points.AddXY(i, green[i]);
+                chart.Series["blue"].Points.AddXY(i, blue[i]);
+                chart.Series["yellow"].Points.AddXY(i, yellow[i]);
+                chart.Series["turquoise"].Points.AddXY(i, turquoise[i]);
+                chart.Series["pink"].Points.AddXY(i, pink[i]);
                 chart.Series["black"].Points.AddXY(i, allColors[i]);
 
+            }
+            chart.Invalidate();
+        }
+
+        private void fillGreyTables()
+        {
+            red = new int[256];
+            Bitmap img = pictureWindow.GetBitmap();
+            for (Int32 h = 0; h < img.Height; h++)
+                for (Int32 w = 0; w < img.Width; w++)
+                {
+                    Color color = img.GetPixel(w, h);
+                    red[color.R]++;
+                }
+        } // make new tables and fill it
+    
+
+        private void showGreyHistogram()
+        {
+            fillGreyTables();
+            //chart.Series["red"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
+            chart.Series["green"].Enabled = false;
+            chart.Series["blue"].Enabled = false;
+            chart.Series["yellow"].Enabled = false;
+            chart.Series["turquoise"].Enabled = false;
+            chart.Series["pink"].Enabled = false;
+            chart.Series["black"].Enabled = false;
+            chart.Series["red"].Points.Clear();
+            for (int i = 0; i < 256; ++i)
+            {
+                chart.Series["red"].Points.AddXY(i, red[i]);
             }
             chart.Invalidate();
         }
