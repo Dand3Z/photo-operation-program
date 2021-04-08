@@ -50,17 +50,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ColorHistogramWindow.cs">
+    <Compile Include="WzorHistogramuTEMP.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ColorHistogramWindow.Designer.cs">
-      <DependentUpon>ColorHistogramWindow.cs</DependentUpon>
+    <Compile Include="WzorHistogramuTEMP.Designer.cs">
+      <DependentUpon>WzorHistogramuTEMP.cs</DependentUpon>
     </Compile>
-    <Compile Include="GreyHistogramWindow.cs">
+    <Compile Include="HistogramWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GreyHistogramWindow.Designer.cs">
-      <DependentUpon>GreyHistogramWindow.cs</DependentUpon>
+    <Compile Include="HistogramWindow.Designer.cs">
+      <DependentUpon>HistogramWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="LogWindow.cs">
       <SubType>Form</SubType>
@@ -83,11 +83,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="ColorHistogramWindow.resx">
-      <DependentUpon>ColorHistogramWindow.cs</DependentUpon>
+    <EmbeddedResource Include="WzorHistogramuTEMP.resx">
+      <DependentUpon>WzorHistogramuTEMP.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GreyHistogramWindow.resx">
-      <DependentUpon>GreyHistogramWindow.cs</DependentUpon>
+    <EmbeddedResource Include="HistogramWindow.resx">
+      <DependentUpon>HistogramWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LogWindow.resx">
       <DependentUpon>LogWindow.cs</DependentUpon>

@@ -52,6 +52,7 @@ namespace APO_Projekt
             this.Controls.Add(this.pictureBox);
             this.Name = "PictureWindow";
             this.Text = "Picture";
+            this.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.PictureWindow_MouseDoubleClick);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
 

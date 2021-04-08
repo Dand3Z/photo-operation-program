@@ -18,8 +18,8 @@ namespace APO_Projekt
         public PictureWindow()
         {
             InitializeComponent();
-            // temp
-            new WzorHistogramuTEMP().Show();
+            // USUN POZNIEJ
+            //new WzorHistogramuTEMP().Show();
 
         }
 
@@ -50,6 +50,11 @@ namespace APO_Projekt
         public Bitmap GetBitmap()
         {
             return this.bitmap;
+        }
+
+        private void PictureWindow_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            new HistogramWindow(this).Show();
         }
     }
 }
