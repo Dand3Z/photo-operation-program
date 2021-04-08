@@ -34,6 +34,11 @@ namespace APO_Projekt
             setChartValues();
         }
 
+        public HistogramWindow(HistogramWindow histogramWindow) : this(histogramWindow.pictureWindow)
+        {
+            
+        }
+
         public void setChartValues()
         {
             if (pictureWindow.getIsGrey()) showGreyHistogram();

@@ -23,20 +23,31 @@ namespace APO_Projekt
         public PictureWindow()
         {
             InitializeComponent();
-
-
+            // Adjust image to window size
+            pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
         }
 
-        public PictureWindow(PictureWindow pc)
+        public PictureWindow(PictureWindow pc) : this()
         {
-            InitializeComponent();
-            // ...
+            if (!pc.isGrey)
+            {
+                Array.Copy(pc.getGreen(), green, pc.getGreen().Length);
+                Array.Copy(pc.getBlue(), blue, pc.getBlue().Length);
+                Array.Copy(pc.getYellow(), yellow, pc.getYellow().Length);
+                Array.Copy(pc.getPink(), pink, pc.getPink().Length);
+                Array.Copy(pc.getTurquoise(), turquoise, pc.getTurquoise().Length);
+                Array.Copy(pc.getAllColors(), allColors, pc.getAllColors().Length);
+            }
+            Array.Copy(pc.getRed(), red, pc.getRed().Length);
+            isGrey = pc.isGrey;
+            bitmap = (Bitmap) pc.bitmap.Clone();
+            histogramWindow = new HistogramWindow(pc.histogramWindow);
+            pictureBox.Image = bitmap;
+            // kopia dokładna
         }
 
         public void SetPicture(OpenFileDialog open)
         {
-            // Adjust image to window size
-            pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
             // initalize bitmap
             bitmap = new Bitmap(open.FileName);
             // set isGrey
@@ -117,6 +128,12 @@ namespace APO_Projekt
         public int[] getRed() { return red; }
         public int[] getGreen() { return green; }
         public int[] getBlue() { return blue; }
+
+        private void btnCopy_Click(object sender, EventArgs e)
+        {
+            new PictureWindow(this).Show();
+        }
+
         public int[] getYellow() { return yellow; }
         public int[] getTurquoise() { return turquoise; }
         public int[] getPink() { return pink; }

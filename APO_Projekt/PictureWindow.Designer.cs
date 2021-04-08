@@ -31,6 +31,7 @@ namespace APO_Projekt
         {
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.btnTest = new System.Windows.Forms.Button();
+            this.btnCopy = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,11 +56,22 @@ namespace APO_Projekt
             this.btnTest.UseVisualStyleBackColor = true;
             this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
             // 
+            // btnCopy
+            // 
+            this.btnCopy.Location = new System.Drawing.Point(93, 351);
+            this.btnCopy.Name = "btnCopy";
+            this.btnCopy.Size = new System.Drawing.Size(75, 23);
+            this.btnCopy.TabIndex = 2;
+            this.btnCopy.Text = "Copy";
+            this.btnCopy.UseVisualStyleBackColor = true;
+            this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
+            // 
             // PictureWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(325, 386);
+            this.Controls.Add(this.btnCopy);
             this.Controls.Add(this.btnTest);
             this.Controls.Add(this.pictureBox);
             this.Name = "PictureWindow";
@@ -74,5 +86,6 @@ namespace APO_Projekt
 
         private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.Button btnTest;
+        private System.Windows.Forms.Button btnCopy;
     }
 }
