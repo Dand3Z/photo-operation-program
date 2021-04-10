@@ -10,20 +10,24 @@ using System.Windows.Forms;
 
 namespace APO_Projekt
 {
+    // Test
+    //public delegate void deleteHistogram();
+
+
     public partial class HistogramWindow : Form
     {
-        private PictureWindow pictureWindow; // obraz na podstawie którego jest histogram budowany
-
         // Tablice Lut
-        private int[] red = null, green = null, blue = null;
-        private int[] yellow = null, pink = null, turquoise = null;
-        private int[] allColors = null;
-       
+        private readonly int[] red = null, green = null, blue = null;
+        private readonly int[] yellow = null, pink = null, turquoise = null;
+        private readonly int[] allColors = null;
+
+        // zmienia się na true, gdy zamkniem
+        private bool isClosed = false;
+        private bool isGrey;
         
         public HistogramWindow(PictureWindow pictureWindow)
         {//zle
             InitializeComponent();
-            this.pictureWindow = pictureWindow;
             // Ustaw wszystkie LutTables
             red = pictureWindow.getRed();
             green = pictureWindow.getGreen();
@@ -32,6 +36,7 @@ namespace APO_Projekt
             pink = pictureWindow.getPink();
             turquoise = pictureWindow.getTurquoise();
             allColors = pictureWindow.getAllColors();
+            isGrey = pictureWindow.getIsGrey();
 
             // ustaw wartości na histogramie
             setChartValues();
@@ -40,7 +45,12 @@ namespace APO_Projekt
         // histogram został zamknięty przez użytkownika
         private void HistogramWindow_FormClosed(object sender, FormClosedEventArgs e)
         {
-            pictureWindow.deleteHistogramWindow();
+            //pictureWindow.deleteHistogramWindow();
+            // testy - wyżej pierwsotna wersja
+
+            // okno zostało zamknięte
+            isClosed = true;
+            
         }
 
         // konstruktor samokopiujący
@@ -50,7 +60,7 @@ namespace APO_Projekt
         // ustawia wartości na histogramie
         public void setChartValues()
         {
-            if (pictureWindow.getIsGrey()) showGreyHistogram();
+            if (isGrey) showGreyHistogram(); 
             else showColorHistogram();
         }
         
@@ -102,6 +112,7 @@ namespace APO_Projekt
             chart.Invalidate();
         }
 
+        public bool getIsClosed() { return this.isClosed; }
         
         
         

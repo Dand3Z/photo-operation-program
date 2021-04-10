@@ -19,7 +19,6 @@ namespace APO_Projekt
         private int[] yellow = new int[256], pink = new int[256], turquoise = new int[256];
         private int[] allColors = new int[256];
 
-        
         private bool isGrey { get; set; } = true;  // czy obraz jest monochromatyczny
         private Bitmap bitmap; // obecny stan obrazka
         private HistogramWindow histogramWindow = null;  // 
@@ -77,6 +76,7 @@ namespace APO_Projekt
             Array.Clear(turquoise, 0, turquoise.Length);
             Array.Clear(allColors, 0, allColors.Length);
 
+            // wypełnienie tablicy Lut podstawowych barw
             for (Int32 h = 0; h < bitmap.Height; h++)
                 for (Int32 w = 0; w < bitmap.Width; w++)
                 {
@@ -85,12 +85,22 @@ namespace APO_Projekt
                     green[color.G]++;
                     blue[color.B]++;
 
-                    if (color.R == color.G) yellow[color.R]++;
-                    if (color.R == color.B) pink[color.R]++;
-                    if (color.G == color.B) turquoise[color.G]++;
+                    //if (color.R == color.G) yellow[color.R]++;
+                    //if (color.R == color.B) pink[color.R]++;
+                    //if (color.G == color.B) turquoise[color.G]++;
 
-                    if ((color.R == color.G) && (color.G == color.B)) allColors[color.G]++;
+                    //if ((color.R == color.G) && (color.G == color.B)) allColors[color.G]++;
                 }
+
+            // wyliczenie tablic kombinacyjnych
+            for (int i = 0; i < yellow.Length; ++i)
+            {
+                yellow[i] = Math.Min(red[i], green[i]);
+                pink[i] = Math.Min(red[i], blue[i]);
+                turquoise[i] = Math.Min(green[i], blue[i]);
+                yellow[i] = Math.Min(red[i], Math.Min(green[i], blue[i]));
+            }
+
         }
 
         // na nowo wylicza wartości dla obrazka monochromatycznego
@@ -123,7 +133,7 @@ namespace APO_Projekt
         public void showHistogram()
         {
             // jeśli nie ma histogramu ten obiekt to go stwórz
-            if (histogramWindow == null)
+            if (histogramWindow == null || histogramWindow.getIsClosed()) 
             {
                 histogramWindow = new HistogramWindow(this);
             }
@@ -131,6 +141,12 @@ namespace APO_Projekt
             // pokaż histogram
             histogramWindow.Show();
         }
+
+        public void deleteHistogramWindow()
+        {
+            // this.histogramWindow = null;
+        }      
+        
 
         /*
         // Test button -> do usunięcia DELETE IT
@@ -158,7 +174,8 @@ namespace APO_Projekt
         // gdy zamykasz to okno to zamknij też histogram
         private void PictureWindow_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (histogramWindow != null) histogramWindow.Close();
+            // histogram istnieje i jest otwarty
+            if (histogramWindow != null && histogramWindow.getIsClosed() == false) histogramWindow.Close();
         }
         // gdy wybrane okno jest PictureWindow to zmień statyczne lastActiveWindow
         private void PictureWindow_Activated(object sender, EventArgs e)
@@ -206,12 +223,6 @@ namespace APO_Projekt
         public static PictureWindow getLastActiveWindow() { return lastActiveWindow; }
         public HistogramWindow getHistogramWindow() { return histogramWindow; }
         public void setHistogramWindow(HistogramWindow hw) { this.histogramWindow = hw; }
-
-        public void deleteHistogramWindow()
-        {
-            this.histogramWindow = null;
-        }
-
 
     }
 
