@@ -12,25 +12,29 @@ namespace APO_Projekt
 {
     public partial class PictureWindow : Form
     {
+        // Tablice Tut dla każdego z kolorów
         private int[] red = new int[256], green = new int[256], blue = new int[256];
         private int[] yellow = new int[256], pink = new int[256], turquoise = new int[256];
         private int[] allColors = new int[256];
 
-        private bool isGrey { get; set; } = true;
-        private Bitmap bitmap; // current state of picture
-        private HistogramWindow histogramWindow = null;
+        
+        private bool isGrey { get; set; } = true;  // czy obraz jest monochromatyczny
+        private Bitmap bitmap; // obecny stan obrazka
+        private HistogramWindow histogramWindow = null;  // 
 
         public PictureWindow()
         {
             InitializeComponent();
-            // Adjust image to window size
+            // Dostosuj rozmiar obrazu do rozmiaru okna
             pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
         }
 
+        // konstruktor samokopiujący
         public PictureWindow(PictureWindow pc) : this()
         {
             if (!pc.isGrey)
             {
+                // w przypadku obrazu kolorowego kopiujemy wszystkie barwy
                 Array.Copy(pc.getGreen(), green, pc.getGreen().Length);
                 Array.Copy(pc.getBlue(), blue, pc.getBlue().Length);
                 Array.Copy(pc.getYellow(), yellow, pc.getYellow().Length);
@@ -46,15 +50,16 @@ namespace APO_Projekt
             // kopia dokładna
         }
 
+        // Ustaw obraz
         public void SetPicture(OpenFileDialog open)
         {
-            // initalize bitmap
+            // inicjalizacja bitmapy
             bitmap = new Bitmap(open.FileName);
-            // set isGrey
+            // ustawienie isGrey
             isGrey = Operations.isGrayScale(bitmap);
-            // display picture in picture box
+            // przypisanie obrazka do picture boxa
             pictureBox.Image = bitmap;
-            // fillLutTable
+            // wypełnij tabicę lut
             resetLutTables();
         }
 
@@ -68,11 +73,24 @@ namespace APO_Projekt
             return this.bitmap;
         }
 
+        // wyświetl histogram po podwójnym kliku myszy
         private void PictureWindow_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            histogramWindow = new HistogramWindow(this);
-            histogramWindow.Show();
+            
+            if (histogramWindow == null)
+            {
+                histogramWindow = new HistogramWindow(this);
+                histogramWindow.Show();
+            }
+            else
+            {
+                histogramWindow.Show();
+            }
+          
+            
         }
+
+        // na nowo wylicza wartości dla obrazka kolorowego
         private void fillColorTables()
         {
             Array.Clear(red, 0, red.Length);
@@ -97,8 +115,9 @@ namespace APO_Projekt
 
                     if ((color.R == color.G) && (color.G == color.B)) allColors[color.G]++;
                 }
-        } // make new tables and fill it
+        }
 
+        // na nowo wylicza wartości dla obrazka monochromatycznego
         private void fillGreyTables()
         {
             red = new int[256];
@@ -108,15 +127,16 @@ namespace APO_Projekt
                     Color color = bitmap.GetPixel(w, h);
                     red[color.R]++;
                 }
-        } // make new tables and fill it
+        } 
 
-        // use it to reset lutTables after changes
+        // Wylicz na nowo wartości dla obrazka
         private void resetLutTables()
         {
             if (isGrey) fillGreyTables();
             else fillColorTables();
         }
 
+        // Test button -> do usunięcia
         private void btnTest_Click(object sender, EventArgs e)
         {
             Operations.negation(bitmap, isGrey);
@@ -125,15 +145,18 @@ namespace APO_Projekt
             if (histogramWindow != null) histogramWindow.setChartValues();
         }
 
-        public int[] getRed() { return red; }
-        public int[] getGreen() { return green; }
-        public int[] getBlue() { return blue; }
-
         private void btnCopy_Click(object sender, EventArgs e)
         {
             new PictureWindow(this).Show();
         }
 
+        /**
+         * getery i setery -> przyzwyczajenie z Javy
+         */
+
+        public int[] getRed() { return red; }
+        public int[] getGreen() { return green; }
+        public int[] getBlue() { return blue; }
         public int[] getYellow() { return yellow; }
         public int[] getTurquoise() { return turquoise; }
         public int[] getPink() { return pink; }
