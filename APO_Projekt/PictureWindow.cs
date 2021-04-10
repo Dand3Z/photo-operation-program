@@ -76,18 +76,12 @@ namespace APO_Projekt
         // wyświetl histogram po podwójnym kliku myszy
         private void PictureWindow_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            
+            // tylko jedno okno histogramu dla danego obrazka jest dopuszczalne
             if (histogramWindow == null)
             {
                 histogramWindow = new HistogramWindow(this);
                 histogramWindow.Show();
             }
-            else
-            {
-                histogramWindow.Show();
-            }
-          
-            
         }
 
         // na nowo wylicza wartości dla obrazka kolorowego
@@ -161,6 +155,11 @@ namespace APO_Projekt
         public int[] getTurquoise() { return turquoise; }
         public int[] getPink() { return pink; }
         public int[] getAllColors() { return allColors; }
+
+        public void setHistogramWindow(HistogramWindow hw)
+        {
+            this.histogramWindow = hw;
+        }
     }
 
 }

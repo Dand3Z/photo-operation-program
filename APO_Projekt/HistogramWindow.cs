@@ -12,8 +12,9 @@ namespace APO_Projekt
 {
     public partial class HistogramWindow : Form
     {
-        private PictureWindow pictureWindow;
+        private PictureWindow pictureWindow; // obraz na podstawie którego jest histogram budowany
 
+        // Tablice Lut
         private int[] red = null, green = null, blue = null;
         private int[] yellow = null, pink = null, turquoise = null;
         private int[] allColors = null;
@@ -23,7 +24,7 @@ namespace APO_Projekt
         {
             InitializeComponent();
             this.pictureWindow = pictureWindow;
-            // get LutTable for each colors
+            // Ustaw wszystkie LutTables
             red = pictureWindow.getRed();
             green = pictureWindow.getGreen();
             blue = pictureWindow.getBlue();
@@ -31,21 +32,28 @@ namespace APO_Projekt
             pink = pictureWindow.getPink();
             turquoise = pictureWindow.getTurquoise();
             allColors = pictureWindow.getAllColors();
+
+            // ustaw wartości na histogramie
             setChartValues();
         }
 
-        public HistogramWindow(HistogramWindow histogramWindow) : this(histogramWindow.pictureWindow)
+        // histogram został zamknięty przez użytkownika
+        private void HistogramWindow_FormClosed(object sender, FormClosedEventArgs e)
         {
-            
+            pictureWindow.setHistogramWindow(null);
         }
 
+        // konstruktor samokopiujący
+        public HistogramWindow(HistogramWindow histogramWindow) : this(histogramWindow.pictureWindow) { }
+        
+        // ustawia wartości na histogramie
         public void setChartValues()
         {
             if (pictureWindow.getIsGrey()) showGreyHistogram();
             else showColorHistogram();
         }
         
-        // set chart values
+        // ustawia wartości na kolorowym histogramie
         private void showColorHistogram()
         {
             //fillColorTables();
@@ -73,7 +81,7 @@ namespace APO_Projekt
             chart.Invalidate();
         }
 
-
+        // ustawia wartości na szaroodcieniowym histogramie
         private void showGreyHistogram()
         {
             //fillGreyTables();
