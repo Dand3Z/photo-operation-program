@@ -35,7 +35,7 @@ namespace APO_Projekt
             this.MenuClone = new System.Windows.Forms.ToolStripMenuItem();
             this.lab1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lab2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.negationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuNegation = new System.Windows.Forms.ToolStripMenuItem();
             this.btnLog = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -84,16 +84,17 @@ namespace APO_Projekt
             // lab2ToolStripMenuItem
             // 
             this.lab2ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.negationToolStripMenuItem});
+            this.MenuNegation});
             this.lab2ToolStripMenuItem.Name = "lab2ToolStripMenuItem";
             this.lab2ToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.lab2ToolStripMenuItem.Text = "Lab2";
             // 
-            // negationToolStripMenuItem
+            // MenuNegation
             // 
-            this.negationToolStripMenuItem.Name = "negationToolStripMenuItem";
-            this.negationToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.negationToolStripMenuItem.Text = "Negation";
+            this.MenuNegation.Name = "MenuNegation";
+            this.MenuNegation.Size = new System.Drawing.Size(180, 22);
+            this.MenuNegation.Text = "Negation";
+            this.MenuNegation.Click += new System.EventHandler(this.MenuNegation_Click);
             // 
             // btnLog
             // 
@@ -132,7 +133,7 @@ namespace APO_Projekt
         private System.Windows.Forms.ToolStripMenuItem lab2ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem MenuClone;
         private System.Windows.Forms.Button btnLog;
-        private System.Windows.Forms.ToolStripMenuItem negationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem MenuNegation;
     }
 }
 

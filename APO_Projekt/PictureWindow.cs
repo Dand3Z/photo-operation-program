@@ -12,6 +12,8 @@ namespace APO_Projekt
 {
     public partial class PictureWindow : Form
     {
+        private static PictureWindow lastActiveWindow = null;
+
         // Tablice Tut dla każdego z kolorów
         private int[] red = new int[256], green = new int[256], blue = new int[256];
         private int[] yellow = new int[256], pink = new int[256], turquoise = new int[256];
@@ -63,15 +65,7 @@ namespace APO_Projekt
             resetLutTables();
         }
 
-        public bool getIsGrey()
-        {
-            return this.isGrey;
-        }
-
-        public Bitmap GetBitmap()
-        {
-            return this.bitmap;
-        }
+        
 
         // wyświetl histogram po podwójnym kliku myszy
         private void PictureWindow_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -124,10 +118,18 @@ namespace APO_Projekt
         } 
 
         // Wylicz na nowo wartości dla obrazka
-        private void resetLutTables()
+        public void resetLutTables()
         {
             if (isGrey) fillGreyTables();
             else fillColorTables();
+        }
+
+        // zresetuj wyświelaną bitmapę i ewentualnie histogram
+        // do użycia po każdej operacji na obrazie
+        public void resetBitmap()
+        {
+            pictureBox.Image = bitmap;
+            if (histogramWindow != null) histogramWindow.setChartValues();
         }
 
         // Test button -> do usunięcia
@@ -145,12 +147,22 @@ namespace APO_Projekt
             new PictureWindow(this).Show();
         }
 
+        // gdy zamykasz to okno to zamknij też histogram
         private void PictureWindow_FormClosed(object sender, FormClosedEventArgs e)
         {
             histogramWindow.Close();
-            if (histogramWindow == null) Console.WriteLine("Works fine");
         }
+        // gdy wybrane okno jest PictureWindow to zmień statyczne lastActiveWindow
+        private void PictureWindow_Activated(object sender, EventArgs e)
+        {
+            PictureWindow activeWindow;
+            if (ActiveForm is PictureWindow)
+            {
+                activeWindow = (PictureWindow)ActiveForm;
+            } else return;
 
+            lastActiveWindow = activeWindow;
+        }
 
         /**
          * getery i setery -> przyzwyczajenie z Javy
@@ -163,6 +175,9 @@ namespace APO_Projekt
         public int[] getTurquoise() { return turquoise; }
         public int[] getPink() { return pink; }
         public int[] getAllColors() { return allColors; }
+        public Bitmap getBitmap() { return bitmap; }
+        public bool getIsGrey() { return this.isGrey; }
+        public static PictureWindow getLastActiveWindow() { return lastActiveWindow; }
 
         public void setHistogramWindow(HistogramWindow hw)
         {

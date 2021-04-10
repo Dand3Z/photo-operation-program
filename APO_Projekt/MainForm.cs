@@ -25,17 +25,17 @@ namespace APO_Projekt
             // open file dialog
             OpenFileDialog open = new OpenFileDialog();
             
-            //image filters
+            // flitry obrazu
             open.Filter = "Image Files(*jpg; *.jpeg; *.gif; *.bmp; *.png)|*jpg; *.jpeg; *.gif; *.bmp; *png";
             if (open.ShowDialog() == DialogResult.OK)
             {
-                // create Picture window
+                // stwórz Picture window
                 PictureWindow pictureWindow = new PictureWindow();
 
-                // display image in picture box
+                // wyświetl obraz w picture box
                 pictureWindow.SetPicture(open);
 
-                // image file path
+                // wyświetl okno
                 pictureWindow.Show();
 
                 // for testing
@@ -51,6 +51,19 @@ namespace APO_Projekt
         private void btnLog_Click(object sender, EventArgs e)
         {
             logWindow.Show();
+        }
+
+        private void MenuNegation_Click(object sender, EventArgs e)
+        {
+            // Weź aktywne okno. Jeśli nie jest to PictureWindow to zakończ.
+            PictureWindow pw = PictureWindow.getLastActiveWindow();
+
+            Operations.negation(pw.getBitmap(), pw.getIsGrey());
+            pw.resetLutTables();
+            
+            pw.resetBitmap();
+            //pictureBox.Image = bitmap;
+            //if (histogramWindow != null) histogramWindow.setChartValues();
         }
     }
 }
