@@ -44,8 +44,8 @@ namespace APO_Projekt
         }
 
         // konstruktor samokopiujący
-        public HistogramWindow(HistogramWindow histogramWindow) : this(histogramWindow.pictureWindow) { }  //BUG HERE //probalbly something bad with init pictureWindow
-        // mozliwe ze jest zbędny!!! UP
+        //public HistogramWindow(HistogramWindow histogramWindow) : this(histogramWindow.pictureWindow) { }  //BUG HERE //probalbly something bad with init pictureWindow
+        // mozliwe ze jest zbędny!!! UP -> do wywalenia raczej
         
         // ustawia wartości na histogramie
         public void setChartValues()

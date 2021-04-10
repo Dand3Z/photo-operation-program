@@ -156,7 +156,7 @@ namespace APO_Projekt
         // gdy zamykasz to okno to zamknij też histogram
         private void PictureWindow_FormClosed(object sender, FormClosedEventArgs e)
         {
-            histogramWindow.Close();
+            if (histogramWindow != null) histogramWindow.Close();
         }
         // gdy wybrane okno jest PictureWindow to zmień statyczne lastActiveWindow
         private void PictureWindow_Activated(object sender, EventArgs e)
