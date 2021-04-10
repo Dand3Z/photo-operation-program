@@ -45,7 +45,14 @@ namespace APO_Projekt
 
         private void MenuClone_Click(object sender, EventArgs e)
         {
+            // weź ostatnie aktywne PictureWindow
+            PictureWindow pw = PictureWindow.getLastActiveWindow();
+            
+            // Czy jest co klonować, jeśli nie zakończ
+            if (pw == null) return;
 
+            // stwórz kopie
+            new PictureWindow(pw).Show();
         }
 
         private void btnLog_Click(object sender, EventArgs e)
@@ -57,6 +64,9 @@ namespace APO_Projekt
         {
             // Weź aktywne okno. Jeśli nie jest to PictureWindow to zakończ.
             PictureWindow pw = PictureWindow.getLastActiveWindow();
+
+            // Czy jest na czym wykonywać operacje
+            if (pw == null) return;
 
             Operations.negation(pw.getBitmap(), pw.getIsGrey());
             pw.resetLutTables();

@@ -21,7 +21,7 @@ namespace APO_Projekt
        
         
         public HistogramWindow(PictureWindow pictureWindow)
-        {
+        {//zle
             InitializeComponent();
             this.pictureWindow = pictureWindow;
             // Ustaw wszystkie LutTables
@@ -40,11 +40,12 @@ namespace APO_Projekt
         // histogram został zamknięty przez użytkownika
         private void HistogramWindow_FormClosed(object sender, FormClosedEventArgs e)
         {
-            pictureWindow.setHistogramWindow(null);
+            pictureWindow.deleteHistogramWindow();
         }
 
         // konstruktor samokopiujący
-        public HistogramWindow(HistogramWindow histogramWindow) : this(histogramWindow.pictureWindow) { }
+        public HistogramWindow(HistogramWindow histogramWindow) : this(histogramWindow.pictureWindow) { }  //BUG HERE //probalbly something bad with init pictureWindow
+        // mozliwe ze jest zbędny!!! UP
         
         // ustawia wartości na histogramie
         public void setChartValues()
@@ -104,6 +105,11 @@ namespace APO_Projekt
         
         
         
+        // BUG: Nie da się klonować okna po zamknięciu histogramu
+        // BUG: Czasami nie histogram się nie odświża w sklonowanym obrazku
+        // BUG: Błąd po zamknięciu histogramu i próbie ponownego otwarcia
 
+        // Problem występuje gdy okno z którego klonujemy ma aktywny histogram. 
+        // Gdy okno z którego klonujemy ma histogram na null to nie ma błędów w tym sklonowanym
     }
 }

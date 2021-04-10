@@ -47,7 +47,8 @@ namespace APO_Projekt
             Array.Copy(pc.getRed(), red, pc.getRed().Length);
             isGrey = pc.isGrey;
             bitmap = (Bitmap) pc.bitmap.Clone();
-            histogramWindow = new HistogramWindow(pc.histogramWindow);
+            // klonuj histogram gdy on istnieje
+            if (pc.histogramWindow != null) histogramWindow = new HistogramWindow(this);
             pictureBox.Image = bitmap;
             // kopia dokładna
         }
@@ -71,11 +72,16 @@ namespace APO_Projekt
         private void PictureWindow_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             // tylko jedno okno histogramu dla danego obrazka jest dopuszczalne
+
+            // jeśli nie ma to stwórz i pokaż
             if (histogramWindow == null)
             {
                 histogramWindow = new HistogramWindow(this);
-                histogramWindow.Show();
-            }
+            } 
+           
+            // pokaż histogram
+            histogramWindow.Show();
+           
         }
 
         // na nowo wylicza wartości dla obrazka kolorowego
@@ -132,7 +138,7 @@ namespace APO_Projekt
             if (histogramWindow != null) histogramWindow.setChartValues();
         }
 
-        // Test button -> do usunięcia
+        // Test button -> do usunięcia DELETE IT
         private void btnTest_Click(object sender, EventArgs e)
         {
             Operations.negation(bitmap, isGrey);
@@ -141,7 +147,7 @@ namespace APO_Projekt
             if (histogramWindow != null) histogramWindow.setChartValues();
         }
 
-        // tworzenie kopii -> do usunięcia
+        // tworzenie kopii -> do usunięcia DELETE IT
         private void btnCopy_Click(object sender, EventArgs e)
         {
             new PictureWindow(this).Show();
@@ -179,10 +185,12 @@ namespace APO_Projekt
         public bool getIsGrey() { return this.isGrey; }
         public static PictureWindow getLastActiveWindow() { return lastActiveWindow; }
 
-        public void setHistogramWindow(HistogramWindow hw)
+        public void deleteHistogramWindow()
         {
-            this.histogramWindow = hw;
+            this.histogramWindow = null;
         }
+
+
     }
 
 }
