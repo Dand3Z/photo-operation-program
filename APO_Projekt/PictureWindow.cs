@@ -98,7 +98,7 @@ namespace APO_Projekt
                 yellow[i] = Math.Min(red[i], green[i]);
                 pink[i] = Math.Min(red[i], blue[i]);
                 turquoise[i] = Math.Min(green[i], blue[i]);
-                yellow[i] = Math.Min(red[i], Math.Min(green[i], blue[i]));
+                allColors[i] = Math.Min(red[i], Math.Min(green[i], blue[i]));
             }
 
         }
