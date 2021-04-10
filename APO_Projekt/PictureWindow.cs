@@ -139,10 +139,18 @@ namespace APO_Projekt
             if (histogramWindow != null) histogramWindow.setChartValues();
         }
 
+        // tworzenie kopii -> do usunięcia
         private void btnCopy_Click(object sender, EventArgs e)
         {
             new PictureWindow(this).Show();
         }
+
+        private void PictureWindow_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            histogramWindow.Close();
+            if (histogramWindow == null) Console.WriteLine("Works fine");
+        }
+
 
         /**
          * getery i setery -> przyzwyczajenie z Javy
