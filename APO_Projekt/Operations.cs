@@ -29,15 +29,34 @@ namespace APO_Projekt
         }
         public static void negation(Bitmap bitmap, bool isGrey)
         {
-            for (Int32 h = 0; h < bitmap.Height; h++)
-                for (Int32 w = 0; w < bitmap.Width; w++)
-                {
-                    Color color = bitmap.GetPixel(w, h);
-                    int negRed = 255 - color.R;
-                    int negGreen = 255 - color.G;
-                    int negBlue = 255 - color.B;
-                    bitmap.SetPixel(w, h, Color.FromArgb(color.A, negRed, negGreen, negBlue));
-                }
+            if (isGrey)
+            {
+                //var rect = new Rectangle(0, 0, bitmap.Width, bitmap.Height);
+                //var newBitmap = bitmap.Clone(rect, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+
+                for (Int32 h = 0; h < bitmap.Height; h++)
+                    for (Int32 w = 0; w < bitmap.Width; w++)
+                    {
+                        Color color = bitmap.GetPixel(w, h);
+                        int negRed = 255 - color.R;
+                        bitmap.SetPixel(w, h, Color.FromArgb(color.A, negRed, negRed, negRed));
+                    }
+                
+            }
+            else
+            {
+                for (Int32 h = 0; h < bitmap.Height; h++)
+                    for (Int32 w = 0; w < bitmap.Width; w++)
+                    {
+                        Color color = bitmap.GetPixel(w, h);
+                        int negRed = 255 - color.R;
+                        int negGreen = 255 - color.G;
+                        int negBlue = 255 - color.B;
+                        bitmap.SetPixel(w, h, Color.FromArgb(color.A, negRed, negGreen, negBlue));
+                        
+                    }
+            }
+            
         }
     }
     

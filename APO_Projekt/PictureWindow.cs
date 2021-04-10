@@ -14,7 +14,7 @@ namespace APO_Projekt
     {
         private static PictureWindow lastActiveWindow = null;
 
-        // Tablice Tut dla każdego z kolorów
+        // Tablice Lut dla każdego z kolorów
         private int[] red = new int[256], green = new int[256], blue = new int[256];
         private int[] yellow = new int[256], pink = new int[256], turquoise = new int[256];
         private int[] allColors = new int[256];
@@ -59,6 +59,14 @@ namespace APO_Projekt
             bitmap = new Bitmap(open.FileName);
             // ustawienie isGrey
             isGrey = Operations.isGrayScale(bitmap);
+
+            // dla czarnobiałego obrazu zmień jego format
+            if (isGrey)
+            {
+                var rect = new Rectangle(0, 0, bitmap.Width, bitmap.Height);
+                bitmap = bitmap.Clone(rect, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+            }
+
             // przypisanie obrazka do picture boxa
             pictureBox.Image = bitmap;
             // wypełnij tabicę lut
@@ -106,7 +114,7 @@ namespace APO_Projekt
         // na nowo wylicza wartości dla obrazka monochromatycznego
         private void fillGreyTables()
         {
-            red = new int[256];
+            Array.Clear(red, 0, red.Length);
             for (Int32 h = 0; h < bitmap.Height; h++)
                 for (Int32 w = 0; w < bitmap.Width; w++)
                 {
