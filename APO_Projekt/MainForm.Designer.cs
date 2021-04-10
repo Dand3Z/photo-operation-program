@@ -37,6 +37,7 @@ namespace APO_Projekt
             this.lab2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuNegation = new System.Windows.Forms.ToolStripMenuItem();
             this.btnLog = new System.Windows.Forms.Button();
+            this.MenuShowHistogram = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -77,6 +78,8 @@ namespace APO_Projekt
             // 
             // lab1ToolStripMenuItem
             // 
+            this.lab1ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MenuShowHistogram});
             this.lab1ToolStripMenuItem.Name = "lab1ToolStripMenuItem";
             this.lab1ToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.lab1ToolStripMenuItem.Text = "Lab1";
@@ -107,6 +110,13 @@ namespace APO_Projekt
             this.btnLog.UseVisualStyleBackColor = true;
             this.btnLog.Click += new System.EventHandler(this.btnLog_Click);
             // 
+            // MenuShowHistogram
+            // 
+            this.MenuShowHistogram.Name = "MenuShowHistogram";
+            this.MenuShowHistogram.Size = new System.Drawing.Size(180, 22);
+            this.MenuShowHistogram.Text = "Show Histogram";
+            this.MenuShowHistogram.Click += new System.EventHandler(this.MenuShowHistogram_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -134,6 +144,7 @@ namespace APO_Projekt
         private System.Windows.Forms.ToolStripMenuItem MenuClone;
         private System.Windows.Forms.Button btnLog;
         private System.Windows.Forms.ToolStripMenuItem MenuNegation;
+        private System.Windows.Forms.ToolStripMenuItem MenuShowHistogram;
     }
 }
 

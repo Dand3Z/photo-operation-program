@@ -66,24 +66,6 @@ namespace APO_Projekt
             resetLutTables();
         }
 
-        
-
-        // wyświetl histogram po podwójnym kliku myszy
-        private void PictureWindow_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            // tylko jedno okno histogramu dla danego obrazka jest dopuszczalne
-
-            // jeśli nie ma to stwórz i pokaż
-            if (histogramWindow == null)
-            {
-                histogramWindow = new HistogramWindow(this);
-            } 
-           
-            // pokaż histogram
-            histogramWindow.Show();
-           
-        }
-
         // na nowo wylicza wartości dla obrazka kolorowego
         private void fillColorTables()
         {
@@ -138,6 +120,19 @@ namespace APO_Projekt
             if (histogramWindow != null) histogramWindow.setChartValues();
         }
 
+        public void showHistogram()
+        {
+            // jeśli nie ma histogramu ten obiekt to go stwórz
+            if (histogramWindow == null)
+            {
+                histogramWindow = new HistogramWindow(this);
+            }
+
+            // pokaż histogram
+            histogramWindow.Show();
+        }
+
+        /*
         // Test button -> do usunięcia DELETE IT
         private void btnTest_Click(object sender, EventArgs e)
         {
@@ -146,12 +141,19 @@ namespace APO_Projekt
             pictureBox.Image = bitmap;
             if (histogramWindow != null) histogramWindow.setChartValues();
         }
-
+        
         // tworzenie kopii -> do usunięcia DELETE IT
         private void btnCopy_Click(object sender, EventArgs e)
         {
             new PictureWindow(this).Show();
         }
+        */
+
+
+        /************************************************************** 
+         * Events
+         *************************************************************/
+
 
         // gdy zamykasz to okno to zamknij też histogram
         private void PictureWindow_FormClosed(object sender, FormClosedEventArgs e)
@@ -170,9 +172,27 @@ namespace APO_Projekt
             lastActiveWindow = activeWindow;
         }
 
-        /**
+        /*
+        // wyświetl histogram po podwójnym kliku myszy
+        private void PictureWindow_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            // tylko jedno okno histogramu dla danego obrazka jest dopuszczalne
+
+            // jeśli nie ma to stwórz i pokaż
+            if (histogramWindow == null)
+            {
+                histogramWindow = new HistogramWindow(this);
+            }
+
+            // pokaż histogram
+            histogramWindow.Show();
+
+        }
+        */
+
+        /**************************************************************
          * getery i setery -> przyzwyczajenie z Javy
-         */
+         ************************************************************/
 
         public int[] getRed() { return red; }
         public int[] getGreen() { return green; }
@@ -184,6 +204,8 @@ namespace APO_Projekt
         public Bitmap getBitmap() { return bitmap; }
         public bool getIsGrey() { return this.isGrey; }
         public static PictureWindow getLastActiveWindow() { return lastActiveWindow; }
+        public HistogramWindow getHistogramWindow() { return histogramWindow; }
+        public void setHistogramWindow(HistogramWindow hw) { this.histogramWindow = hw; }
 
         public void deleteHistogramWindow()
         {

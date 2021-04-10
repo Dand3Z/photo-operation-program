@@ -62,7 +62,7 @@ namespace APO_Projekt
 
         private void MenuNegation_Click(object sender, EventArgs e)
         {
-            // Weź aktywne okno. Jeśli nie jest to PictureWindow to zakończ.
+            // Weź ostatnie aktywne PictureWindow
             PictureWindow pw = PictureWindow.getLastActiveWindow();
 
             // Czy jest na czym wykonywać operacje
@@ -74,6 +74,30 @@ namespace APO_Projekt
             pw.resetBitmap();
             //pictureBox.Image = bitmap;
             //if (histogramWindow != null) histogramWindow.setChartValues();
+        }
+
+        private void MenuShowHistogram_Click(object sender, EventArgs e)
+        {
+            // tylko jedno okno histogramu dla danego obrazka jest dopuszczalne
+
+            // Weź ostatnie aktywne PictureWindow
+            PictureWindow pw = PictureWindow.getLastActiveWindow();
+
+            // Czy jest na czym wykonywać operacje
+            if (pw == null) return;
+
+            pw.showHistogram();
+
+            /*
+            // jeśli nie ma to go stwórz
+            if (pw.getHistogramWindow() == null)
+            {
+                pw.setHistogramWindow(new HistogramWindow(pw));
+            }
+
+            // pokaż histogram
+            histogramWindow.Show();
+            */
         }
     }
 }
