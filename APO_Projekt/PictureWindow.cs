@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -76,6 +77,13 @@ namespace APO_Projekt
             pictureBox.Image = bitmap;
             // wypełnij tabicę lut
             resetLutTables();
+        }
+
+        // save picture
+        public void SavePicture(SaveFileDialog save)
+        {
+            string FilePath = save.FileName;
+            pictureBox.Image.Save(FilePath, ImageFormat.Png);
         }
 
         // na nowo wylicza wartości dla obrazka kolorowego

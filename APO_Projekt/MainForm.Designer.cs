@@ -39,6 +39,7 @@ namespace APO_Projekt
             this.MenuNegation = new System.Windows.Forms.ToolStripMenuItem();
             this.btnLog = new System.Windows.Forms.Button();
             this.MenuShowLUT = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuSave = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,7 +59,8 @@ namespace APO_Projekt
             // 
             this.MenuFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MenuOpen,
-            this.MenuClone});
+            this.MenuClone,
+            this.MenuSave});
             this.MenuFile.Name = "MenuFile";
             this.MenuFile.Size = new System.Drawing.Size(37, 20);
             this.MenuFile.Text = "File";
@@ -66,14 +68,14 @@ namespace APO_Projekt
             // MenuOpen
             // 
             this.MenuOpen.Name = "MenuOpen";
-            this.MenuOpen.Size = new System.Drawing.Size(105, 22);
+            this.MenuOpen.Size = new System.Drawing.Size(180, 22);
             this.MenuOpen.Text = "Open";
             this.MenuOpen.Click += new System.EventHandler(this.MenuOpen_Click);
             // 
             // MenuClone
             // 
             this.MenuClone.Name = "MenuClone";
-            this.MenuClone.Size = new System.Drawing.Size(105, 22);
+            this.MenuClone.Size = new System.Drawing.Size(180, 22);
             this.MenuClone.Text = "Clone";
             this.MenuClone.Click += new System.EventHandler(this.MenuClone_Click);
             // 
@@ -126,6 +128,13 @@ namespace APO_Projekt
             this.MenuShowLUT.Text = "Show LUT";
             this.MenuShowLUT.Click += new System.EventHandler(this.MenuShowLUT_Click);
             // 
+            // MenuSave
+            // 
+            this.MenuSave.Name = "MenuSave";
+            this.MenuSave.Size = new System.Drawing.Size(180, 22);
+            this.MenuSave.Text = "Save";
+            this.MenuSave.Click += new System.EventHandler(this.MenuSave_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -155,6 +164,7 @@ namespace APO_Projekt
         private System.Windows.Forms.ToolStripMenuItem MenuNegation;
         private System.Windows.Forms.ToolStripMenuItem MenuShowHistogram;
         private System.Windows.Forms.ToolStripMenuItem MenuShowLUT;
+        private System.Windows.Forms.ToolStripMenuItem MenuSave;
     }
 }
 

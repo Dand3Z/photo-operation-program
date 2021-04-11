@@ -43,6 +43,26 @@ namespace APO_Projekt
             }
         }
 
+        private void MenuSave_Click(object sender, EventArgs e)
+        {
+            // Weź ostatnie aktywne PictureWindow
+            PictureWindow pw = PictureWindow.getLastActiveWindow();
+
+            // Czy jest na czym wykonywać operacje
+            if (pw == null) return;
+
+            SaveFileDialog save = new SaveFileDialog();
+            if (save.ShowDialog() == DialogResult.OK)
+            {
+                pw.SavePicture(save);
+            }
+
+            // save picture
+            
+
+
+        }
+
         private void MenuClone_Click(object sender, EventArgs e)
         {
             // weź ostatnie aktywne PictureWindow
