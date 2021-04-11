@@ -84,6 +84,7 @@ namespace APO_Projekt
         {
             string FilePath = save.FileName;
             pictureBox.Image.Save(FilePath, ImageFormat.Png);
+            // dodaj różne formaty później !!!
         }
 
         // na nowo wylicza wartości dla obrazka kolorowego
