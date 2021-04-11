@@ -26,15 +26,21 @@ namespace APO_Projekt
 
         private void LutWindow_Load(object sender, EventArgs e)
         {
-            // wyczyść aktualną zawartość
-            LutList.Items.Clear();
-
             if (isGrey)
             {
                 LutList.Columns.RemoveAt(2); // usuń green
                 LutList.Columns.RemoveAt(2); // usuń blue
                 LutList.Columns[1].Text = "Grey"; // przemianuj Red na Grey
             }
+
+            resetLutTable();
+        }
+
+        // zresetuj wyświetalne wartości po zmianie na obrazie
+        public void resetLutTable()
+            {
+            // wyczyść aktualną zawartość
+            LutList.Items.Clear();
 
             for (int i = 0; i < red.Length; ++i)
             {
@@ -48,10 +54,7 @@ namespace APO_Projekt
                 }
                 // dodaj nowy wiersz wynikowy
                 LutList.Items.Add(item);
-                
             }
         }
-
-        
-    }
+    }      
 }
