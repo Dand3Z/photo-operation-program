@@ -99,5 +99,16 @@ namespace APO_Projekt
             histogramWindow.Show();
             */
         }
+
+        private void MenuShowLUT_Click(object sender, EventArgs e)
+        {
+            // Weź ostatnie aktywne PictureWindow
+            PictureWindow pw = PictureWindow.getLastActiveWindow();
+
+            // Czy jest na czym wykonywać operacje
+            if (pw == null) return;
+
+            pw.showLutTable();
+        }
     }
 }

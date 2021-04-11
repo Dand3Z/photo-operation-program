@@ -14,7 +14,7 @@ namespace APO_Projekt
     {
         // trzyma 3 referencje do tablic podstawowych kolorów
         private readonly int[] red = null, green = null, blue = null;
-        private bool isGrey;
+        private bool isGrey, isClosed = false;
         public LutWindow(PictureWindow pw)
         {
             InitializeComponent();
@@ -22,18 +22,6 @@ namespace APO_Projekt
             green = pw.getGreen();
             blue = pw.getBlue();
             isGrey = pw.getIsGrey();
-        }
-
-        private void LutWindow_Load(object sender, EventArgs e)
-        {
-            if (isGrey)
-            {
-                LutList.Columns.RemoveAt(2); // usuń green
-                LutList.Columns.RemoveAt(2); // usuń blue
-                LutList.Columns[1].Text = "Grey"; // przemianuj Red na Grey
-            }
-
-            resetLutTable();
         }
 
         // zresetuj wyświetalne wartości po zmianie na obrazie
@@ -56,5 +44,27 @@ namespace APO_Projekt
                 LutList.Items.Add(item);
             }
         }
+
+
+
+        private void LutWindow_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            // okno zostało zamknięte
+            isClosed = true;
+        }
+
+        private void LutWindow_Load(object sender, EventArgs e)
+        {
+            if (isGrey)
+            {
+                LutList.Columns.RemoveAt(2); // usuń green
+                LutList.Columns.RemoveAt(2); // usuń blue
+                LutList.Columns[1].Text = "Grey"; // przemianuj Red na Grey
+            }
+
+            resetLutTable();
+        }
+
+        public bool getIsClosed() { return this.isClosed; }
     }      
 }

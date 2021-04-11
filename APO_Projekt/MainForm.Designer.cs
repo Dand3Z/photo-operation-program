@@ -34,10 +34,11 @@ namespace APO_Projekt
             this.MenuOpen = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuClone = new System.Windows.Forms.ToolStripMenuItem();
             this.lab1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuShowHistogram = new System.Windows.Forms.ToolStripMenuItem();
             this.lab2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuNegation = new System.Windows.Forms.ToolStripMenuItem();
             this.btnLog = new System.Windows.Forms.Button();
-            this.MenuShowHistogram = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuShowLUT = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,24 +66,32 @@ namespace APO_Projekt
             // MenuOpen
             // 
             this.MenuOpen.Name = "MenuOpen";
-            this.MenuOpen.Size = new System.Drawing.Size(180, 22);
+            this.MenuOpen.Size = new System.Drawing.Size(105, 22);
             this.MenuOpen.Text = "Open";
             this.MenuOpen.Click += new System.EventHandler(this.MenuOpen_Click);
             // 
             // MenuClone
             // 
             this.MenuClone.Name = "MenuClone";
-            this.MenuClone.Size = new System.Drawing.Size(180, 22);
+            this.MenuClone.Size = new System.Drawing.Size(105, 22);
             this.MenuClone.Text = "Clone";
             this.MenuClone.Click += new System.EventHandler(this.MenuClone_Click);
             // 
             // lab1ToolStripMenuItem
             // 
             this.lab1ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MenuShowHistogram});
+            this.MenuShowHistogram,
+            this.MenuShowLUT});
             this.lab1ToolStripMenuItem.Name = "lab1ToolStripMenuItem";
             this.lab1ToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.lab1ToolStripMenuItem.Text = "Lab1";
+            // 
+            // MenuShowHistogram
+            // 
+            this.MenuShowHistogram.Name = "MenuShowHistogram";
+            this.MenuShowHistogram.Size = new System.Drawing.Size(180, 22);
+            this.MenuShowHistogram.Text = "Show Histogram";
+            this.MenuShowHistogram.Click += new System.EventHandler(this.MenuShowHistogram_Click);
             // 
             // lab2ToolStripMenuItem
             // 
@@ -95,7 +104,7 @@ namespace APO_Projekt
             // MenuNegation
             // 
             this.MenuNegation.Name = "MenuNegation";
-            this.MenuNegation.Size = new System.Drawing.Size(180, 22);
+            this.MenuNegation.Size = new System.Drawing.Size(123, 22);
             this.MenuNegation.Text = "Negation";
             this.MenuNegation.Click += new System.EventHandler(this.MenuNegation_Click);
             // 
@@ -110,12 +119,12 @@ namespace APO_Projekt
             this.btnLog.UseVisualStyleBackColor = true;
             this.btnLog.Click += new System.EventHandler(this.btnLog_Click);
             // 
-            // MenuShowHistogram
+            // MenuShowLUT
             // 
-            this.MenuShowHistogram.Name = "MenuShowHistogram";
-            this.MenuShowHistogram.Size = new System.Drawing.Size(180, 22);
-            this.MenuShowHistogram.Text = "Show Histogram";
-            this.MenuShowHistogram.Click += new System.EventHandler(this.MenuShowHistogram_Click);
+            this.MenuShowLUT.Name = "MenuShowLUT";
+            this.MenuShowLUT.Size = new System.Drawing.Size(180, 22);
+            this.MenuShowLUT.Text = "Show LUT";
+            this.MenuShowLUT.Click += new System.EventHandler(this.MenuShowLUT_Click);
             // 
             // MainWindow
             // 
@@ -145,6 +154,7 @@ namespace APO_Projekt
         private System.Windows.Forms.Button btnLog;
         private System.Windows.Forms.ToolStripMenuItem MenuNegation;
         private System.Windows.Forms.ToolStripMenuItem MenuShowHistogram;
+        private System.Windows.Forms.ToolStripMenuItem MenuShowLUT;
     }
 }
 

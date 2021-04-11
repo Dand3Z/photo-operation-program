@@ -22,6 +22,7 @@ namespace APO_Projekt
         private bool isGrey { get; set; } = true;  // czy obraz jest monochromatyczny
         private Bitmap bitmap; // obecny stan obrazka
         private HistogramWindow histogramWindow = null;  // histogram tego obrazu
+        private LutWindow lutWindow = null;
 
         public PictureWindow()
         {
@@ -134,12 +135,13 @@ namespace APO_Projekt
             else fillColorTables();
         }
 
-        // zresetuj wyświelaną bitmapę i ewentualnie histogram
+        // zresetuj wyświelaną bitmapę i ewentualnie histogram / LutWindow
         // do użycia po każdej operacji na obrazie
         public void resetBitmap()
         {
-            pictureBox.Image = bitmap;
-            if (histogramWindow != null) histogramWindow.setChartValues();
+            pictureBox.Image = bitmap;  // aktualizuje wyświetlany obrazek
+            if (histogramWindow != null) histogramWindow.setChartValues(); // aktualzuje histogram
+            if (lutWindow != null) lutWindow.resetLutTable(); // aktualizuje wartości w LutWindow
         }
 
         public void showHistogram()
@@ -152,6 +154,17 @@ namespace APO_Projekt
 
             // pokaż histogram
             histogramWindow.Show();
+        }
+
+        public void showLutTable()
+        {
+            // jeśli nie ma LutWindow ten obiekt lub ten został zamknięty to go stwórz
+            if (lutWindow == null || lutWindow.getIsClosed())
+            {
+                lutWindow = new LutWindow(this);
+            }
+            // pokaż LutWindow
+            lutWindow.Show();
         }
 
         public void deleteHistogramWindow()
@@ -188,6 +201,8 @@ namespace APO_Projekt
         {
             // histogram istnieje i jest otwarty
             if (histogramWindow != null && histogramWindow.getIsClosed() == false) histogramWindow.Close();
+            // LutWindow istnieje i jest otwarte
+            if (lutWindow != null && lutWindow.getIsClosed() == false) histogramWindow.Close();
         }
         // gdy wybrane okno jest PictureWindow to zmień statyczne lastActiveWindow
         private void PictureWindow_Activated(object sender, EventArgs e)
@@ -231,19 +246,10 @@ namespace APO_Projekt
         public int[] getPink() { return pink; }
         public int[] getAllColors() { return allColors; }
         public Bitmap getBitmap() { return bitmap; }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            new LutWindow(this).Show();
-        }
-
         public bool getIsGrey() { return this.isGrey; }
         public static PictureWindow getLastActiveWindow() { return lastActiveWindow; }
         public HistogramWindow getHistogramWindow() { return histogramWindow; }
         public void setHistogramWindow(HistogramWindow hw) { this.histogramWindow = hw; }
 
     }
-
-
-    // LutTable w pictureWindow jest zbędne
 }

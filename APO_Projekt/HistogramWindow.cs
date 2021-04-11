@@ -54,7 +54,7 @@ namespace APO_Projekt
             
         }
         
-        // ustawia wartości na histogramie
+        // ustawia aktualne wartości na histogramie
         public void setChartValues()
         {
             if (isGrey) showGreyHistogram(); 

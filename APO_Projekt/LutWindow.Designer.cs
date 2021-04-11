@@ -91,6 +91,7 @@ namespace APO_Projekt
             this.Controls.Add(this.LutList);
             this.Name = "LutWindow";
             this.Text = "LutWindow";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.LutWindow_FormClosed);
             this.Load += new System.EventHandler(this.LutWindow_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureWindowBindingSource)).EndInit();
             this.ResumeLayout(false);
