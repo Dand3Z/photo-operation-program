@@ -16,7 +16,8 @@ namespace APO_Projekt
 
     public partial class HistogramWindow : Form
     {
-        // Tablice Lut
+        // Tablice Lut - umieszczam tutaj, a nie w histogramie, gdyż nie będzie potrzeby tworzenia histogramu
+        // by przejrzeć wartości tablic Lut w oddzielnym Formsie.
         private readonly int[] red = null, green = null, blue = null;
         private readonly int[] yellow = null, pink = null, turquoise = null;
         private readonly int[] allColors = null;
@@ -26,7 +27,7 @@ namespace APO_Projekt
         private bool isGrey;
         
         public HistogramWindow(PictureWindow pictureWindow)
-        {//zle
+        {
             InitializeComponent();
             // Ustaw wszystkie LutTables
             red = pictureWindow.getRed();
@@ -52,10 +53,6 @@ namespace APO_Projekt
             isClosed = true;
             
         }
-
-        // konstruktor samokopiujący
-        //public HistogramWindow(HistogramWindow histogramWindow) : this(histogramWindow.pictureWindow) { }  //BUG HERE //probalbly something bad with init pictureWindow
-        // mozliwe ze jest zbędny!!! UP -> do wywalenia raczej
         
         // ustawia wartości na histogramie
         public void setChartValues()

@@ -21,7 +21,7 @@ namespace APO_Projekt
 
         private bool isGrey { get; set; } = true;  // czy obraz jest monochromatyczny
         private Bitmap bitmap; // obecny stan obrazka
-        private HistogramWindow histogramWindow = null;  // 
+        private HistogramWindow histogramWindow = null;  // histogram tego obrazu
 
         public PictureWindow()
         {
@@ -65,6 +65,10 @@ namespace APO_Projekt
             {
                 var rect = new Rectangle(0, 0, bitmap.Width, bitmap.Height);
                 bitmap = bitmap.Clone(rect, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                /**************************************************************************************
+                 * Zmieniamy format. Jeśli coś będzie nie tak to z formatem to na etapie zapisu
+                 * zmień ponownie format.
+                 *************************************************************************************/
             }
 
             // przypisanie obrazka do picture boxa
@@ -140,7 +144,7 @@ namespace APO_Projekt
 
         public void showHistogram()
         {
-            // jeśli nie ma histogramu ten obiekt to go stwórz
+            // jeśli nie ma histogramu ten obiekt lub ten został zamknięty to go stwórz
             if (histogramWindow == null || histogramWindow.getIsClosed()) 
             {
                 histogramWindow = new HistogramWindow(this);
@@ -227,6 +231,12 @@ namespace APO_Projekt
         public int[] getPink() { return pink; }
         public int[] getAllColors() { return allColors; }
         public Bitmap getBitmap() { return bitmap; }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            new LutWindow(this).Show();
+        }
+
         public bool getIsGrey() { return this.isGrey; }
         public static PictureWindow getLastActiveWindow() { return lastActiveWindow; }
         public HistogramWindow getHistogramWindow() { return histogramWindow; }
@@ -234,4 +244,6 @@ namespace APO_Projekt
 
     }
 
+
+    // LutTable w pictureWindow jest zbędne
 }

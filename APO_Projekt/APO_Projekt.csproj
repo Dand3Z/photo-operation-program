@@ -50,6 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LutWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LutWindow.Designer.cs">
+      <DependentUpon>LutWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="WzorHistogramuTEMP.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,6 +89,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="LutWindow.resx">
+      <DependentUpon>LutWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WzorHistogramuTEMP.resx">
       <DependentUpon>WzorHistogramuTEMP.cs</DependentUpon>
     </EmbeddedResource>
@@ -107,6 +116,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="Properties\DataSources\PictureWindow.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
