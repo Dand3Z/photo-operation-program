@@ -12,13 +12,25 @@ namespace APO_Projekt
 {
     public partial class MainWindow : Form
     {
+        /**************************************************************
+         * Pola
+         ************************************************************/
+
         private LogWindow logWindow;
+
+        /**************************************************************
+         * Konstruktory
+         ************************************************************/
 
         public MainWindow()
         {
             InitializeComponent();
             logWindow = new LogWindow();
         }
+
+        /**************************************************************
+         * Zdarzenia
+         ************************************************************/
 
         private void MenuOpen_Click(object sender, EventArgs e)
         {
@@ -33,40 +45,37 @@ namespace APO_Projekt
                 PictureWindow pictureWindow = new PictureWindow();
 
                 // wyświetl obraz w picture box
-                pictureWindow.SetPicture(open);
+                pictureWindow.setPicture(open);
 
                 // wyświetl okno
                 pictureWindow.Show();
 
                 // for testing
-                logWindow.addLog("Opened Picture isGrey:" + (pictureWindow.getIsGrey()).ToString() + Environment.NewLine);
+                logWindow.addLog("Opened Picture isGrey:" + (pictureWindow.IsGrey).ToString() + Environment.NewLine);
             }
         }
 
+        // zapisz obraz - do dopracowania
         private void MenuSave_Click(object sender, EventArgs e)
         {
             // Weź ostatnie aktywne PictureWindow
-            PictureWindow pw = PictureWindow.getLastActiveWindow();
+            PictureWindow pw = PictureWindow.LastActiveWindow;
 
             // Czy jest na czym wykonywać operacje
             if (pw == null) return;
 
+            // save picture
             SaveFileDialog save = new SaveFileDialog();
             if (save.ShowDialog() == DialogResult.OK)
             {
-                pw.SavePicture(save);
+                pw.savePicture(save);
             }
-
-            // save picture
-            
-
-
         }
 
         private void MenuClone_Click(object sender, EventArgs e)
         {
             // weź ostatnie aktywne PictureWindow
-            PictureWindow pw = PictureWindow.getLastActiveWindow();
+            PictureWindow pw = PictureWindow.LastActiveWindow;
             
             // Czy jest co klonować, jeśli nie zakończ
             if (pw == null) return;
@@ -83,17 +92,16 @@ namespace APO_Projekt
         private void MenuNegation_Click(object sender, EventArgs e)
         {
             // Weź ostatnie aktywne PictureWindow
-            PictureWindow pw = PictureWindow.getLastActiveWindow();
+            PictureWindow pw = PictureWindow.LastActiveWindow;
 
             // Czy jest na czym wykonywać operacje
             if (pw == null) return;
 
-            Operations.negation(pw.getBitmap(), pw.getIsGrey());
+            Operations.negation(pw.Bitmap, pw.IsGrey);
             pw.resetLutTables();
             
             pw.resetBitmap();
-            //pictureBox.Image = bitmap;
-            //if (histogramWindow != null) histogramWindow.setChartValues();
+
         }
 
         private void MenuShowHistogram_Click(object sender, EventArgs e)
@@ -101,29 +109,19 @@ namespace APO_Projekt
             // tylko jedno okno histogramu dla danego obrazka jest dopuszczalne
 
             // Weź ostatnie aktywne PictureWindow
-            PictureWindow pw = PictureWindow.getLastActiveWindow();
+            PictureWindow pw = PictureWindow.LastActiveWindow;
 
             // Czy jest na czym wykonywać operacje
             if (pw == null) return;
 
             pw.showHistogram();
 
-            /*
-            // jeśli nie ma to go stwórz
-            if (pw.getHistogramWindow() == null)
-            {
-                pw.setHistogramWindow(new HistogramWindow(pw));
-            }
-
-            // pokaż histogram
-            histogramWindow.Show();
-            */
         }
 
         private void MenuShowLUT_Click(object sender, EventArgs e)
         {
             // Weź ostatnie aktywne PictureWindow
-            PictureWindow pw = PictureWindow.getLastActiveWindow();
+            PictureWindow pw = PictureWindow.LastActiveWindow;
 
             // Czy jest na czym wykonywać operacje
             if (pw == null) return;

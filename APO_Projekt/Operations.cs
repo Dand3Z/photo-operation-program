@@ -9,6 +9,15 @@ namespace APO_Projekt
 {
     public class Operations
     {
+        /**
+         * Klasa zawierająca różnego rodzaju metody do wykonywania na obrazach
+         */
+
+        /**************************************************************
+         * Metody
+         ************************************************************/
+
+        // zwraca informację o tym czy wskazany obraz jest czarno-biały
         public static Boolean isGrayScale(Bitmap img)
         {
             Boolean result = true;
@@ -27,13 +36,13 @@ namespace APO_Projekt
 
             return result;
         }
+
+        // neguje wartości wszystkich pikseli wskazanego obrazu
         public static void negation(Bitmap bitmap, bool isGrey)
         {
+            // szary obraz
             if (isGrey)
             {
-                //var rect = new Rectangle(0, 0, bitmap.Width, bitmap.Height);
-                //var newBitmap = bitmap.Clone(rect, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-
                 for (Int32 h = 0; h < bitmap.Height; h++)
                     for (Int32 w = 0; w < bitmap.Width; w++)
                     {
@@ -41,8 +50,8 @@ namespace APO_Projekt
                         int negRed = 255 - color.R;
                         bitmap.SetPixel(w, h, Color.FromArgb(color.A, negRed, negRed, negRed));
                     }
-                
             }
+            // kolorowy obraz
             else
             {
                 for (Int32 h = 0; h < bitmap.Height; h++)

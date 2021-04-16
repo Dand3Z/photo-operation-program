@@ -13,6 +13,10 @@ namespace APO_Projekt
 {
     public partial class PictureWindow : Form
     {
+        /**************************************************************
+         * Pola
+         ************************************************************/
+
         private static PictureWindow lastActiveWindow = null;
 
         // Tablice Lut dla każdego z kolorów
@@ -24,6 +28,10 @@ namespace APO_Projekt
         private Bitmap bitmap; // obecny stan obrazka
         private HistogramWindow histogramWindow = null;  // histogram tego obrazu
         private LutWindow lutWindow = null;
+
+        /**************************************************************
+         * Konstruktory
+         ************************************************************/
 
         public PictureWindow()
         {
@@ -38,14 +46,14 @@ namespace APO_Projekt
             if (!pc.isGrey)
             {
                 // w przypadku obrazu kolorowego kopiujemy wszystkie barwy
-                Array.Copy(pc.getGreen(), green, pc.getGreen().Length);
-                Array.Copy(pc.getBlue(), blue, pc.getBlue().Length);
-                Array.Copy(pc.getYellow(), yellow, pc.getYellow().Length);
-                Array.Copy(pc.getPink(), pink, pc.getPink().Length);
-                Array.Copy(pc.getTurquoise(), turquoise, pc.getTurquoise().Length);
-                Array.Copy(pc.getAllColors(), allColors, pc.getAllColors().Length);
+                Array.Copy(pc.Green, green, pc.Green.Length);
+                Array.Copy(pc.Blue, blue, pc.Blue.Length);
+                Array.Copy(pc.Yellow, yellow, pc.Yellow.Length);
+                Array.Copy(pc.Pink, pink, pc.Pink.Length);
+                Array.Copy(pc.Turquoise, turquoise, pc.Turquoise.Length);
+                Array.Copy(pc.AllColors, allColors, pc.AllColors.Length);
             }
-            Array.Copy(pc.getRed(), red, pc.getRed().Length);
+            Array.Copy(pc.Red, red, pc.Red.Length);
             isGrey = pc.isGrey;
             bitmap = (Bitmap) pc.bitmap.Clone();
             // klonuj histogram gdy on istnieje
@@ -54,8 +62,12 @@ namespace APO_Projekt
             // kopia dokładna
         }
 
+        /**************************************************************
+         * Metody
+         ************************************************************/
+
         // Ustaw obraz
-        public void SetPicture(OpenFileDialog open)
+        public void setPicture(OpenFileDialog open)
         {
             // inicjalizacja bitmapy
             bitmap = new Bitmap(open.FileName);
@@ -79,8 +91,8 @@ namespace APO_Projekt
             resetLutTables();
         }
 
-        // save picture
-        public void SavePicture(SaveFileDialog save)
+        // zapisz obraz
+        public void savePicture(SaveFileDialog save)
         {
             string FilePath = save.FileName;
             pictureBox.Image.Save(FilePath, ImageFormat.Png);
@@ -106,12 +118,6 @@ namespace APO_Projekt
                     red[color.R]++;
                     green[color.G]++;
                     blue[color.B]++;
-
-                    //if (color.R == color.G) yellow[color.R]++;
-                    //if (color.R == color.B) pink[color.R]++;
-                    //if (color.G == color.B) turquoise[color.G]++;
-
-                    //if ((color.R == color.G) && (color.G == color.B)) allColors[color.G]++;
                 }
 
             // wyliczenie tablic kombinacyjnych
@@ -149,14 +155,14 @@ namespace APO_Projekt
         public void resetBitmap()
         {
             pictureBox.Image = bitmap;  // aktualizuje wyświetlany obrazek
-            if (histogramWindow != null) histogramWindow.setChartValues(); // aktualzuje histogram
+            if (histogramWindow != null) histogramWindow.printChart(); // aktualzuje histogram
             if (lutWindow != null) lutWindow.resetLutTable(); // aktualizuje wartości w LutWindow
         }
 
         public void showHistogram()
         {
             // jeśli nie ma histogramu ten obiekt lub ten został zamknięty to go stwórz
-            if (histogramWindow == null || histogramWindow.getIsClosed()) 
+            if (histogramWindow == null || histogramWindow.IsClosed) 
             {
                 histogramWindow = new HistogramWindow(this);
             }
@@ -168,51 +174,44 @@ namespace APO_Projekt
         public void showLutTable()
         {
             // jeśli nie ma LutWindow ten obiekt lub ten został zamknięty to go stwórz
-            if (lutWindow == null || lutWindow.getIsClosed())
+            if (lutWindow == null || lutWindow.IsClosed)
             {
                 lutWindow = new LutWindow(this);
             }
             // pokaż LutWindow
             lutWindow.Show();
-        }
+        }   
 
-        public void deleteHistogramWindow()
-        {
-            // this.histogramWindow = null;
-        }      
-        
+        /**************************************************************
+         * Właściwości
+         ************************************************************/
 
-        /*
-        // Test button -> do usunięcia DELETE IT
-        private void btnTest_Click(object sender, EventArgs e)
-        {
-            Operations.negation(bitmap, isGrey);
-            resetLutTables();
-            pictureBox.Image = bitmap;
-            if (histogramWindow != null) histogramWindow.setChartValues();
-        }
-        
-        // tworzenie kopii -> do usunięcia DELETE IT
-        private void btnCopy_Click(object sender, EventArgs e)
-        {
-            new PictureWindow(this).Show();
-        }
-        */
+        public int[] Red { get { return this.red; } }
+        public int[] Green { get { return this.green; } }
+        public int[] Blue { get { return this.blue; } }
+        public int[] Yellow { get { return this.yellow; } }
+        public int[] Turquoise { get { return this.turquoise; } }
+        public int[] Pink { get { return this.pink; } }
+        public int[] AllColors { get { return this.allColors; } }
+        public Bitmap Bitmap { get { return this.bitmap; } }
+        public bool IsGrey { get { return this.isGrey; } }
+        // ostatie aktywne okno PictureWindow
+        public static PictureWindow LastActiveWindow { get { return lastActiveWindow; } }
 
 
         /************************************************************** 
-         * Events
+         * Zdarzenia
          *************************************************************/
 
-
-        // gdy zamykasz to okno to zamknij też histogram
+        // gdy zamykasz to okno to zamknij też histogram / LutTable
         private void PictureWindow_FormClosed(object sender, FormClosedEventArgs e)
         {
             // histogram istnieje i jest otwarty
-            if (histogramWindow != null && histogramWindow.getIsClosed() == false) histogramWindow.Close();
+            if (histogramWindow != null && histogramWindow.IsClosed == false) histogramWindow.Close();
             // LutWindow istnieje i jest otwarte
-            if (lutWindow != null && lutWindow.getIsClosed() == false) histogramWindow.Close();
+            if (lutWindow != null && lutWindow.IsClosed == false) lutWindow.Close();
         }
+
         // gdy wybrane okno jest PictureWindow to zmień statyczne lastActiveWindow
         private void PictureWindow_Activated(object sender, EventArgs e)
         {
@@ -220,45 +219,23 @@ namespace APO_Projekt
             if (ActiveForm is PictureWindow)
             {
                 activeWindow = (PictureWindow)ActiveForm;
-            } else return;
+            }
+            else return;
 
             lastActiveWindow = activeWindow;
         }
 
-        /*
-        // wyświetl histogram po podwójnym kliku myszy
-        private void PictureWindow_MouseDoubleClick(object sender, MouseEventArgs e)
+        // Pokaż szczegóły piksela wskazywanego kursorem
+        // do poprawy
+        private void pictureBox_MouseMove(object sender, MouseEventArgs e)
         {
-            // tylko jedno okno histogramu dla danego obrazka jest dopuszczalne
-
-            // jeśli nie ma to stwórz i pokaż
-            if (histogramWindow == null)
+            try
             {
-                histogramWindow = new HistogramWindow(this);
+                Color currentColor = bitmap.GetPixel(Cursor.Position.X - this.Left, Cursor.Position.Y - (this.Top + 15));
+                this.Text = Cursor.Position.X.ToString() + ", " + Cursor.Position.Y.ToString() + ": RGB(" + currentColor.R.ToString() + ", " + currentColor.G.ToString() + ", " + currentColor.B.ToString();
             }
-
-            // pokaż histogram
-            histogramWindow.Show();
-
+            catch(Exception ex) { this.Text = ex.Message; }
         }
-        */
-
-        /**************************************************************
-         * getery i setery -> przyzwyczajenie z Javy
-         ************************************************************/
-
-        public int[] getRed() { return red; }
-        public int[] getGreen() { return green; }
-        public int[] getBlue() { return blue; }
-        public int[] getYellow() { return yellow; }
-        public int[] getTurquoise() { return turquoise; }
-        public int[] getPink() { return pink; }
-        public int[] getAllColors() { return allColors; }
-        public Bitmap getBitmap() { return bitmap; }
-        public bool getIsGrey() { return this.isGrey; }
-        public static PictureWindow getLastActiveWindow() { return lastActiveWindow; }
-        public HistogramWindow getHistogramWindow() { return histogramWindow; }
-        public void setHistogramWindow(HistogramWindow hw) { this.histogramWindow = hw; }
 
     }
 }

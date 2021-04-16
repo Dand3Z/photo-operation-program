@@ -12,17 +12,30 @@ namespace APO_Projekt
 {
     public partial class LutWindow : Form
     {
+        /**************************************************************
+         * Pola
+         ************************************************************/
+
         // trzyma 3 referencje do tablic podstawowych kolorów
         private readonly int[] red = null, green = null, blue = null;
         private bool isGrey, isClosed = false;
+
+        /**************************************************************
+         * Konstruktory
+         ************************************************************/
+
         public LutWindow(PictureWindow pw)
         {
             InitializeComponent();
-            red = pw.getRed();
-            green = pw.getGreen();
-            blue = pw.getBlue();
-            isGrey = pw.getIsGrey();
+            red = pw.Red;
+            green = pw.Green;
+            blue = pw.Blue;
+            isGrey = pw.IsGrey;
         }
+
+        /**************************************************************
+         * Metody
+         ************************************************************/
 
         // zresetuj wyświetalne wartości po zmianie na obrazie
         public void resetLutTable()
@@ -45,7 +58,16 @@ namespace APO_Projekt
             }
         }
 
+        /**************************************************************
+         * Właściwości
+         ************************************************************/
 
+        public bool IsClosed { get { return this.isClosed; } }
+
+
+        /**************************************************************
+         * Zdarzenia
+         ************************************************************/
 
         private void LutWindow_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -65,6 +87,6 @@ namespace APO_Projekt
             resetLutTable();
         }
 
-        public bool getIsClosed() { return this.isClosed; }
+        
     }      
 }

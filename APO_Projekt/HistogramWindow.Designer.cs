@@ -72,22 +72,22 @@ namespace APO_Projekt
             series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
             series4.Color = System.Drawing.Color.Yellow;
             series4.Legend = "Legend1";
-            series4.Name = "yellow";
+            series4.Name = "red+green";
             series5.ChartArea = "ChartArea1";
             series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
             series5.Color = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             series5.Legend = "Legend1";
-            series5.Name = "turquoise";
+            series5.Name = "green+blue";
             series6.ChartArea = "ChartArea1";
             series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
             series6.Color = System.Drawing.Color.Fuchsia;
             series6.Legend = "Legend1";
-            series6.Name = "pink";
+            series6.Name = "red+blue";
             series7.ChartArea = "ChartArea1";
             series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
             series7.Color = System.Drawing.Color.Black;
             series7.Legend = "Legend1";
-            series7.Name = "black";
+            series7.Name = "red+green+blue";
             this.chart.Series.Add(series1);
             this.chart.Series.Add(series2);
             this.chart.Series.Add(series3);
@@ -95,7 +95,7 @@ namespace APO_Projekt
             this.chart.Series.Add(series5);
             this.chart.Series.Add(series6);
             this.chart.Series.Add(series7);
-            this.chart.Size = new System.Drawing.Size(457, 275);
+            this.chart.Size = new System.Drawing.Size(517, 274);
             this.chart.TabIndex = 0;
             this.chart.Text = "chart1";
             // 
@@ -103,7 +103,7 @@ namespace APO_Projekt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(481, 299);
+            this.ClientSize = new System.Drawing.Size(541, 298);
             this.Controls.Add(this.chart);
             this.Name = "HistogramWindow";
             this.Text = "HistogramWindow";
