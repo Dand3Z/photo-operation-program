@@ -1,4 +1,4 @@
-# photo-operation-program-
+# photo-operation-program
 
 The project is created for the completion of the course during studies. 
 
