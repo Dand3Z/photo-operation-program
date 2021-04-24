@@ -27,7 +27,7 @@ namespace APO_Projekt
         private bool isGrey { get; set; } = true;  // czy obraz jest monochromatyczny
         private Bitmap bitmap; // obecny stan obrazka
         private HistogramWindow histogramWindow = null;  // histogram tego obrazu
-        private LutWindow lutWindow = null;
+        private LutWindow lutWindow = null; // tablica lut tego obrazu
 
         /**************************************************************
          * Konstruktory
@@ -66,11 +66,11 @@ namespace APO_Projekt
          * Metody
          ************************************************************/
 
-        // Ustaw obraz
+        // Ustaw obraz, używane przy wczytywaniu
         public void setPicture(OpenFileDialog open)
         {
             // inicjalizacja bitmapy
-            bitmap = new Bitmap(open.FileName);
+            bitmap = new Bitmap(Image.FromFile(open.FileName));
             // ustawienie isGrey
             isGrey = Operations.isGrayScale(bitmap);
 
@@ -87,6 +87,7 @@ namespace APO_Projekt
 
             // przypisanie obrazka do picture boxa
             pictureBox.Image = bitmap;
+
             // wypełnij tabicę lut
             resetLutTables();
         }
@@ -226,13 +227,27 @@ namespace APO_Projekt
         }
 
         // Pokaż szczegóły piksela wskazywanego kursorem
-        // do poprawy
         private void pictureBox_MouseMove(object sender, MouseEventArgs e)
         {
             try
             {
-                Color currentColor = bitmap.GetPixel(Cursor.Position.X - this.Left, Cursor.Position.Y - (this.Top + 15));
-                this.Text = Cursor.Position.X.ToString() + ", " + Cursor.Position.Y.ToString() + ": RGB(" + currentColor.R.ToString() + ", " + currentColor.G.ToString() + ", " + currentColor.B.ToString();
+                // bazowe wartości
+                // działające dla obraza o wielkości pictureBox.Width, pictureBox.Height
+                int x = Cursor.Position.X - this.Left - 20;
+                int y = Cursor.Position.Y - this.Top - 42;
+
+                // współczynnik skali
+                double scaleX = (double) Bitmap.Width / pictureBox.Width;
+                double scaleY = (double) Bitmap.Height / pictureBox.Height;
+
+                // wylicz wskazywany piksel
+                Color currentColor = bitmap.GetPixel( (int) (x * scaleX), (int) (y * scaleY));
+
+                // wypisz kolor aktualnie wskazywanego piksela
+                labelRed.Text = "Red: " + currentColor.R.ToString();
+                labelGreen.Text = "Green: " + currentColor.G.ToString();
+                labelBlue.Text = "Blue: " + currentColor.B.ToString();
+
             }
             catch(Exception ex) { this.Text = ex.Message; }
         }
