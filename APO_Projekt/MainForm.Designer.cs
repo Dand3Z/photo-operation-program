@@ -40,7 +40,8 @@ namespace APO_Projekt
             this.lab2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuNegation = new System.Windows.Forms.ToolStripMenuItem();
             this.btnLog = new System.Windows.Forms.Button();
-            this.linearStretchingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuLinearStretching = new System.Windows.Forms.ToolStripMenuItem();
+            this.equalizationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -114,7 +115,8 @@ namespace APO_Projekt
             // 
             this.lab2ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MenuNegation,
-            this.linearStretchingToolStripMenuItem});
+            this.MenuLinearStretching,
+            this.equalizationToolStripMenuItem});
             this.lab2ToolStripMenuItem.Name = "lab2ToolStripMenuItem";
             this.lab2ToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.lab2ToolStripMenuItem.Text = "Lab2";
@@ -137,12 +139,18 @@ namespace APO_Projekt
             this.btnLog.UseVisualStyleBackColor = true;
             this.btnLog.Click += new System.EventHandler(this.btnLog_Click);
             // 
-            // linearStretchingToolStripMenuItem
+            // MenuLinearStretching
             // 
-            this.linearStretchingToolStripMenuItem.Name = "linearStretchingToolStripMenuItem";
-            this.linearStretchingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.linearStretchingToolStripMenuItem.Text = "Linear Stretching";
-            this.linearStretchingToolStripMenuItem.Click += new System.EventHandler(this.linearStretchingToolStripMenuItem_Click);
+            this.MenuLinearStretching.Name = "MenuLinearStretching";
+            this.MenuLinearStretching.Size = new System.Drawing.Size(180, 22);
+            this.MenuLinearStretching.Text = "Linear Stretching";
+            this.MenuLinearStretching.Click += new System.EventHandler(this.MenuLinearStretching_Click);
+            // 
+            // equalizationToolStripMenuItem
+            // 
+            this.equalizationToolStripMenuItem.Name = "equalizationToolStripMenuItem";
+            this.equalizationToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.equalizationToolStripMenuItem.Text = "Equalization";
             // 
             // MainWindow
             // 
@@ -174,7 +182,8 @@ namespace APO_Projekt
         private System.Windows.Forms.ToolStripMenuItem MenuShowHistogram;
         private System.Windows.Forms.ToolStripMenuItem MenuShowLUT;
         private System.Windows.Forms.ToolStripMenuItem MenuSave;
-        private System.Windows.Forms.ToolStripMenuItem linearStretchingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem MenuLinearStretching;
+        private System.Windows.Forms.ToolStripMenuItem equalizationToolStripMenuItem;
     }
 }
 

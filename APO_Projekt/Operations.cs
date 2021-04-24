@@ -93,7 +93,7 @@ namespace APO_Projekt
                     bitmap.SetPixel(w, h, Color.FromArgb(color.A, newValue, newValue, newValue));
                 }
         }
-
+        // operacja pomocnicza do wyliczania liniowego rozciągania histogramu
         private static byte calculateNewIntensity(byte current, byte localMin, byte localMax, byte newMax)
         {
             return (byte) ( ((current - localMin) * newMax) / (localMax - localMin) );

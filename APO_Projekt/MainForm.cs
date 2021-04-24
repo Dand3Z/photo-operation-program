@@ -128,7 +128,7 @@ namespace APO_Projekt
             pw.showLutTable();
         }
 
-        private void linearStretchingToolStripMenuItem_Click(object sender, EventArgs e)
+        private void MenuLinearStretching_Click(object sender, EventArgs e)
         {
             // Weź ostatnie aktywne PictureWindow
             PictureWindow pw = PictureWindow.LastActiveWindow;
