@@ -24,7 +24,7 @@ namespace APO_Projekt
         private int[] yellow = new int[256], pink = new int[256], turquoise = new int[256];
         private int[] allColors = new int[256];
 
-        private bool isGrey { get; set; } = true;  // czy obraz jest monochromatyczny
+        private bool isGrey = true;  // czy obraz jest monochromatyczny
         private Bitmap bitmap; // obecny stan obrazka
         private HistogramWindow histogramWindow = null;  // histogram tego obrazu
         private LutWindow lutWindow = null; // tablica lut tego obrazu
@@ -249,8 +249,13 @@ namespace APO_Projekt
                 labelBlue.Text = "Blue: " + currentColor.B.ToString();
 
             }
-            catch(Exception ex) { this.Text = ex.Message; }
+            catch(Exception ex) {}
         }
 
     }
+
+    /**
+     * Do naprawy
+     * Gdy zamykam okno ustaw ostatnie aktywno okno na null
+     */
 }

@@ -101,7 +101,6 @@ namespace APO_Projekt
             pw.resetLutTables();
             
             pw.resetBitmap();
-
         }
 
         private void MenuShowHistogram_Click(object sender, EventArgs e)
@@ -127,6 +126,20 @@ namespace APO_Projekt
             if (pw == null) return;
 
             pw.showLutTable();
+        }
+
+        private void linearStretchingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Weź ostatnie aktywne PictureWindow
+            PictureWindow pw = PictureWindow.LastActiveWindow;
+
+            // Czy jest na czym wykonywać operacje
+            if (pw == null) return;
+
+            Operations.greyLinearStretching(pw.Bitmap, pw.Red);
+            pw.resetLutTables();
+
+            pw.resetBitmap();
         }
     }
 }

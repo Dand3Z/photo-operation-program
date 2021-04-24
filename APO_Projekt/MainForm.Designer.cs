@@ -33,13 +33,14 @@ namespace APO_Projekt
             this.MenuFile = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuOpen = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuClone = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuSave = new System.Windows.Forms.ToolStripMenuItem();
             this.lab1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuShowHistogram = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuShowLUT = new System.Windows.Forms.ToolStripMenuItem();
             this.lab2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuNegation = new System.Windows.Forms.ToolStripMenuItem();
             this.btnLog = new System.Windows.Forms.Button();
-            this.MenuShowLUT = new System.Windows.Forms.ToolStripMenuItem();
-            this.MenuSave = new System.Windows.Forms.ToolStripMenuItem();
+            this.linearStretchingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -68,16 +69,23 @@ namespace APO_Projekt
             // MenuOpen
             // 
             this.MenuOpen.Name = "MenuOpen";
-            this.MenuOpen.Size = new System.Drawing.Size(180, 22);
+            this.MenuOpen.Size = new System.Drawing.Size(105, 22);
             this.MenuOpen.Text = "Open";
             this.MenuOpen.Click += new System.EventHandler(this.MenuOpen_Click);
             // 
             // MenuClone
             // 
             this.MenuClone.Name = "MenuClone";
-            this.MenuClone.Size = new System.Drawing.Size(180, 22);
+            this.MenuClone.Size = new System.Drawing.Size(105, 22);
             this.MenuClone.Text = "Clone";
             this.MenuClone.Click += new System.EventHandler(this.MenuClone_Click);
+            // 
+            // MenuSave
+            // 
+            this.MenuSave.Name = "MenuSave";
+            this.MenuSave.Size = new System.Drawing.Size(105, 22);
+            this.MenuSave.Text = "Save";
+            this.MenuSave.Click += new System.EventHandler(this.MenuSave_Click);
             // 
             // lab1ToolStripMenuItem
             // 
@@ -91,14 +99,22 @@ namespace APO_Projekt
             // MenuShowHistogram
             // 
             this.MenuShowHistogram.Name = "MenuShowHistogram";
-            this.MenuShowHistogram.Size = new System.Drawing.Size(180, 22);
+            this.MenuShowHistogram.Size = new System.Drawing.Size(162, 22);
             this.MenuShowHistogram.Text = "Show Histogram";
             this.MenuShowHistogram.Click += new System.EventHandler(this.MenuShowHistogram_Click);
+            // 
+            // MenuShowLUT
+            // 
+            this.MenuShowLUT.Name = "MenuShowLUT";
+            this.MenuShowLUT.Size = new System.Drawing.Size(162, 22);
+            this.MenuShowLUT.Text = "Show LUT";
+            this.MenuShowLUT.Click += new System.EventHandler(this.MenuShowLUT_Click);
             // 
             // lab2ToolStripMenuItem
             // 
             this.lab2ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MenuNegation});
+            this.MenuNegation,
+            this.linearStretchingToolStripMenuItem});
             this.lab2ToolStripMenuItem.Name = "lab2ToolStripMenuItem";
             this.lab2ToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.lab2ToolStripMenuItem.Text = "Lab2";
@@ -106,7 +122,7 @@ namespace APO_Projekt
             // MenuNegation
             // 
             this.MenuNegation.Name = "MenuNegation";
-            this.MenuNegation.Size = new System.Drawing.Size(123, 22);
+            this.MenuNegation.Size = new System.Drawing.Size(180, 22);
             this.MenuNegation.Text = "Negation";
             this.MenuNegation.Click += new System.EventHandler(this.MenuNegation_Click);
             // 
@@ -121,19 +137,12 @@ namespace APO_Projekt
             this.btnLog.UseVisualStyleBackColor = true;
             this.btnLog.Click += new System.EventHandler(this.btnLog_Click);
             // 
-            // MenuShowLUT
+            // linearStretchingToolStripMenuItem
             // 
-            this.MenuShowLUT.Name = "MenuShowLUT";
-            this.MenuShowLUT.Size = new System.Drawing.Size(180, 22);
-            this.MenuShowLUT.Text = "Show LUT";
-            this.MenuShowLUT.Click += new System.EventHandler(this.MenuShowLUT_Click);
-            // 
-            // MenuSave
-            // 
-            this.MenuSave.Name = "MenuSave";
-            this.MenuSave.Size = new System.Drawing.Size(180, 22);
-            this.MenuSave.Text = "Save";
-            this.MenuSave.Click += new System.EventHandler(this.MenuSave_Click);
+            this.linearStretchingToolStripMenuItem.Name = "linearStretchingToolStripMenuItem";
+            this.linearStretchingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.linearStretchingToolStripMenuItem.Text = "Linear Stretching";
+            this.linearStretchingToolStripMenuItem.Click += new System.EventHandler(this.linearStretchingToolStripMenuItem_Click);
             // 
             // MainWindow
             // 
@@ -165,6 +174,7 @@ namespace APO_Projekt
         private System.Windows.Forms.ToolStripMenuItem MenuShowHistogram;
         private System.Windows.Forms.ToolStripMenuItem MenuShowLUT;
         private System.Windows.Forms.ToolStripMenuItem MenuSave;
+        private System.Windows.Forms.ToolStripMenuItem linearStretchingToolStripMenuItem;
     }
 }
 

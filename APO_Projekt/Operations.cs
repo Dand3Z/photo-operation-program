@@ -65,8 +65,41 @@ namespace APO_Projekt
                         
                     }
             }
-            
         }
+
+        // liniowe rozciąganie histogramu obrazy szaroodcieniowego
+        public static void greyLinearStretching(Bitmap bitmap, int[] greyLut)
+        {
+            // definicja lokalnych min i max
+            byte localMin = 0, localMax = 255;
+
+            // znajdź pierwsze min i ostatnie max dla których wartości są niezerowe
+            while (greyLut[localMin] == 0) ++localMin;
+            while (greyLut[localMax] == 0) --localMax;
+
+            // definicja nowego minimum i maksimum
+            byte newMin = 0, newMax = 255;
+
+            // zabezpieczenie
+            if (localMax < localMin) return;
+
+            //int[] newGreyLut = new int[256];
+
+            for (Int32 h = 0; h < bitmap.Height; ++h)
+                for (Int32 w = 0; w < bitmap.Width; ++w)
+                {
+                    Color color = bitmap.GetPixel(w, h);
+                    byte newValue = calculateNewIntensity(color.R,localMin, localMax, newMax);
+                    bitmap.SetPixel(w, h, Color.FromArgb(color.A, newValue, newValue, newValue));
+                }
+        }
+
+        private static byte calculateNewIntensity(byte current, byte localMin, byte localMax, byte newMax)
+        {
+            return (byte) ( ((current - localMin) * newMax) / (localMax - localMin) );
+        }
+        
+
+
     }
-    
 }
