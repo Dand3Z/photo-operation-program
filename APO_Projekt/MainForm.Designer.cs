@@ -39,9 +39,10 @@ namespace APO_Projekt
             this.MenuShowLUT = new System.Windows.Forms.ToolStripMenuItem();
             this.lab2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuNegation = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnLog = new System.Windows.Forms.Button();
             this.MenuLinearStretching = new System.Windows.Forms.ToolStripMenuItem();
-            this.equalizationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuEqualization = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnLog = new System.Windows.Forms.Button();
+            this.MenuThresholding = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -116,7 +117,8 @@ namespace APO_Projekt
             this.lab2ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MenuNegation,
             this.MenuLinearStretching,
-            this.equalizationToolStripMenuItem});
+            this.MenuEqualization,
+            this.MenuThresholding});
             this.lab2ToolStripMenuItem.Name = "lab2ToolStripMenuItem";
             this.lab2ToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.lab2ToolStripMenuItem.Text = "Lab2";
@@ -127,6 +129,20 @@ namespace APO_Projekt
             this.MenuNegation.Size = new System.Drawing.Size(180, 22);
             this.MenuNegation.Text = "Negation";
             this.MenuNegation.Click += new System.EventHandler(this.MenuNegation_Click);
+            // 
+            // MenuLinearStretching
+            // 
+            this.MenuLinearStretching.Name = "MenuLinearStretching";
+            this.MenuLinearStretching.Size = new System.Drawing.Size(180, 22);
+            this.MenuLinearStretching.Text = "Linear Stretching";
+            this.MenuLinearStretching.Click += new System.EventHandler(this.MenuLinearStretching_Click);
+            // 
+            // MenuEqualization
+            // 
+            this.MenuEqualization.Name = "MenuEqualization";
+            this.MenuEqualization.Size = new System.Drawing.Size(180, 22);
+            this.MenuEqualization.Text = "Equalization";
+            this.MenuEqualization.Click += new System.EventHandler(this.MenuEqualization_Click);
             // 
             // btnLog
             // 
@@ -139,18 +155,12 @@ namespace APO_Projekt
             this.btnLog.UseVisualStyleBackColor = true;
             this.btnLog.Click += new System.EventHandler(this.btnLog_Click);
             // 
-            // MenuLinearStretching
+            // MenuThresholding
             // 
-            this.MenuLinearStretching.Name = "MenuLinearStretching";
-            this.MenuLinearStretching.Size = new System.Drawing.Size(180, 22);
-            this.MenuLinearStretching.Text = "Linear Stretching";
-            this.MenuLinearStretching.Click += new System.EventHandler(this.MenuLinearStretching_Click);
-            // 
-            // equalizationToolStripMenuItem
-            // 
-            this.equalizationToolStripMenuItem.Name = "equalizationToolStripMenuItem";
-            this.equalizationToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.equalizationToolStripMenuItem.Text = "Equalization";
+            this.MenuThresholding.Name = "MenuThresholding";
+            this.MenuThresholding.Size = new System.Drawing.Size(180, 22);
+            this.MenuThresholding.Text = "Thresholding";
+            this.MenuThresholding.Click += new System.EventHandler(this.MenuThresholding_Click);
             // 
             // MainWindow
             // 
@@ -183,7 +193,8 @@ namespace APO_Projekt
         private System.Windows.Forms.ToolStripMenuItem MenuShowLUT;
         private System.Windows.Forms.ToolStripMenuItem MenuSave;
         private System.Windows.Forms.ToolStripMenuItem MenuLinearStretching;
-        private System.Windows.Forms.ToolStripMenuItem equalizationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem MenuEqualization;
+        private System.Windows.Forms.ToolStripMenuItem MenuThresholding;
     }
 }
 

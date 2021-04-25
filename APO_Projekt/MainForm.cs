@@ -38,7 +38,7 @@ namespace APO_Projekt
             OpenFileDialog open = new OpenFileDialog();
             
             // flitry obrazu
-            open.Filter = "Image Files(*jpg; *.jpeg; *.gif; *.bmp; *.png)|*jpg; *.jpeg; *.gif; *.bmp; *png";
+            open.Filter = "Image Files(*jpg; *.jpeg; *.gif; *.bmp; *.png; *.tif)|*jpg; *.jpeg; *.gif; *.bmp; *png; *.tif";
             if (open.ShowDialog() == DialogResult.OK)
             {
                 // stwórz Picture window
@@ -140,6 +140,32 @@ namespace APO_Projekt
             pw.resetLutTables();
 
             pw.resetBitmap();
+        }
+
+        private void MenuEqualization_Click(object sender, EventArgs e)
+        {
+            // Weź ostatnie aktywne PictureWindow
+            PictureWindow pw = PictureWindow.LastActiveWindow;
+
+            // Czy jest na czym wykonywać operacje
+            if (pw == null) return;
+
+            Operations.greyEqualization(pw.Bitmap, pw.Red);
+            pw.resetLutTables();
+
+            pw.resetBitmap();
+        }
+
+        private void MenuThresholding_Click(object sender, EventArgs e)
+        {
+            // Weź ostatnie aktywne PictureWindow
+            PictureWindow pw = PictureWindow.LastActiveWindow;
+
+            // Czy jest na czym wykonywać operacje
+            if (pw == null) return;
+
+            Threshold_Form slider = new Threshold_Form(pw);
+            slider.Show();
         }
     }
 }

@@ -56,6 +56,12 @@
     <Compile Include="LutWindow.Designer.cs">
       <DependentUpon>LutWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Threshold_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Threshold_Form.Designer.cs">
+      <DependentUpon>Threshold_Form.cs</DependentUpon>
+    </Compile>
     <Compile Include="WzorHistogramuTEMP.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,6 +97,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="LutWindow.resx">
       <DependentUpon>LutWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Threshold_Form.resx">
+      <DependentUpon>Threshold_Form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WzorHistogramuTEMP.resx">
       <DependentUpon>WzorHistogramuTEMP.cs</DependentUpon>

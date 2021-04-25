@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace APO_Projekt
 {
+    /**
+     * Klasa zawierająca różnego rodzaju metody do wykonywania na obrazach
+     */
     public class Operations
     {
-        /**
-         * Klasa zawierająca różnego rodzaju metody do wykonywania na obrazach
-         */
 
         /**************************************************************
          * Metody
@@ -70,12 +70,9 @@ namespace APO_Projekt
         // liniowe rozciąganie histogramu obrazy szaroodcieniowego
         public static void greyLinearStretching(Bitmap bitmap, int[] greyLut)
         {
-            // definicja lokalnych min i max
-            byte localMin = 0, localMax = 255;
-
             // znajdź pierwsze min i ostatnie max dla których wartości są niezerowe
-            while (greyLut[localMin] == 0) ++localMin;
-            while (greyLut[localMax] == 0) --localMax;
+            byte localMin = findMin(greyLut);
+            byte localMax = findMax(greyLut);
 
             // definicja nowego minimum i maksimum
             byte newMin = 0, newMax = 255;
@@ -83,23 +80,132 @@ namespace APO_Projekt
             // zabezpieczenie
             if (localMax < localMin) return;
 
-            //int[] newGreyLut = new int[256];
+            for (Int32 h = 0; h < bitmap.Height; ++h)
+                for (Int32 w = 0; w < bitmap.Width; ++w)
+                {
+                    Color color = bitmap.GetPixel(w, h);
+                    byte newValue = calcNewLinearIntensity(color.R,localMin, localMax, newMax);
+                    bitmap.SetPixel(w, h, Color.FromArgb(color.A, newValue, newValue, newValue));
+                }
+        }
+        // operacja pomocnicza do wyliczania liniowego rozciągania histogramu
+        private static byte calcNewLinearIntensity(byte current, byte localMin, byte localMax, byte newMax)
+        {
+            return (byte) ( ((current - localMin) * newMax) / (localMax - localMin) );
+        }
+        
+        //*******************EQUALIZACJA******************************************
+        // do poprawy!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+        // wyrównanie histogramu przez equalizację
+        public static void greyEqualization(Bitmap bitmap, int[] greyLut)
+        {
+            // wylicz histogram skumulowany
+            int[] cumLut = cumsum(greyLut);
+
+            // indeksy
+            byte localMin = findMin(cumLut);
+            byte localMax = findMax(cumLut);
+
+            // zabezpieczenie
+            if (localMax < localMin) return;
+
+            int[] newCumLut = new int[256 - localMin];
+            Array.Copy(cumLut, localMin, newCumLut, 0, 256 - localMin);
+
+            for (int i = 0; i < newCumLut.Length; ++i)
+            {
+                Console.WriteLine(i + " " + newCumLut[i]);
+            }
+
+            for (int i = 0; i < 256; ++i)
+            {
+                Console.WriteLine(i + " " + cumLut[i]);
+            }
+
+            // ponownie przelicz indeksy
+            localMin = findMin(newCumLut);
+            localMax = findMax(newCumLut);
+
+            // normalizujemy wartości w histogramie
+            // CHYBA DZIAŁA
+            for (int i = 0; i < cumLut.Length; ++i)
+            {
+                int newValue = ((cumLut[i] - cumLut[localMin]) * 255) / (cumLut[localMax] - cumLut[localMin]);
+                cumLut[i] = newValue >= 0 ? newValue : 0;
+            }
+
+         
+
+            /*
+            for (Int32 h = 0; h < bitmap.Height; ++h)
+                for (Int32 w = 0; w < bitmap.Width; ++w)
+                {
+                    Color color = bitmap.GetPixel(w, h);
+                    byte newValue = calcNewEqualizationIntensity(color.R, localMin, localMax);
+                    bitmap.SetPixel(w, h, Color.FromArgb(color.A, newValue, newValue, newValue));
+                }
+            */
 
             for (Int32 h = 0; h < bitmap.Height; ++h)
                 for (Int32 w = 0; w < bitmap.Width; ++w)
                 {
                     Color color = bitmap.GetPixel(w, h);
-                    byte newValue = calculateNewIntensity(color.R,localMin, localMax, newMax);
+                    byte intensity = color.R;
+                    byte result = (byte) cumLut[intensity];
+                    bitmap.SetPixel(w, h, Color.FromArgb(color.A, result, result, result));
+                }
+        }
+
+        // operacja pomocnicza do wyliczania wyrównania histogramu przez equalizację
+        private static byte calcNewEqualizationIntensity(byte current, byte localMin, byte localMax)
+        {
+            return (byte)(((current - localMin) * 255) / (localMax - localMin));
+        }
+
+        // formuła do wyliczenia skumulowanego histogramu
+        // zwraca tablicę na podstawie, której taki histogram można stworzyć
+        private static int[] cumsum(int[] greyLut)
+        {
+            int[] cumLut = new int[256];
+            cumLut[0] = greyLut[0];
+            for (int i = 1; i < 256; ++i)
+            {
+                cumLut[i] = cumLut[i - 1] + greyLut[i];
+            }
+
+            return cumLut;
+
+        }
+
+        // znajdź pierwszą niezerową wartość
+        private static byte findMin(int[] lutTable)
+        {
+            byte localMin = 0;
+            while (lutTable[localMin] == 0) ++localMin;
+            return localMin;
+        }
+
+        // znajdź ostatnią niezerową wartość
+        private static byte findMax(int[] lutTable)
+        {
+            byte localMax = 0;
+            while (lutTable[localMax] == 0) --localMax;
+            return localMax;
+        }
+
+        //*******************PROGOWANIE******************************************
+        public static void thresholding(Bitmap bitmap, byte threshold)
+        {
+            // można by dodać suwak w przyszłości do wyboru wartości
+            for (Int32 h = 0; h < bitmap.Height; ++h)
+                for (Int32 w = 0; w < bitmap.Width; ++w)
+                {
+                    Color color = bitmap.GetPixel(w, h);
+                    byte intensity = color.R;
+                    byte newValue = (intensity > threshold) ? (byte) 255 : (byte) 0;
                     bitmap.SetPixel(w, h, Color.FromArgb(color.A, newValue, newValue, newValue));
                 }
         }
-        // operacja pomocnicza do wyliczania liniowego rozciągania histogramu
-        private static byte calculateNewIntensity(byte current, byte localMin, byte localMax, byte newMax)
-        {
-            return (byte) ( ((current - localMin) * newMax) / (localMax - localMin) );
-        }
-        
-
-
     }
 }
