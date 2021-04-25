@@ -194,7 +194,7 @@ namespace APO_Projekt
             return localMax;
         }
 
-        //*******************PROGOWANIE******************************************
+        //*******************THRESHOLDING******************************************
         public static void thresholding(Bitmap bitmap, byte threshold)
         {
             // można by dodać suwak w przyszłości do wyboru wartości
@@ -207,5 +207,48 @@ namespace APO_Projekt
                     bitmap.SetPixel(w, h, Color.FromArgb(color.A, newValue, newValue, newValue));
                 }
         }
+
+        //*******************THRESHOLDING WITH GREY LEVELS******************************************
+        // progowanie z zachowaniem poziomów szarości
+
+        public static void thresholdingWithBins(Bitmap bitmap, byte binsAmount)
+        {
+            // dla np. 8 zwraca 32
+            byte binSize = (byte) Math.Round(255.0 / binsAmount);
+
+            // inicjalizcja tablicy odpowiedniej długości
+            byte[] myBins = new byte[binsAmount - 1];
+
+            // np. 32,64,96,128,160,192,224
+            for(byte i = 0; i < binsAmount-1; ++i)
+            {
+                myBins[i] = (byte) (binSize *(i+1));
+            }
+
+            // ustawienie odpowiednich wartości obrazu
+            for (Int32 h = 0; h < bitmap.Height; ++h)
+                for (Int32 w = 0; w < bitmap.Width; ++w)
+                {
+                    Color color = bitmap.GetPixel(w, h);
+                    byte intensity = color.R;
+                    byte newValue = getNewValueFromBins(myBins, binsAmount, intensity, binSize);
+                    bitmap.SetPixel(w, h, Color.FromArgb(color.A, newValue, newValue, newValue));
+                }
+
+        }
+
+        private static byte getNewValueFromBins(byte[] myBins, byte binAmount, byte colorValue, byte binSize) 
+        {
+            for (byte i = 0; i < binAmount-1; ++i)
+            {
+                if (colorValue <= myBins[i]) return (byte) ((i) * binSize); 
+            }
+            return 255;
+        }
+
+        //*******************Posterize******************************************
+
+
+        //*******************ROZCIĄGANIE******************************************
     }
 }

@@ -50,6 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BinsThresholdingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BinsThresholdingForm.Designer.cs">
+      <DependentUpon>BinsThresholdingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="LutWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +101,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="BinsThresholdingForm.resx">
+      <DependentUpon>BinsThresholdingForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LutWindow.resx">
       <DependentUpon>LutWindow.cs</DependentUpon>
     </EmbeddedResource>

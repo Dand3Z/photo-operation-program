@@ -41,8 +41,9 @@ namespace APO_Projekt
             this.MenuNegation = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuLinearStretching = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuEqualization = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnLog = new System.Windows.Forms.Button();
             this.MenuThresholding = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnLog = new System.Windows.Forms.Button();
+            this.MenubinsThresholding = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -118,7 +119,8 @@ namespace APO_Projekt
             this.MenuNegation,
             this.MenuLinearStretching,
             this.MenuEqualization,
-            this.MenuThresholding});
+            this.MenuThresholding,
+            this.MenubinsThresholding});
             this.lab2ToolStripMenuItem.Name = "lab2ToolStripMenuItem";
             this.lab2ToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.lab2ToolStripMenuItem.Text = "Lab2";
@@ -144,6 +146,13 @@ namespace APO_Projekt
             this.MenuEqualization.Text = "Equalization";
             this.MenuEqualization.Click += new System.EventHandler(this.MenuEqualization_Click);
             // 
+            // MenuThresholding
+            // 
+            this.MenuThresholding.Name = "MenuThresholding";
+            this.MenuThresholding.Size = new System.Drawing.Size(180, 22);
+            this.MenuThresholding.Text = "Thresholding";
+            this.MenuThresholding.Click += new System.EventHandler(this.MenuThresholding_Click);
+            // 
             // btnLog
             // 
             this.btnLog.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -155,12 +164,12 @@ namespace APO_Projekt
             this.btnLog.UseVisualStyleBackColor = true;
             this.btnLog.Click += new System.EventHandler(this.btnLog_Click);
             // 
-            // MenuThresholding
+            // MenubinsThresholding
             // 
-            this.MenuThresholding.Name = "MenuThresholding";
-            this.MenuThresholding.Size = new System.Drawing.Size(180, 22);
-            this.MenuThresholding.Text = "Thresholding";
-            this.MenuThresholding.Click += new System.EventHandler(this.MenuThresholding_Click);
+            this.MenubinsThresholding.Name = "MenubinsThresholding";
+            this.MenubinsThresholding.Size = new System.Drawing.Size(180, 22);
+            this.MenubinsThresholding.Text = "Bins Thresholding";
+            this.MenubinsThresholding.Click += new System.EventHandler(this.MenubinsThresholding_Click);
             // 
             // MainWindow
             // 
@@ -195,6 +204,7 @@ namespace APO_Projekt
         private System.Windows.Forms.ToolStripMenuItem MenuLinearStretching;
         private System.Windows.Forms.ToolStripMenuItem MenuEqualization;
         private System.Windows.Forms.ToolStripMenuItem MenuThresholding;
+        private System.Windows.Forms.ToolStripMenuItem MenubinsThresholding;
     }
 }
 

@@ -167,5 +167,17 @@ namespace APO_Projekt
             Threshold_Form slider = new Threshold_Form(pw);
             slider.Show();
         }
+
+        private void MenubinsThresholding_Click(object sender, EventArgs e)
+        {
+            // Weź ostatnie aktywne PictureWindow
+            PictureWindow pw = PictureWindow.LastActiveWindow;
+
+            // Czy jest na czym wykonywać operacje
+            if (pw == null) return;
+
+            BinsThresholdingForm form = new BinsThresholdingForm(pw);
+            form.Show();
+        }
     }
 }
