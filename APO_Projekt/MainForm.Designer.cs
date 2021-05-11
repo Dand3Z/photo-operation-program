@@ -42,7 +42,9 @@ namespace APO_Projekt
             this.MenuLinearStretching = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuEqualization = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuThresholding = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuGrayLevelsThresholding = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuPosterize = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuAdjustableStretching = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuDirectionalEdgeDetection = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuLinearSmoothing = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuBlur = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,8 +56,6 @@ namespace APO_Projekt
             this.MenuLinearSharpening = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuDirectionalEdge = new System.Windows.Forms.ToolStripMenuItem();
             this.btnLog = new System.Windows.Forms.Button();
-            this.MenuGrayLevelsThresholding = new System.Windows.Forms.ToolStripMenuItem();
-            this.MenuAdjustableStretching = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -168,12 +168,26 @@ namespace APO_Projekt
             this.MenuThresholding.Text = "Thresholding";
             this.MenuThresholding.Click += new System.EventHandler(this.MenuThresholding_Click);
             // 
+            // MenuGrayLevelsThresholding
+            // 
+            this.MenuGrayLevelsThresholding.Name = "MenuGrayLevelsThresholding";
+            this.MenuGrayLevelsThresholding.Size = new System.Drawing.Size(231, 22);
+            this.MenuGrayLevelsThresholding.Text = "Thresholding with Gray Levels";
+            this.MenuGrayLevelsThresholding.Click += new System.EventHandler(this.MenuGrayLevelsThresholding_Click);
+            // 
             // MenuPosterize
             // 
             this.MenuPosterize.Name = "MenuPosterize";
             this.MenuPosterize.Size = new System.Drawing.Size(231, 22);
             this.MenuPosterize.Text = "Posterize";
             this.MenuPosterize.Click += new System.EventHandler(this.MenuPosterize_Click);
+            // 
+            // MenuAdjustableStretching
+            // 
+            this.MenuAdjustableStretching.Name = "MenuAdjustableStretching";
+            this.MenuAdjustableStretching.Size = new System.Drawing.Size(231, 22);
+            this.MenuAdjustableStretching.Text = "Adjustable Stretching";
+            this.MenuAdjustableStretching.Click += new System.EventHandler(this.MenuAdjustableStretching_Click);
             // 
             // MenuDirectionalEdgeDetection
             // 
@@ -198,14 +212,14 @@ namespace APO_Projekt
             // MenuBlur
             // 
             this.MenuBlur.Name = "MenuBlur";
-            this.MenuBlur.Size = new System.Drawing.Size(145, 22);
+            this.MenuBlur.Size = new System.Drawing.Size(180, 22);
             this.MenuBlur.Text = "Blur";
             this.MenuBlur.Click += new System.EventHandler(this.MenuBlur_Click);
             // 
             // MenuGaussianBlur
             // 
             this.MenuGaussianBlur.Name = "MenuGaussianBlur";
-            this.MenuGaussianBlur.Size = new System.Drawing.Size(145, 22);
+            this.MenuGaussianBlur.Size = new System.Drawing.Size(180, 22);
             this.MenuGaussianBlur.Text = "Gaussian Blur";
             this.MenuGaussianBlur.Click += new System.EventHandler(this.MenuGaussianBlur_Click);
             // 
@@ -218,25 +232,26 @@ namespace APO_Projekt
             this.MenuEdgeDetection.Name = "MenuEdgeDetection";
             this.MenuEdgeDetection.Size = new System.Drawing.Size(214, 22);
             this.MenuEdgeDetection.Text = "Edge Detection";
+            this.MenuEdgeDetection.Click += new System.EventHandler(this.MenuEdgeDetection_Click);
             // 
             // MenuLaplacian
             // 
             this.MenuLaplacian.Name = "MenuLaplacian";
-            this.MenuLaplacian.Size = new System.Drawing.Size(124, 22);
+            this.MenuLaplacian.Size = new System.Drawing.Size(180, 22);
             this.MenuLaplacian.Text = "Laplacian";
             this.MenuLaplacian.Click += new System.EventHandler(this.MenuLaplacian_Click);
             // 
             // MenuSobel
             // 
             this.MenuSobel.Name = "MenuSobel";
-            this.MenuSobel.Size = new System.Drawing.Size(124, 22);
+            this.MenuSobel.Size = new System.Drawing.Size(180, 22);
             this.MenuSobel.Text = "Sobel";
             this.MenuSobel.Click += new System.EventHandler(this.MenuSobel_Click);
             // 
             // MenuCanny
             // 
             this.MenuCanny.Name = "MenuCanny";
-            this.MenuCanny.Size = new System.Drawing.Size(124, 22);
+            this.MenuCanny.Size = new System.Drawing.Size(180, 22);
             this.MenuCanny.Text = "Canny";
             this.MenuCanny.Click += new System.EventHandler(this.MenuCanny_Click);
             // 
@@ -264,20 +279,6 @@ namespace APO_Projekt
             this.btnLog.Text = "Log";
             this.btnLog.UseVisualStyleBackColor = true;
             this.btnLog.Click += new System.EventHandler(this.btnLog_Click);
-            // 
-            // MenuGrayLevelsThresholding
-            // 
-            this.MenuGrayLevelsThresholding.Name = "MenuGrayLevelsThresholding";
-            this.MenuGrayLevelsThresholding.Size = new System.Drawing.Size(231, 22);
-            this.MenuGrayLevelsThresholding.Text = "Thresholding with Gray Levels";
-            this.MenuGrayLevelsThresholding.Click += new System.EventHandler(this.MenuGrayLevelsThresholding_Click);
-            // 
-            // MenuAdjustableStretching
-            // 
-            this.MenuAdjustableStretching.Name = "MenuAdjustableStretching";
-            this.MenuAdjustableStretching.Size = new System.Drawing.Size(231, 22);
-            this.MenuAdjustableStretching.Text = "Adjustable Stretching";
-            this.MenuAdjustableStretching.Click += new System.EventHandler(this.MenuAdjustableStretching_Click);
             // 
             // MainWindow
             // 

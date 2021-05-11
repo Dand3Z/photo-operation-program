@@ -199,13 +199,12 @@ namespace APO_Projekt
 
             // Czy jest na czym wykonywać operacje
             if (pw == null) return;
-
             // sprawdź czy obraz jest szaroodcieniowy
             if (!pw.IsGrey) return;
 
-            Operations.blur(pw);
+            Blur_Form blur_Form = new Blur_Form(pw);
+            blur_Form.Show();
             pw.resetLutTables();
-
             pw.resetBitmap();
         }
 
@@ -216,13 +215,12 @@ namespace APO_Projekt
 
             // Czy jest na czym wykonywać operacje
             if (pw == null) return;
-
             // sprawdź czy obraz jest szaroodcieniowy
             if (!pw.IsGrey) return;
 
-            Operations.gaussianBlur(pw);
+            GaussianBlur_Form gaussianBlur_Form = new GaussianBlur_Form(pw);
+            gaussianBlur_Form.Show();
             pw.resetLutTables();
-
             pw.resetBitmap();
         }
 
@@ -320,6 +318,18 @@ namespace APO_Projekt
             if (!pw.IsGrey) return;
             AdjustableStretching_Form slider = new AdjustableStretching_Form(pw);
             slider.Show();
+        }
+
+        private void MenuEdgeDetection_Click(object sender, EventArgs e)
+        {
+            // Weź ostatnie aktywne PictureWindow
+            PictureWindow pw = PictureWindow.LastActiveWindow;
+            // Czy jest na czym wykonywać operacje
+            if (pw == null) return;
+            // sprawdź czy obraz jest szaroodcieniowy
+            if (!pw.IsGrey) return;
+            EdgeDetection_Form form = new EdgeDetection_Form(pw);
+            form.Show();
         }
     }
 }
