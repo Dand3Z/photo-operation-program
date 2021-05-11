@@ -42,8 +42,20 @@ namespace APO_Projekt
             this.MenuLinearStretching = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuEqualization = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuThresholding = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuPosterize = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuDirectionalEdgeDetection = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuLinearSmoothing = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuBlur = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuGaussianBlur = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuEdgeDetection = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuLaplacian = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuSobel = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuCanny = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuLinearSharpening = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuDirectionalEdge = new System.Windows.Forms.ToolStripMenuItem();
             this.btnLog = new System.Windows.Forms.Button();
-            this.MenubinsThresholding = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuGrayLevelsThresholding = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuAdjustableStretching = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,7 +64,8 @@ namespace APO_Projekt
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MenuFile,
             this.lab1ToolStripMenuItem,
-            this.lab2ToolStripMenuItem});
+            this.lab2ToolStripMenuItem,
+            this.MenuDirectionalEdgeDetection});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(518, 24);
@@ -120,7 +133,9 @@ namespace APO_Projekt
             this.MenuLinearStretching,
             this.MenuEqualization,
             this.MenuThresholding,
-            this.MenubinsThresholding});
+            this.MenuGrayLevelsThresholding,
+            this.MenuPosterize,
+            this.MenuAdjustableStretching});
             this.lab2ToolStripMenuItem.Name = "lab2ToolStripMenuItem";
             this.lab2ToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.lab2ToolStripMenuItem.Text = "Lab2";
@@ -128,30 +143,116 @@ namespace APO_Projekt
             // MenuNegation
             // 
             this.MenuNegation.Name = "MenuNegation";
-            this.MenuNegation.Size = new System.Drawing.Size(180, 22);
+            this.MenuNegation.Size = new System.Drawing.Size(231, 22);
             this.MenuNegation.Text = "Negation";
             this.MenuNegation.Click += new System.EventHandler(this.MenuNegation_Click);
             // 
             // MenuLinearStretching
             // 
             this.MenuLinearStretching.Name = "MenuLinearStretching";
-            this.MenuLinearStretching.Size = new System.Drawing.Size(180, 22);
+            this.MenuLinearStretching.Size = new System.Drawing.Size(231, 22);
             this.MenuLinearStretching.Text = "Linear Stretching";
             this.MenuLinearStretching.Click += new System.EventHandler(this.MenuLinearStretching_Click);
             // 
             // MenuEqualization
             // 
             this.MenuEqualization.Name = "MenuEqualization";
-            this.MenuEqualization.Size = new System.Drawing.Size(180, 22);
+            this.MenuEqualization.Size = new System.Drawing.Size(231, 22);
             this.MenuEqualization.Text = "Equalization";
             this.MenuEqualization.Click += new System.EventHandler(this.MenuEqualization_Click);
             // 
             // MenuThresholding
             // 
             this.MenuThresholding.Name = "MenuThresholding";
-            this.MenuThresholding.Size = new System.Drawing.Size(180, 22);
+            this.MenuThresholding.Size = new System.Drawing.Size(231, 22);
             this.MenuThresholding.Text = "Thresholding";
             this.MenuThresholding.Click += new System.EventHandler(this.MenuThresholding_Click);
+            // 
+            // MenuPosterize
+            // 
+            this.MenuPosterize.Name = "MenuPosterize";
+            this.MenuPosterize.Size = new System.Drawing.Size(231, 22);
+            this.MenuPosterize.Text = "Posterize";
+            this.MenuPosterize.Click += new System.EventHandler(this.MenuPosterize_Click);
+            // 
+            // MenuDirectionalEdgeDetection
+            // 
+            this.MenuDirectionalEdgeDetection.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MenuLinearSmoothing,
+            this.MenuEdgeDetection,
+            this.MenuLinearSharpening,
+            this.MenuDirectionalEdge});
+            this.MenuDirectionalEdgeDetection.Name = "MenuDirectionalEdgeDetection";
+            this.MenuDirectionalEdgeDetection.Size = new System.Drawing.Size(44, 20);
+            this.MenuDirectionalEdgeDetection.Text = "Lab3";
+            // 
+            // MenuLinearSmoothing
+            // 
+            this.MenuLinearSmoothing.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MenuBlur,
+            this.MenuGaussianBlur});
+            this.MenuLinearSmoothing.Name = "MenuLinearSmoothing";
+            this.MenuLinearSmoothing.Size = new System.Drawing.Size(214, 22);
+            this.MenuLinearSmoothing.Text = "Linear Smoothing";
+            // 
+            // MenuBlur
+            // 
+            this.MenuBlur.Name = "MenuBlur";
+            this.MenuBlur.Size = new System.Drawing.Size(145, 22);
+            this.MenuBlur.Text = "Blur";
+            this.MenuBlur.Click += new System.EventHandler(this.MenuBlur_Click);
+            // 
+            // MenuGaussianBlur
+            // 
+            this.MenuGaussianBlur.Name = "MenuGaussianBlur";
+            this.MenuGaussianBlur.Size = new System.Drawing.Size(145, 22);
+            this.MenuGaussianBlur.Text = "Gaussian Blur";
+            this.MenuGaussianBlur.Click += new System.EventHandler(this.MenuGaussianBlur_Click);
+            // 
+            // MenuEdgeDetection
+            // 
+            this.MenuEdgeDetection.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MenuLaplacian,
+            this.MenuSobel,
+            this.MenuCanny});
+            this.MenuEdgeDetection.Name = "MenuEdgeDetection";
+            this.MenuEdgeDetection.Size = new System.Drawing.Size(214, 22);
+            this.MenuEdgeDetection.Text = "Edge Detection";
+            // 
+            // MenuLaplacian
+            // 
+            this.MenuLaplacian.Name = "MenuLaplacian";
+            this.MenuLaplacian.Size = new System.Drawing.Size(124, 22);
+            this.MenuLaplacian.Text = "Laplacian";
+            this.MenuLaplacian.Click += new System.EventHandler(this.MenuLaplacian_Click);
+            // 
+            // MenuSobel
+            // 
+            this.MenuSobel.Name = "MenuSobel";
+            this.MenuSobel.Size = new System.Drawing.Size(124, 22);
+            this.MenuSobel.Text = "Sobel";
+            this.MenuSobel.Click += new System.EventHandler(this.MenuSobel_Click);
+            // 
+            // MenuCanny
+            // 
+            this.MenuCanny.Name = "MenuCanny";
+            this.MenuCanny.Size = new System.Drawing.Size(124, 22);
+            this.MenuCanny.Text = "Canny";
+            this.MenuCanny.Click += new System.EventHandler(this.MenuCanny_Click);
+            // 
+            // MenuLinearSharpening
+            // 
+            this.MenuLinearSharpening.Name = "MenuLinearSharpening";
+            this.MenuLinearSharpening.Size = new System.Drawing.Size(214, 22);
+            this.MenuLinearSharpening.Text = "Linear Sharpening";
+            this.MenuLinearSharpening.Click += new System.EventHandler(this.MenuLinearSharpening_Click);
+            // 
+            // MenuDirectionalEdge
+            // 
+            this.MenuDirectionalEdge.Name = "MenuDirectionalEdge";
+            this.MenuDirectionalEdge.Size = new System.Drawing.Size(214, 22);
+            this.MenuDirectionalEdge.Text = "Directional Edge Detection";
+            this.MenuDirectionalEdge.Click += new System.EventHandler(this.MenuDirectionalEdge_Click);
             // 
             // btnLog
             // 
@@ -164,12 +265,19 @@ namespace APO_Projekt
             this.btnLog.UseVisualStyleBackColor = true;
             this.btnLog.Click += new System.EventHandler(this.btnLog_Click);
             // 
-            // MenubinsThresholding
+            // MenuGrayLevelsThresholding
             // 
-            this.MenubinsThresholding.Name = "MenubinsThresholding";
-            this.MenubinsThresholding.Size = new System.Drawing.Size(180, 22);
-            this.MenubinsThresholding.Text = "Bins Thresholding";
-            this.MenubinsThresholding.Click += new System.EventHandler(this.MenubinsThresholding_Click);
+            this.MenuGrayLevelsThresholding.Name = "MenuGrayLevelsThresholding";
+            this.MenuGrayLevelsThresholding.Size = new System.Drawing.Size(231, 22);
+            this.MenuGrayLevelsThresholding.Text = "Thresholding with Gray Levels";
+            this.MenuGrayLevelsThresholding.Click += new System.EventHandler(this.MenuGrayLevelsThresholding_Click);
+            // 
+            // MenuAdjustableStretching
+            // 
+            this.MenuAdjustableStretching.Name = "MenuAdjustableStretching";
+            this.MenuAdjustableStretching.Size = new System.Drawing.Size(231, 22);
+            this.MenuAdjustableStretching.Text = "Adjustable Stretching";
+            this.MenuAdjustableStretching.Click += new System.EventHandler(this.MenuAdjustableStretching_Click);
             // 
             // MainWindow
             // 
@@ -204,7 +312,19 @@ namespace APO_Projekt
         private System.Windows.Forms.ToolStripMenuItem MenuLinearStretching;
         private System.Windows.Forms.ToolStripMenuItem MenuEqualization;
         private System.Windows.Forms.ToolStripMenuItem MenuThresholding;
-        private System.Windows.Forms.ToolStripMenuItem MenubinsThresholding;
+        private System.Windows.Forms.ToolStripMenuItem MenuPosterize;
+        private System.Windows.Forms.ToolStripMenuItem MenuDirectionalEdgeDetection;
+        private System.Windows.Forms.ToolStripMenuItem MenuLinearSmoothing;
+        private System.Windows.Forms.ToolStripMenuItem MenuBlur;
+        private System.Windows.Forms.ToolStripMenuItem MenuGaussianBlur;
+        private System.Windows.Forms.ToolStripMenuItem MenuEdgeDetection;
+        private System.Windows.Forms.ToolStripMenuItem MenuLaplacian;
+        private System.Windows.Forms.ToolStripMenuItem MenuSobel;
+        private System.Windows.Forms.ToolStripMenuItem MenuCanny;
+        private System.Windows.Forms.ToolStripMenuItem MenuLinearSharpening;
+        private System.Windows.Forms.ToolStripMenuItem MenuDirectionalEdge;
+        private System.Windows.Forms.ToolStripMenuItem MenuGrayLevelsThresholding;
+        private System.Windows.Forms.ToolStripMenuItem MenuAdjustableStretching;
     }
 }
 

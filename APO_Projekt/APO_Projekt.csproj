@@ -12,9 +12,11 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -33,6 +35,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Emgu.CV.Platform.NetFramework, Version=4.3.0.3890, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
+      <HintPath>..\packages\Emgu.CV.4.3.0.3890\lib\net461\Emgu.CV.Platform.NetFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Emgu.CV.Platform.NetStandard, Version=4.3.0.3890, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
+      <HintPath>..\packages\Emgu.CV.4.3.0.3890\lib\net461\Emgu.CV.Platform.NetStandard.dll</HintPath>
+    </Reference>
     <Reference Include="OpenCvSharp">
       <HintPath>..\..\..\..\..\..\Visual Studio Projects\Distribute-DLLs\OpenCvSharp.dll</HintPath>
     </Reference>
@@ -50,11 +58,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BinsThresholdingForm.cs">
+    <Compile Include="AdjustableStretching_Form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BinsThresholdingForm.Designer.cs">
-      <DependentUpon>BinsThresholdingForm.cs</DependentUpon>
+    <Compile Include="AdjustableStretching_Form.Designer.cs">
+      <DependentUpon>AdjustableStretching_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GrayLevelsThresholding_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GrayLevelsThresholding_Form.Designer.cs">
+      <DependentUpon>GrayLevelsThresholding_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PosterizeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PosterizeForm.Designer.cs">
+      <DependentUpon>PosterizeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DirectionalEdgeDetection_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DirectionalEdgeDetection_Form.Designer.cs">
+      <DependentUpon>DirectionalEdgeDetection_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LinearSharpening_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LinearSharpening_Form.Designer.cs">
+      <DependentUpon>LinearSharpening_Form.cs</DependentUpon>
     </Compile>
     <Compile Include="LutWindow.cs">
       <SubType>Form</SubType>
@@ -101,8 +133,20 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="BinsThresholdingForm.resx">
-      <DependentUpon>BinsThresholdingForm.cs</DependentUpon>
+    <EmbeddedResource Include="AdjustableStretching_Form.resx">
+      <DependentUpon>AdjustableStretching_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GrayLevelsThresholding_Form.resx">
+      <DependentUpon>GrayLevelsThresholding_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PosterizeForm.resx">
+      <DependentUpon>PosterizeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DirectionalEdgeDetection_Form.resx">
+      <DependentUpon>DirectionalEdgeDetection_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LinearSharpening_Form.resx">
+      <DependentUpon>LinearSharpening_Form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LutWindow.resx">
       <DependentUpon>LutWindow.cs</DependentUpon>
@@ -133,7 +177,9 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\DataSources\PictureWindow.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -149,11 +195,24 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="cv210.dll" />
-    <Content Include="cvaux210.dll" />
-    <Content Include="cxcore210.dll" />
-    <Content Include="highgui210.dll" />
-    <Content Include="ml210.dll" />
+    <Content Include="pictures\E.PNG" />
+    <Content Include="pictures\Linear_1.PNG" />
+    <Content Include="pictures\Linear_2.PNG" />
+    <Content Include="pictures\Linear_3.PNG" />
+    <Content Include="pictures\N.PNG" />
+    <Content Include="pictures\NE.PNG" />
+    <Content Include="pictures\NW.PNG" />
+    <Content Include="pictures\S.PNG" />
+    <Content Include="pictures\SE.PNG" />
+    <Content Include="pictures\SW.PNG" />
+    <Content Include="pictures\W.PNG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\Emgu.CV.runtime.windows.4.3.0.3890\build\Emgu.CV.runtime.windows.targets" Condition="Exists('..\packages\Emgu.CV.runtime.windows.4.3.0.3890\build\Emgu.CV.runtime.windows.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Ten projekt zawiera odwołania do pakietów NuGet, których nie ma na tym komputerze. Użyj przywracania pakietów NuGet, aby je pobrać. Aby uzyskać więcej informacji, zobacz http://go.microsoft.com/fwlink/?LinkID=322105. Brakujący plik: {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Emgu.CV.runtime.windows.4.3.0.3890\build\Emgu.CV.runtime.windows.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Emgu.CV.runtime.windows.4.3.0.3890\build\Emgu.CV.runtime.windows.targets'))" />
+  </Target>
 </Project>

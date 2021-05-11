@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
+
 namespace APO_Projekt
 {
     public partial class PictureWindow : Form
@@ -194,7 +196,9 @@ namespace APO_Projekt
         public int[] Turquoise { get { return this.turquoise; } }
         public int[] Pink { get { return this.pink; } }
         public int[] AllColors { get { return this.allColors; } }
-        public Bitmap Bitmap { get { return this.bitmap; } }
+        public Bitmap Bitmap { get { return this.bitmap; }
+                               set { bitmap = value; }
+        }
         public bool IsGrey { get { return this.isGrey; } }
         // ostatie aktywne okno PictureWindow
         public static PictureWindow LastActiveWindow { get { return lastActiveWindow; } }

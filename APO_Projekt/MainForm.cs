@@ -136,6 +136,9 @@ namespace APO_Projekt
             // Czy jest na czym wykonywać operacje
             if (pw == null) return;
 
+            // sprawdź czy obraz jest szaroodcieniowy
+            if (!pw.IsGrey) return;
+
             Operations.greyLinearStretching(pw.Bitmap, pw.Red);
             pw.resetLutTables();
 
@@ -149,6 +152,9 @@ namespace APO_Projekt
 
             // Czy jest na czym wykonywać operacje
             if (pw == null) return;
+            
+            // sprawdź czy obraz jest szaroodcieniowy
+            if (!pw.IsGrey) return;
 
             Operations.greyEqualization(pw.Bitmap, pw.Red);
             pw.resetLutTables();
@@ -164,11 +170,14 @@ namespace APO_Projekt
             // Czy jest na czym wykonywać operacje
             if (pw == null) return;
 
+            // sprawdź czy obraz jest szaroodcieniowy
+            if (!pw.IsGrey) return;
+
             Threshold_Form slider = new Threshold_Form(pw);
             slider.Show();
         }
 
-        private void MenubinsThresholding_Click(object sender, EventArgs e)
+        private void MenuPosterize_Click(object sender, EventArgs e)
         {
             // Weź ostatnie aktywne PictureWindow
             PictureWindow pw = PictureWindow.LastActiveWindow;
@@ -176,8 +185,141 @@ namespace APO_Projekt
             // Czy jest na czym wykonywać operacje
             if (pw == null) return;
 
-            BinsThresholdingForm form = new BinsThresholdingForm(pw);
+            // sprawdź czy obraz jest szaroodcieniowy
+            if (!pw.IsGrey) return;
+
+            PosterizeForm form = new PosterizeForm(pw);
             form.Show();
+        }
+
+        private void MenuBlur_Click(object sender, EventArgs e)
+        {
+            // Weź ostatnie aktywne PictureWindow
+            PictureWindow pw = PictureWindow.LastActiveWindow;
+
+            // Czy jest na czym wykonywać operacje
+            if (pw == null) return;
+
+            // sprawdź czy obraz jest szaroodcieniowy
+            if (!pw.IsGrey) return;
+
+            Operations.blur(pw);
+            pw.resetLutTables();
+
+            pw.resetBitmap();
+        }
+
+        private void MenuGaussianBlur_Click(object sender, EventArgs e)
+        {
+            // Weź ostatnie aktywne PictureWindow
+            PictureWindow pw = PictureWindow.LastActiveWindow;
+
+            // Czy jest na czym wykonywać operacje
+            if (pw == null) return;
+
+            // sprawdź czy obraz jest szaroodcieniowy
+            if (!pw.IsGrey) return;
+
+            Operations.gaussianBlur(pw);
+            pw.resetLutTables();
+
+            pw.resetBitmap();
+        }
+
+        private void MenuLaplacian_Click(object sender, EventArgs e)
+        {
+            // Weź ostatnie aktywne PictureWindow
+            PictureWindow pw = PictureWindow.LastActiveWindow;
+
+            // Czy jest na czym wykonywać operacje
+            if (pw == null) return;
+
+            // sprawdź czy obraz jest szaroodcieniowy
+            if (!pw.IsGrey) return;
+
+            Operations.laplacian(pw);
+            pw.resetLutTables();
+            pw.resetBitmap();
+        }
+
+        private void MenuSobel_Click(object sender, EventArgs e)
+        {
+            // Weź ostatnie aktywne PictureWindow
+            PictureWindow pw = PictureWindow.LastActiveWindow;
+
+            // Czy jest na czym wykonywać operacje
+            if (pw == null) return;
+
+            // sprawdź czy obraz jest szaroodcieniowy
+            if (!pw.IsGrey) return;
+
+            Operations.sobel(pw);
+            pw.resetLutTables();
+            pw.resetBitmap();
+        }
+
+        private void MenuCanny_Click(object sender, EventArgs e)
+        {
+            // Weź ostatnie aktywne PictureWindow
+            PictureWindow pw = PictureWindow.LastActiveWindow;
+
+            // Czy jest na czym wykonywać operacje
+            if (pw == null) return;
+
+            // sprawdź czy obraz jest szaroodcieniowy
+            if (!pw.IsGrey) return;
+
+            Operations.canny(pw);
+            pw.resetLutTables();
+            pw.resetBitmap();
+        }
+
+        private void MenuLinearSharpening_Click(object sender, EventArgs e)
+        {
+            // Weź ostatnie aktywne PictureWindow
+            PictureWindow pw = PictureWindow.LastActiveWindow;
+            // Czy jest na czym wykonywać operacje
+            if (pw == null) return;
+            // sprawdź czy obraz jest szaroodcieniowy
+            if (!pw.IsGrey) return;
+            LinearSharpening_Form form = new LinearSharpening_Form(pw);
+            form.Show();
+        }
+
+        private void MenuDirectionalEdge_Click(object sender, EventArgs e)
+        {
+            // Weź ostatnie aktywne PictureWindow
+            PictureWindow pw = PictureWindow.LastActiveWindow;
+            // Czy jest na czym wykonywać operacje
+            if (pw == null) return;
+            // sprawdź czy obraz jest szaroodcieniowy
+            if (!pw.IsGrey) return;
+            DirectionalEdgeDetection_Form form = new DirectionalEdgeDetection_Form(pw);
+            form.Show();
+        }
+
+        private void MenuGrayLevelsThresholding_Click(object sender, EventArgs e)
+        {
+            // Weź ostatnie aktywne PictureWindow
+            PictureWindow pw = PictureWindow.LastActiveWindow;
+            // Czy jest na czym wykonywać operacje
+            if (pw == null) return;
+            // sprawdź czy obraz jest szaroodcieniowy
+            if (!pw.IsGrey) return;
+            GrayLevelsThresholding_Form slider = new GrayLevelsThresholding_Form(pw);
+            slider.Show();
+        }
+
+        private void MenuAdjustableStretching_Click(object sender, EventArgs e)
+        {
+            // Weź ostatnie aktywne PictureWindow
+            PictureWindow pw = PictureWindow.LastActiveWindow;
+            // Czy jest na czym wykonywać operacje
+            if (pw == null) return;
+            // sprawdź czy obraz jest szaroodcieniowy
+            if (!pw.IsGrey) return;
+            AdjustableStretching_Form slider = new AdjustableStretching_Form(pw);
+            slider.Show();
         }
     }
 }

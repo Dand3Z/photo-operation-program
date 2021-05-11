@@ -1,7 +1,7 @@
 ﻿
 namespace APO_Projekt
 {
-    partial class BinsThresholdingForm
+    partial class PosterizeForm
     {
         /// <summary>
         /// Required designer variable.
@@ -55,7 +55,7 @@ namespace APO_Projekt
             this.btnDo.Name = "btnDo";
             this.btnDo.Size = new System.Drawing.Size(54, 23);
             this.btnDo.TabIndex = 2;
-            this.btnDo.Text = "Do";
+            this.btnDo.Text = "Apply";
             this.btnDo.UseVisualStyleBackColor = true;
             this.btnDo.Click += new System.EventHandler(this.btnDo_Click);
             // 
