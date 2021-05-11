@@ -331,5 +331,17 @@ namespace APO_Projekt
             EdgeDetection_Form form = new EdgeDetection_Form(pw);
             form.Show();
         }
+
+        private void MenuCustomMask_Click(object sender, EventArgs e)
+        {
+            // Weź ostatnie aktywne PictureWindow
+            PictureWindow pw = PictureWindow.LastActiveWindow;
+            // Czy jest na czym wykonywać operacje
+            if (pw == null) return;
+            // sprawdź czy obraz jest szaroodcieniowy
+            if (!pw.IsGrey) return;
+            CustomMask_Form form = new CustomMask_Form(pw);
+            form.Show();
+        }
     }
 }

@@ -56,6 +56,7 @@ namespace APO_Projekt
             this.MenuLinearSharpening = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuDirectionalEdge = new System.Windows.Forms.ToolStripMenuItem();
             this.btnLog = new System.Windows.Forms.Button();
+            this.MenuCustomMask = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -195,7 +196,8 @@ namespace APO_Projekt
             this.MenuLinearSmoothing,
             this.MenuEdgeDetection,
             this.MenuLinearSharpening,
-            this.MenuDirectionalEdge});
+            this.MenuDirectionalEdge,
+            this.MenuCustomMask});
             this.MenuDirectionalEdgeDetection.Name = "MenuDirectionalEdgeDetection";
             this.MenuDirectionalEdgeDetection.Size = new System.Drawing.Size(44, 20);
             this.MenuDirectionalEdgeDetection.Text = "Lab3";
@@ -280,6 +282,13 @@ namespace APO_Projekt
             this.btnLog.UseVisualStyleBackColor = true;
             this.btnLog.Click += new System.EventHandler(this.btnLog_Click);
             // 
+            // MenuCustomMask
+            // 
+            this.MenuCustomMask.Name = "MenuCustomMask";
+            this.MenuCustomMask.Size = new System.Drawing.Size(214, 22);
+            this.MenuCustomMask.Text = "Custom Mask";
+            this.MenuCustomMask.Click += new System.EventHandler(this.MenuCustomMask_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -326,6 +335,7 @@ namespace APO_Projekt
         private System.Windows.Forms.ToolStripMenuItem MenuDirectionalEdge;
         private System.Windows.Forms.ToolStripMenuItem MenuGrayLevelsThresholding;
         private System.Windows.Forms.ToolStripMenuItem MenuAdjustableStretching;
+        private System.Windows.Forms.ToolStripMenuItem MenuCustomMask;
     }
 }
 

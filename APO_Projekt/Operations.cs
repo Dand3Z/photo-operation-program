@@ -302,6 +302,7 @@ namespace APO_Projekt
         }
 
         // Detekcja krawędzi
+        // do wywalenia
         public static void laplacian(PictureWindow pw)
         {
             // format obrazu wyjściowego
@@ -338,6 +339,7 @@ namespace APO_Projekt
             pw.Bitmap = result;
         }
 
+        // do wywalenia
         public static void sobel(PictureWindow pw)
         {
             // format obrazu wyjściowego
@@ -375,6 +377,7 @@ namespace APO_Projekt
             pw.Bitmap = result;
         }
 
+        // do wywalenia
         public static void canny(PictureWindow pw)
         {
             // progi

@@ -70,7 +70,7 @@ namespace APO_Projekt
             // 
             this.lblEdgeDetection.AutoSize = true;
             this.lblEdgeDetection.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblEdgeDetection.Location = new System.Drawing.Point(28, 21);
+            this.lblEdgeDetection.Location = new System.Drawing.Point(18, 21);
             this.lblEdgeDetection.Name = "lblEdgeDetection";
             this.lblEdgeDetection.Size = new System.Drawing.Size(101, 16);
             this.lblEdgeDetection.TabIndex = 22;
