@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace APO_Projekt
 {
     public partial class MainWindow : Form
@@ -341,6 +342,24 @@ namespace APO_Projekt
             // sprawdź czy obraz jest szaroodcieniowy
             if (!pw.IsGrey) return;
             CustomMask_Form form = new CustomMask_Form(pw);
+            form.Show();
+        }
+
+        private void MenuMedianBlur_Click(object sender, EventArgs e)
+        {
+            PictureWindow pw = PictureWindow.LastActiveWindow;
+            if (pw == null) return;
+            if (!pw.IsGrey) return;
+            MedianBlur_Form form = new MedianBlur_Form(pw);
+            form.Show();
+        }
+
+        private void MenuBinaryPointOperations_Click(object sender, EventArgs e)
+        {// isGrey do zmiany
+            PictureWindow pw = PictureWindow.LastActiveWindow;
+            if (pw == null) return;
+            if (!pw.IsGrey) return;
+            BinaryPointOperations_Form form = new BinaryPointOperations_Form(pw);
             form.Show();
         }
     }

@@ -64,6 +64,12 @@
     <Compile Include="AdjustableStretching_Form.Designer.cs">
       <DependentUpon>AdjustableStretching_Form.cs</DependentUpon>
     </Compile>
+    <Compile Include="BinaryPointOperations_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BinaryPointOperations_Form.Designer.cs">
+      <DependentUpon>BinaryPointOperations_Form.cs</DependentUpon>
+    </Compile>
     <Compile Include="Blur_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +99,12 @@
     </Compile>
     <Compile Include="GrayLevelsThresholding_Form.Designer.cs">
       <DependentUpon>GrayLevelsThresholding_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MedianBlur_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MedianBlur_Form.Designer.cs">
+      <DependentUpon>MedianBlur_Form.cs</DependentUpon>
     </Compile>
     <Compile Include="PosterizeForm.cs">
       <SubType>Form</SubType>
@@ -160,6 +172,9 @@
     <EmbeddedResource Include="AdjustableStretching_Form.resx">
       <DependentUpon>AdjustableStretching_Form.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BinaryPointOperations_Form.resx">
+      <DependentUpon>BinaryPointOperations_Form.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Blur_Form.resx">
       <DependentUpon>Blur_Form.cs</DependentUpon>
     </EmbeddedResource>
@@ -174,6 +189,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GrayLevelsThresholding_Form.resx">
       <DependentUpon>GrayLevelsThresholding_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MedianBlur_Form.resx">
+      <DependentUpon>MedianBlur_Form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PosterizeForm.resx">
       <DependentUpon>PosterizeForm.cs</DependentUpon>
