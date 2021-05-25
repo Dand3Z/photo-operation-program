@@ -110,7 +110,7 @@ namespace APO_Projekt
             this.txtAlpha.Name = "txtAlpha";
             this.txtAlpha.Size = new System.Drawing.Size(70, 20);
             this.txtAlpha.TabIndex = 29;
-            this.txtAlpha.Text = "0.7";
+            this.txtAlpha.Text = "0,7";
             // 
             // lbAlpha
             // 
@@ -136,7 +136,7 @@ namespace APO_Projekt
             this.txtBeta.Name = "txtBeta";
             this.txtBeta.Size = new System.Drawing.Size(70, 20);
             this.txtBeta.TabIndex = 32;
-            this.txtBeta.Text = "0.5";
+            this.txtBeta.Text = "0,5";
             // 
             // lbGamma
             // 
