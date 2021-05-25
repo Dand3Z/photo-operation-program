@@ -50,15 +50,14 @@ namespace APO_Projekt
             this.MenuBlur = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuGaussianBlur = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuEdgeDetection = new System.Windows.Forms.ToolStripMenuItem();
-            this.MenuLaplacian = new System.Windows.Forms.ToolStripMenuItem();
-            this.MenuSobel = new System.Windows.Forms.ToolStripMenuItem();
-            this.MenuCanny = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuLinearSharpening = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuDirectionalEdge = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuCustomMask = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnLog = new System.Windows.Forms.Button();
             this.MenuMedianBlur = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuBinaryPointOperations = new System.Windows.Forms.ToolStripMenuItem();
+            this.lab4ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuMathematicalMorphology = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnLog = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -68,7 +67,8 @@ namespace APO_Projekt
             this.MenuFile,
             this.lab1ToolStripMenuItem,
             this.lab2ToolStripMenuItem,
-            this.MenuDirectionalEdgeDetection});
+            this.MenuDirectionalEdgeDetection,
+            this.lab4ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(518, 24);
@@ -231,35 +231,10 @@ namespace APO_Projekt
             // 
             // MenuEdgeDetection
             // 
-            this.MenuEdgeDetection.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MenuLaplacian,
-            this.MenuSobel,
-            this.MenuCanny});
             this.MenuEdgeDetection.Name = "MenuEdgeDetection";
             this.MenuEdgeDetection.Size = new System.Drawing.Size(214, 22);
             this.MenuEdgeDetection.Text = "Edge Detection";
             this.MenuEdgeDetection.Click += new System.EventHandler(this.MenuEdgeDetection_Click);
-            // 
-            // MenuLaplacian
-            // 
-            this.MenuLaplacian.Name = "MenuLaplacian";
-            this.MenuLaplacian.Size = new System.Drawing.Size(124, 22);
-            this.MenuLaplacian.Text = "Laplacian";
-            this.MenuLaplacian.Click += new System.EventHandler(this.MenuLaplacian_Click);
-            // 
-            // MenuSobel
-            // 
-            this.MenuSobel.Name = "MenuSobel";
-            this.MenuSobel.Size = new System.Drawing.Size(124, 22);
-            this.MenuSobel.Text = "Sobel";
-            this.MenuSobel.Click += new System.EventHandler(this.MenuSobel_Click);
-            // 
-            // MenuCanny
-            // 
-            this.MenuCanny.Name = "MenuCanny";
-            this.MenuCanny.Size = new System.Drawing.Size(124, 22);
-            this.MenuCanny.Text = "Canny";
-            this.MenuCanny.Click += new System.EventHandler(this.MenuCanny_Click);
             // 
             // MenuLinearSharpening
             // 
@@ -282,17 +257,6 @@ namespace APO_Projekt
             this.MenuCustomMask.Text = "Custom Mask";
             this.MenuCustomMask.Click += new System.EventHandler(this.MenuCustomMask_Click);
             // 
-            // btnLog
-            // 
-            this.btnLog.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLog.Location = new System.Drawing.Point(431, 37);
-            this.btnLog.Name = "btnLog";
-            this.btnLog.Size = new System.Drawing.Size(75, 23);
-            this.btnLog.TabIndex = 1;
-            this.btnLog.Text = "Log";
-            this.btnLog.UseVisualStyleBackColor = true;
-            this.btnLog.Click += new System.EventHandler(this.btnLog_Click);
-            // 
             // MenuMedianBlur
             // 
             this.MenuMedianBlur.Name = "MenuMedianBlur";
@@ -306,6 +270,32 @@ namespace APO_Projekt
             this.MenuBinaryPointOperations.Size = new System.Drawing.Size(214, 22);
             this.MenuBinaryPointOperations.Text = "Binary Point Operations";
             this.MenuBinaryPointOperations.Click += new System.EventHandler(this.MenuBinaryPointOperations_Click);
+            // 
+            // lab4ToolStripMenuItem
+            // 
+            this.lab4ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MenuMathematicalMorphology});
+            this.lab4ToolStripMenuItem.Name = "lab4ToolStripMenuItem";
+            this.lab4ToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.lab4ToolStripMenuItem.Text = "Lab4";
+            // 
+            // MenuMathematicalMorphology
+            // 
+            this.MenuMathematicalMorphology.Name = "MenuMathematicalMorphology";
+            this.MenuMathematicalMorphology.Size = new System.Drawing.Size(216, 22);
+            this.MenuMathematicalMorphology.Text = "Mathematical Morphology";
+            this.MenuMathematicalMorphology.Click += new System.EventHandler(this.MenuMathematicalMorphology_Click);
+            // 
+            // btnLog
+            // 
+            this.btnLog.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLog.Location = new System.Drawing.Point(431, 37);
+            this.btnLog.Name = "btnLog";
+            this.btnLog.Size = new System.Drawing.Size(75, 23);
+            this.btnLog.TabIndex = 1;
+            this.btnLog.Text = "Log";
+            this.btnLog.UseVisualStyleBackColor = true;
+            this.btnLog.Click += new System.EventHandler(this.btnLog_Click);
             // 
             // MainWindow
             // 
@@ -346,9 +336,6 @@ namespace APO_Projekt
         private System.Windows.Forms.ToolStripMenuItem MenuBlur;
         private System.Windows.Forms.ToolStripMenuItem MenuGaussianBlur;
         private System.Windows.Forms.ToolStripMenuItem MenuEdgeDetection;
-        private System.Windows.Forms.ToolStripMenuItem MenuLaplacian;
-        private System.Windows.Forms.ToolStripMenuItem MenuSobel;
-        private System.Windows.Forms.ToolStripMenuItem MenuCanny;
         private System.Windows.Forms.ToolStripMenuItem MenuLinearSharpening;
         private System.Windows.Forms.ToolStripMenuItem MenuDirectionalEdge;
         private System.Windows.Forms.ToolStripMenuItem MenuGrayLevelsThresholding;
@@ -356,6 +343,8 @@ namespace APO_Projekt
         private System.Windows.Forms.ToolStripMenuItem MenuCustomMask;
         private System.Windows.Forms.ToolStripMenuItem MenuMedianBlur;
         private System.Windows.Forms.ToolStripMenuItem MenuBinaryPointOperations;
+        private System.Windows.Forms.ToolStripMenuItem lab4ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem MenuMathematicalMorphology;
     }
 }
 

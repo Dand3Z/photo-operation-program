@@ -296,27 +296,6 @@ namespace APO_Projekt
             pw.Bitmap = result;
         }
 
-        // Detekcja krawędzi
-        // do wywalenia
-        public static void laplacian(PictureWindow pw)
-        {
-            // format obrazu wyjściowego
-            var ddepth = DepthType.Cv8U;
-            // rozmiar filtra
-            int ksize = 3;
-
-            // bitmapa źródłowa
-            Bitmap source = pw.Bitmap;
-            // przekonwertuj bitmapa na format emgu
-            Image<Gray, byte> emguImage = source.ToImage<Gray, byte>();
-            // wykonaj operację detekcji krawędzi
-            CvInvoke.Laplacian(emguImage, emguImage, ddepth, ksize);
-            // ponownie zmień typ na bitmap
-            Bitmap result = emguImage.ToBitmap();
-            // zapisz rezulat w oknie wynikowym
-            pw.Bitmap = result;
-        }
-
         public static void laplacian(PictureWindow pw, int kernel, BorderType border)
         {
             // format obrazu wyjściowego
@@ -334,27 +313,6 @@ namespace APO_Projekt
             pw.Bitmap = result;
         }
 
-        // do wywalenia
-        public static void sobel(PictureWindow pw)
-        {
-            // format obrazu wyjściowego
-            var ddepth = DepthType.Cv8U;
-            // rozmiar filtra
-            int ksize = 5;
-
-            // bitmapa źródłowa
-            Bitmap source = pw.Bitmap;
-            // przekonwertuj bitmapa na format emgu
-            Image<Gray, byte> emguImage = source.ToImage<Gray, byte>();
-            // wykonaj operację detekcji krawędzi
-            CvInvoke.Sobel(emguImage, emguImage, ddepth, 0, 1, ksize); // 0,1; 1,0
-            
-            // ponownie zmień typ na bitmap
-            Bitmap result = emguImage.ToBitmap();
-            // zapisz rezulat w oknie wynikowym
-            pw.Bitmap = result;
-        }
-
         public static void sobel(PictureWindow pw, int kernel, int xorder, int yorder, BorderType border)
         {
             // format obrazu wyjściowego
@@ -366,25 +324,6 @@ namespace APO_Projekt
             Image<Gray, byte> emguImage = source.ToImage<Gray, byte>();
             // wykonaj operację detekcji krawędzi
             CvInvoke.Sobel(emguImage, emguImage, ddepth, xorder, yorder, kernel, 1, 0, border); // 0,1; 1,0
-            // ponownie zmień typ na bitmap
-            Bitmap result = emguImage.ToBitmap();
-            // zapisz rezulat w oknie wynikowym
-            pw.Bitmap = result;
-        }
-
-        // do wywalenia
-        public static void canny(PictureWindow pw)
-        {
-            // progi
-            double threshold1 = 100;
-            double threshold2 = 200;
-
-            // bitmapa źródłowa
-            Bitmap source = pw.Bitmap;
-            // przekonwertuj bitmapa na format emgu
-            Image<Gray, byte> emguImage = source.ToImage<Gray, byte>();
-            // wykonaj operację detekcji krawędzi
-            CvInvoke.Canny(emguImage, emguImage, threshold1, threshold2);
             // ponownie zmień typ na bitmap
             Bitmap result = emguImage.ToBitmap();
             // zapisz rezulat w oknie wynikowym
@@ -443,6 +382,7 @@ namespace APO_Projekt
             Bitmap result = emguImage.ToBitmap();
             // zapisz rezulat w oknie wynikowym
             pw.Bitmap = result;
+            
         }
 
         /*

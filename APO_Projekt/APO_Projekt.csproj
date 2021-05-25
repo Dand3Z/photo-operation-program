@@ -100,6 +100,12 @@
     <Compile Include="GrayLevelsThresholding_Form.Designer.cs">
       <DependentUpon>GrayLevelsThresholding_Form.cs</DependentUpon>
     </Compile>
+    <Compile Include="MathematicalMorphology_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MathematicalMorphology_Form.Designer.cs">
+      <DependentUpon>MathematicalMorphology_Form.cs</DependentUpon>
+    </Compile>
     <Compile Include="MedianBlur_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -189,6 +195,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GrayLevelsThresholding_Form.resx">
       <DependentUpon>GrayLevelsThresholding_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MathematicalMorphology_Form.resx">
+      <DependentUpon>MathematicalMorphology_Form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MedianBlur_Form.resx">
       <DependentUpon>MedianBlur_Form.cs</DependentUpon>

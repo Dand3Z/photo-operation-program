@@ -102,18 +102,12 @@ namespace APO_Projekt
         {
             double sum = maskValues.ToList().Sum();
 
-            // testing
-            //for (int i = 0; i < 9; ++i) Console.WriteLine(maskValues[i]);
-            //Console.Out.WriteLine(sum);
-
             BorderType border = getBorderType();
 
             for(int i = 0; i < maskValues.Length; ++i)
             {
                 maskValues[i] /= sum;
             }
-
-            //for (int i = 0; i < 9; ++i) Console.WriteLine(maskValues[i]);
 
             Matrix<double> mask = new Matrix<double>(new double[3, 3]
             { {maskValues[0] , maskValues[1], maskValues[2] },

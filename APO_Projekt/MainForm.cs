@@ -224,54 +224,6 @@ namespace APO_Projekt
             pw.resetBitmap();
         }
 
-        private void MenuLaplacian_Click(object sender, EventArgs e)
-        {
-            // Weź ostatnie aktywne PictureWindow
-            PictureWindow pw = PictureWindow.LastActiveWindow;
-
-            // Czy jest na czym wykonywać operacje
-            if (pw == null) return;
-
-            // sprawdź czy obraz jest szaroodcieniowy
-            if (!pw.IsGrey) return;
-
-            Operations.laplacian(pw);
-            pw.resetLutTables();
-            pw.resetBitmap();
-        }
-
-        private void MenuSobel_Click(object sender, EventArgs e)
-        {
-            // Weź ostatnie aktywne PictureWindow
-            PictureWindow pw = PictureWindow.LastActiveWindow;
-
-            // Czy jest na czym wykonywać operacje
-            if (pw == null) return;
-
-            // sprawdź czy obraz jest szaroodcieniowy
-            if (!pw.IsGrey) return;
-
-            Operations.sobel(pw);
-            pw.resetLutTables();
-            pw.resetBitmap();
-        }
-
-        private void MenuCanny_Click(object sender, EventArgs e)
-        {
-            // Weź ostatnie aktywne PictureWindow
-            PictureWindow pw = PictureWindow.LastActiveWindow;
-
-            // Czy jest na czym wykonywać operacje
-            if (pw == null) return;
-
-            // sprawdź czy obraz jest szaroodcieniowy
-            if (!pw.IsGrey) return;
-
-            Operations.canny(pw);
-            pw.resetLutTables();
-            pw.resetBitmap();
-        }
-
         private void MenuLinearSharpening_Click(object sender, EventArgs e)
         {
             // Weź ostatnie aktywne PictureWindow
@@ -359,6 +311,15 @@ namespace APO_Projekt
             if (pw == null) return;
             if (!pw.IsGrey) return;
             BinaryPointOperations_Form form = new BinaryPointOperations_Form(pw);
+            form.Show();
+        }
+
+        private void MenuMathematicalMorphology_Click(object sender, EventArgs e)
+        {
+            PictureWindow pw = PictureWindow.LastActiveWindow;
+            if (pw == null) return;
+            if (!pw.IsGrey) return;
+            MathematicalMorphology_Form form = new MathematicalMorphology_Form(pw);
             form.Show();
         }
     }
