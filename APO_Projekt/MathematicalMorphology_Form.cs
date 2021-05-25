@@ -101,13 +101,16 @@ namespace APO_Projekt
             cbOperation.Items.Add("Dilate");
             cbOperation.Items.Add("Open");
             cbOperation.Items.Add("Close");
+            cbOperation.SelectedIndex = 0;
 
             cbBorderType.Items.Add("BORDER_REPLICATE");
             cbBorderType.Items.Add("BORDER_CONSTANT");
             cbBorderType.Items.Add("BORDER_REFLECT");
+            cbBorderType.SelectedIndex = 0;
 
             cbShape.Items.Add("CROSS");
             cbShape.Items.Add("SQUARE");
+            cbShape.SelectedIndex = 0;
 
             cbSize.Items.Add("3");
             cbSize.Items.Add("5");
@@ -119,6 +122,7 @@ namespace APO_Projekt
             cbSize.Items.Add("17");
             cbSize.Items.Add("19");
             cbSize.Items.Add("21");
+            cbSize.SelectedIndex = 0;
         }
 
         private bool isBinary()
