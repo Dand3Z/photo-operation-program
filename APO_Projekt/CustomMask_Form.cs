@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Emgu.CV;
 using Emgu.CV.CvEnum;
+using Emgu.CV.Structure;
 
 namespace APO_Projekt
 {
@@ -16,7 +17,7 @@ namespace APO_Projekt
     {
         private PictureWindow pw;
         // private Matrix<double> mask;
-        private int[] maskValues = new int[9];
+        private double[] maskValues = new double[9];
         private bool[] validValues = new bool[9];
         public CustomMask_Form(PictureWindow pw)
         {
@@ -45,67 +46,82 @@ namespace APO_Projekt
 
         private void txt1_TextChanged(object sender, EventArgs e)
         {
-            validValues[0] = int.TryParse(txt1.Text.Trim().ToString(), out maskValues[0]);
+            validValues[0] = double.TryParse(txt1.Text.Trim().ToString(), out maskValues[0]);
             areAllFieldsValid();
         }
 
         private void txt2_TextChanged(object sender, EventArgs e)
         {
-            validValues[1] = int.TryParse(txt2.Text.Trim().ToString(), out maskValues[1]);
+            validValues[1] = double.TryParse(txt2.Text.Trim().ToString(), out maskValues[1]);
             areAllFieldsValid();
         }
 
         private void txt3_TextChanged(object sender, EventArgs e)
         {
-            validValues[2] = int.TryParse(txt3.Text.Trim().ToString(), out maskValues[2]);
+            validValues[2] = double.TryParse(txt3.Text.Trim().ToString(), out maskValues[2]);
             areAllFieldsValid();
         }
 
         private void txt4_TextChanged(object sender, EventArgs e)
         {
-            validValues[3] = int.TryParse(txt4.Text.Trim().ToString(), out maskValues[3]);
+            validValues[3] = double.TryParse(txt4.Text.Trim().ToString(), out maskValues[3]);
             areAllFieldsValid();
         }
 
         private void txt5_TextChanged(object sender, EventArgs e)
         {
-            validValues[4] = int.TryParse(txt5.Text.Trim().ToString(), out maskValues[4]);
+            validValues[4] = double.TryParse(txt5.Text.Trim().ToString(), out maskValues[4]);
             areAllFieldsValid();
         }
 
         private void txt6_TextChanged(object sender, EventArgs e)
         {
-            validValues[5] = int.TryParse(txt6.Text.Trim().ToString(), out maskValues[5]);
+            validValues[5] = double.TryParse(txt6.Text.Trim().ToString(), out maskValues[5]);
             areAllFieldsValid();
         }
 
         private void txt7_TextChanged(object sender, EventArgs e)
         {
-            validValues[6] = int.TryParse(txt7.Text.Trim().ToString(), out maskValues[6]);
+            validValues[6] = double.TryParse(txt7.Text.Trim().ToString(), out maskValues[6]);
             areAllFieldsValid();
         }
 
         private void txt8_TextChanged(object sender, EventArgs e)
         {
-            validValues[7] = int.TryParse(txt8.Text.Trim().ToString(), out maskValues[7]);
+            validValues[7] = double.TryParse(txt8.Text.Trim().ToString(), out maskValues[7]);
             areAllFieldsValid();
         }
 
         private void txt9_TextChanged(object sender, EventArgs e)
         {
-            validValues[8] = int.TryParse(txt9.Text.Trim().ToString(), out maskValues[8]);
+            validValues[8] = double.TryParse(txt9.Text.Trim().ToString(), out maskValues[8]);
             areAllFieldsValid();
         }
 
         private void btnApply_Click(object sender, EventArgs e)
         {
+            double sum = maskValues.ToList().Sum();
+
+            // testing
+            //for (int i = 0; i < 9; ++i) Console.WriteLine(maskValues[i]);
+            //Console.Out.WriteLine(sum);
+
+            BorderType border = getBorderType();
+
+            for(int i = 0; i < maskValues.Length; ++i)
+            {
+                maskValues[i] /= sum;
+            }
+
+            //for (int i = 0; i < 9; ++i) Console.WriteLine(maskValues[i]);
+
             Matrix<double> mask = new Matrix<double>(new double[3, 3]
             { {maskValues[0] , maskValues[1], maskValues[2] },
             { maskValues[3], maskValues[4], maskValues[5] },
             { maskValues[6], maskValues[7], maskValues[8] } });
 
-            BorderType border = getBorderType();
-            Operations.directionalEdgeDetection(pw, mask, border);
+            Operations.linearSharpening(pw, mask, border);
+
             pw.resetLutTables();
             pw.resetBitmap();
             Close();

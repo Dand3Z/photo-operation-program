@@ -31,6 +31,9 @@ namespace APO_Projekt
             cbOperations.Items.Add("XOR");
             cbOperations.SelectedIndex = 0;
             btnApply.Enabled = false;
+            txtAlpha.Enabled = false;
+            txtBeta.Enabled = false;
+            txtGamma.Enabled = false;
         }
 
         private void btnLoadPicture_Click(object sender, EventArgs e)
@@ -60,7 +63,11 @@ namespace APO_Projekt
                     CvInvoke.Subtract(emguImage, secondImg, emguImage);
                     break;
                 case "Blending":
-                    CvInvoke.AddWeighted(emguImage, 0.7, secondImg, 0.5, -100 ,emguImage);
+                    double alpha = 0.7, beta = 0.5, gamma = -100;
+                    double.TryParse(txtAlpha.Text.Trim(), out alpha);
+                    double.TryParse(txtBeta.Text.Trim(), out beta);
+                    double.TryParse(txtGamma.Text.Trim(), out gamma);
+                    CvInvoke.AddWeighted(emguImage, alpha, secondImg, beta, gamma ,emguImage);
                     break;
                 case "AND":
                     CvInvoke.BitwiseAnd(emguImage, secondImg, emguImage);
@@ -68,11 +75,16 @@ namespace APO_Projekt
                 case "OR":
                     CvInvoke.BitwiseOr(emguImage, secondImg, emguImage);
                     break;
-                case "NOT":
-                    CvInvoke.BitwiseNot(emguImage, secondImg, emguImage);
+                case "NOT": ////
+                    Operations.negation(pw.Bitmap, true);
+                    emguImage = pw.Bitmap.ToImage<Gray, byte>();
+                    //CvInvoke.BitwiseNot(emguImage, emguImage, emguImage);
                     break;
                 case "XOR":
                     CvInvoke.BitwiseXor(emguImage, secondImg, emguImage);
+                    break;
+                default:
+                    Console.Out.WriteLine("Operations error");
                     break;
 
             }
@@ -82,6 +94,13 @@ namespace APO_Projekt
             pw.resetLutTables();
             pw.resetBitmap();
             Close();
+        }
+
+        private void cbOperations_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtAlpha.Enabled = txtBeta.Enabled = txtGamma.Enabled = cbOperations.Text.ToString().Equals("Blending");
+            btnLoadPicture.Enabled = !cbOperations.Text.ToString().Equals("NOT");
+            if (secondImg == null) btnApply.Enabled = cbOperations.Text.ToString().Equals("NOT");
         }
     }
 

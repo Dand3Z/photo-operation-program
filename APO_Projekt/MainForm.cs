@@ -100,7 +100,6 @@ namespace APO_Projekt
 
             Operations.negation(pw.Bitmap, pw.IsGrey);
             pw.resetLutTables();
-            
             pw.resetBitmap();
         }
 

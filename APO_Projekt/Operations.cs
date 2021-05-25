@@ -20,11 +20,9 @@ namespace APO_Projekt
      */
     public class Operations
     {
-
         /**************************************************************
          * Metody
          ************************************************************/
-
         // zwraca informację o tym czy wskazany obraz jest czarno-biały
         public static Boolean isGrayScale(Bitmap img)
         {
@@ -155,7 +153,6 @@ namespace APO_Projekt
             }
 
             return cumLut;
-
         }
 
         // znajdź pierwszą niezerową wartość
@@ -204,7 +201,6 @@ namespace APO_Projekt
         }
 
         //*******************POSTERIZE********************************************
-
         public static void posterize(Bitmap bitmap, byte binsAmount)
         {
             // dla np. 8 zwraca 32
@@ -228,7 +224,6 @@ namespace APO_Projekt
                     byte newValue = getNewValueFromBins(myBins, binsAmount, intensity, binSize);
                     bitmap.SetPixel(w, h, Color.FromArgb(color.A, newValue, newValue, newValue));
                 }
-
         }
 
         private static byte getNewValueFromBins(byte[] myBins, byte binAmount, byte colorValue, byte binSize) 
