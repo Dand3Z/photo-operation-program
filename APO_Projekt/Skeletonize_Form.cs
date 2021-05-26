@@ -13,19 +13,16 @@ using Emgu.CV.CvEnum;
 
 namespace APO_Projekt
 {
-    public partial class MathematicalMorphology_Form : Form
+    public partial class Skeletonize_Form : Form
     {
         private PictureWindow pw;
         private Mat structuringElement;
         private BorderType border;
-        private int iterations = 2;
-        private MorphOp operation;
-        public MathematicalMorphology_Form(PictureWindow pw)
+        public Skeletonize_Form(PictureWindow pw)
         {
             InitializeComponent();
             this.pw = pw;
             initFields();
-            btnApply.Enabled = false;
         }
 
         private void getBorderType()
@@ -70,37 +67,9 @@ namespace APO_Projekt
             return int.Parse(cbSize.Text);
         }
 
-        private void getOperation()
-        {
-            string kind = cbOperation.Text.ToString();
-            Console.WriteLine(kind);
-            switch (kind)
-            {
-                case "Erode":
-                    operation = MorphOp.Erode;
-                    break;
-                case "Dilate":
-                    operation = MorphOp.Dilate;
-                    break;
-                case "Open":
-                    operation = MorphOp.Open;
-                    break;
-                case "Close":
-                    operation = MorphOp.Close;
-                    break;
-                default:
-                    throw new Exception("getOperation() error");
-            }
-        }
 
         private void initFields()
         {
-            cbOperation.Items.Add("Erode");
-            cbOperation.Items.Add("Dilate");
-            cbOperation.Items.Add("Open");
-            cbOperation.Items.Add("Close");
-            cbOperation.SelectedIndex = 0;
-
             cbBorderType.Items.Add("BORDER_REPLICATE");
             cbBorderType.Items.Add("BORDER_ISOLATED");
             cbBorderType.Items.Add("BORDER_REFLECT");
@@ -122,36 +91,41 @@ namespace APO_Projekt
             cbSize.Items.Add("21");
             cbSize.SelectedIndex = 0;
         }
-/*
-        private bool isBinary()
-        {
-            if (pw.IsGrey)
-            {
-                Operations.thresholding(pw.Bitmap, 127);
-                return true;
-            }
-            return false;
-        }
-*/
-        private void txtIterations_TextChanged(object sender, EventArgs e)
-        {
-            int.TryParse(txtIterations.Text.Trim(), out iterations);
-            btnApply.Enabled = iterations > 0 ? true : false;
-        }
 
         private void btnApply_Click(object sender, EventArgs e)
         {
-            if (!pw.IsGrey) { return;  }
+            if (!pw.IsGrey) { return; }
             getBorderType();
-            getOperation();
             getStructuringElement(getSize());
-            Image<Gray, byte> emguImage = pw.Bitmap.ToImage<Gray, byte>();
-            CvInvoke.Threshold(emguImage, emguImage, 128, 256, 0);
-            CvInvoke.MorphologyEx(emguImage, emguImage, operation, structuringElement, new Point(-1, -1), iterations, border, new MCvScalar());
-            pw.Bitmap = emguImage.ToBitmap();
-            pw.resetLutTables();
-            pw.resetBitmap();
+            skeletonize();
             Close();
+        }
+
+        public void skeletonize()
+        {
+            Image<Gray, byte> emguImage = pw.Bitmap.ToImage<Gray, byte>();
+            Image<Gray, byte> newImage = (new Image<Gray, byte>(emguImage.Width, emguImage.Height, new Gray(255))).Sub(emguImage).Not();
+            Image<Gray, byte> eroded = new Image<Gray, byte>(newImage.Size);
+            Image<Gray, byte> temp = new Image<Gray, byte>(newImage.Size);
+            Image<Gray, byte> skel = new Image<Gray, byte>(newImage.Size);
+
+            skel.SetValue(0);
+            CvInvoke.Threshold(newImage, newImage, 160, 256, 0);
+            bool done = false;
+
+            while (!done)
+            {
+                CvInvoke.Erode(newImage, eroded, structuringElement, new Point(-1, -1), 1, border, default(MCvScalar));
+                CvInvoke.Dilate(eroded, temp, structuringElement, new Point(-1, -1), 1, border, default(MCvScalar));
+                CvInvoke.Subtract(newImage, temp, temp);
+                CvInvoke.BitwiseOr(skel, temp, skel);
+                eroded.CopyTo(newImage);
+                if (CvInvoke.CountNonZero(newImage) == 0) done = true;
+            }
+
+            pw.Bitmap = skel.ToBitmap();
+            pw.resetBitmap();
+            pw.resetLutTables();
         }
     }
 }

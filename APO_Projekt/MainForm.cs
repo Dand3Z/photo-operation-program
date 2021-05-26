@@ -322,5 +322,23 @@ namespace APO_Projekt
             MathematicalMorphology_Form form = new MathematicalMorphology_Form(pw);
             form.Show();
         }
+
+        private void MenuSkeletonize_Click(object sender, EventArgs e)
+        {
+            PictureWindow pw = PictureWindow.LastActiveWindow;
+            if (pw == null) return;
+            if (!pw.IsGrey) return;
+            Skeletonize_Form form = new Skeletonize_Form(pw);
+            form.Show();
+        }
+
+        private void MenuConvolution_Click(object sender, EventArgs e)
+        {
+            PictureWindow pw = PictureWindow.LastActiveWindow;
+            if (pw == null) return;
+            if (!pw.IsGrey) return;
+            Convolution_Form form = new Convolution_Form(pw);
+            form.Show();
+        }
     }
 }

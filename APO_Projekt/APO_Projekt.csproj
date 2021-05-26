@@ -76,6 +76,12 @@
     <Compile Include="Blur_Form.Designer.cs">
       <DependentUpon>Blur_Form.cs</DependentUpon>
     </Compile>
+    <Compile Include="Convolution_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Convolution_Form.Designer.cs">
+      <DependentUpon>Convolution_Form.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomMask_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -136,6 +142,12 @@
     <Compile Include="LutWindow.Designer.cs">
       <DependentUpon>LutWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Skeletonize_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skeletonize_Form.Designer.cs">
+      <DependentUpon>Skeletonize_Form.cs</DependentUpon>
+    </Compile>
     <Compile Include="Threshold_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -184,6 +196,9 @@
     <EmbeddedResource Include="Blur_Form.resx">
       <DependentUpon>Blur_Form.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Convolution_Form.resx">
+      <DependentUpon>Convolution_Form.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CustomMask_Form.resx">
       <DependentUpon>CustomMask_Form.cs</DependentUpon>
     </EmbeddedResource>
@@ -213,6 +228,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="LutWindow.resx">
       <DependentUpon>LutWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skeletonize_Form.resx">
+      <DependentUpon>Skeletonize_Form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Threshold_Form.resx">
       <DependentUpon>Threshold_Form.cs</DependentUpon>

@@ -385,6 +385,35 @@ namespace APO_Projekt
             
         }
 
+
+        public static void skeletonize(PictureWindow pw)
+        {
+            Image<Gray, byte> emguImage = pw.Bitmap.ToImage<Gray, byte>();
+            Image<Gray, byte> newImage = (new Image<Gray, byte>(emguImage.Width, emguImage.Height, new Gray(255))).Sub(emguImage).Not();
+            Image<Gray, byte> eroded = new Image<Gray, byte>(newImage.Size);
+            Image<Gray, byte> temp = new Image<Gray, byte>(newImage.Size);
+            Image<Gray, byte> skel = new Image<Gray, byte>(newImage.Size);
+
+            skel.SetValue(0);
+            CvInvoke.Threshold(newImage, newImage, 160, 256, 0);
+            var element = CvInvoke.GetStructuringElement(ElementShape.Cross, new Size(3, 3), new Point(-1, -1));
+            bool done = false;
+
+            while (!done)
+            {
+                CvInvoke.Erode(newImage, eroded, element, new Point(-1, -1), 1, BorderType.Reflect, default(MCvScalar));
+                CvInvoke.Dilate(eroded, temp, element, new Point(-1, -1), 1, BorderType.Reflect, default(MCvScalar));
+                CvInvoke.Subtract(newImage, temp, temp);
+                CvInvoke.BitwiseOr(skel, temp, skel);
+                eroded.CopyTo(newImage);
+                if (CvInvoke.CountNonZero(newImage) == 0) done = true;
+            }
+
+            pw.Bitmap = skel.ToBitmap();
+            pw.resetBitmap();
+            pw.resetLutTables();
+        }
+
         /*
          * Nie można wywoływać operacji używających setPixel po operacjach EmguCv
          */

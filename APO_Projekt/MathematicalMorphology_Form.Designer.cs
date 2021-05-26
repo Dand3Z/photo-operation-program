@@ -117,7 +117,7 @@ namespace APO_Projekt
             // btnApply
             // 
             this.btnApply.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnApply.Location = new System.Drawing.Point(370, 132);
+            this.btnApply.Location = new System.Drawing.Point(367, 142);
             this.btnApply.Name = "btnApply";
             this.btnApply.Size = new System.Drawing.Size(75, 23);
             this.btnApply.TabIndex = 8;
@@ -147,7 +147,7 @@ namespace APO_Projekt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(457, 167);
+            this.ClientSize = new System.Drawing.Size(454, 177);
             this.Controls.Add(this.txtIterations);
             this.Controls.Add(this.lbIterations);
             this.Controls.Add(this.btnApply);

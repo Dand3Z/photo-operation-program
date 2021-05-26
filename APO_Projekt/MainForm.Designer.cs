@@ -57,7 +57,9 @@ namespace APO_Projekt
             this.MenuBinaryPointOperations = new System.Windows.Forms.ToolStripMenuItem();
             this.lab4ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuMathematicalMorphology = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuSkeletonize = new System.Windows.Forms.ToolStripMenuItem();
             this.btnLog = new System.Windows.Forms.Button();
+            this.MenuConvolution = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -274,7 +276,9 @@ namespace APO_Projekt
             // lab4ToolStripMenuItem
             // 
             this.lab4ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MenuMathematicalMorphology});
+            this.MenuMathematicalMorphology,
+            this.MenuSkeletonize,
+            this.MenuConvolution});
             this.lab4ToolStripMenuItem.Name = "lab4ToolStripMenuItem";
             this.lab4ToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.lab4ToolStripMenuItem.Text = "Lab4";
@@ -286,6 +290,13 @@ namespace APO_Projekt
             this.MenuMathematicalMorphology.Text = "Mathematical Morphology";
             this.MenuMathematicalMorphology.Click += new System.EventHandler(this.MenuMathematicalMorphology_Click);
             // 
+            // MenuSkeletonize
+            // 
+            this.MenuSkeletonize.Name = "MenuSkeletonize";
+            this.MenuSkeletonize.Size = new System.Drawing.Size(216, 22);
+            this.MenuSkeletonize.Text = "Skeletonize";
+            this.MenuSkeletonize.Click += new System.EventHandler(this.MenuSkeletonize_Click);
+            // 
             // btnLog
             // 
             this.btnLog.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -296,6 +307,13 @@ namespace APO_Projekt
             this.btnLog.Text = "Log";
             this.btnLog.UseVisualStyleBackColor = true;
             this.btnLog.Click += new System.EventHandler(this.btnLog_Click);
+            // 
+            // MenuConvolution
+            // 
+            this.MenuConvolution.Name = "MenuConvolution";
+            this.MenuConvolution.Size = new System.Drawing.Size(216, 22);
+            this.MenuConvolution.Text = "Convolution";
+            this.MenuConvolution.Click += new System.EventHandler(this.MenuConvolution_Click);
             // 
             // MainWindow
             // 
@@ -345,6 +363,8 @@ namespace APO_Projekt
         private System.Windows.Forms.ToolStripMenuItem MenuBinaryPointOperations;
         private System.Windows.Forms.ToolStripMenuItem lab4ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem MenuMathematicalMorphology;
+        private System.Windows.Forms.ToolStripMenuItem MenuSkeletonize;
+        private System.Windows.Forms.ToolStripMenuItem MenuConvolution;
     }
 }
 
