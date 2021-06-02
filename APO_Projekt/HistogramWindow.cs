@@ -113,6 +113,17 @@ namespace APO_Projekt
             chart.Invalidate();
         }
 
+        public void toGrayscale()
+        {
+            chart.Series["green"].Enabled = false;
+            chart.Series["blue"].Enabled = false;
+            chart.Series["red+green"].Enabled = false;
+            chart.Series["green+blue"].Enabled = false;
+            chart.Series["red+blue"].Enabled = false;
+            chart.Series["red+green+blue"].Enabled = false;
+            chart.Invalidate();
+        }
+
         /**************************************************************
          * Właściwości
          ************************************************************/

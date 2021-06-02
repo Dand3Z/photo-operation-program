@@ -67,6 +67,7 @@ namespace APO_Projekt
             this.lab6ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnProject = new System.Windows.Forms.ToolStripMenuItem();
             this.btnLog = new System.Windows.Forms.Button();
+            this.MenuWatershed = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -317,7 +318,8 @@ namespace APO_Projekt
             // lab5ToolStripMenuItem
             // 
             this.lab5ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.thresholdingToolStripMenuItem});
+            this.thresholdingToolStripMenuItem,
+            this.MenuWatershed});
             this.lab5ToolStripMenuItem.Name = "lab5ToolStripMenuItem";
             this.lab5ToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.lab5ToolStripMenuItem.Text = "Lab5";
@@ -376,6 +378,13 @@ namespace APO_Projekt
             this.btnLog.UseVisualStyleBackColor = true;
             this.btnLog.Click += new System.EventHandler(this.btnLog_Click);
             // 
+            // MenuWatershed
+            // 
+            this.MenuWatershed.Name = "MenuWatershed";
+            this.MenuWatershed.Size = new System.Drawing.Size(180, 22);
+            this.MenuWatershed.Text = "Watershed";
+            this.MenuWatershed.Click += new System.EventHandler(this.MenuWatershed_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -433,6 +442,7 @@ namespace APO_Projekt
         private System.Windows.Forms.ToolStripMenuItem MenuThreMan;
         private System.Windows.Forms.ToolStripMenuItem MenuThreAdaptive;
         private System.Windows.Forms.ToolStripMenuItem MenuOtsu;
+        private System.Windows.Forms.ToolStripMenuItem MenuWatershed;
     }
 }
 

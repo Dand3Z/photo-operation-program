@@ -423,6 +423,57 @@ namespace APO_Projekt
             pw.resetLutTables();
         }
 
+        public static void watershed(PictureWindow pw)
+        {
+            Mat imageMat = pw.Bitmap.ToImage<Rgb, byte>().Mat;
+            Mat resultMat = imageMat.Clone();
+            Mat grayMat = new Mat();
+
+            CvInvoke.CvtColor(imageMat, grayMat, ColorConversion.Rgb2Gray);
+            // step 1
+            Mat threshMat = new Mat();
+            CvInvoke.Threshold(grayMat, threshMat, 0, 255, ThresholdType.Otsu);
+            CvInvoke.Threshold(threshMat, threshMat, 0, 255, ThresholdType.BinaryInv); // ewentualnie do zmiany
+            // step 2
+            Mat openingMat = new Mat();
+            Mat kernel = CvInvoke.GetStructuringElement(ElementShape.Rectangle, new Size(3, 3), new Point(-1, -1));
+            CvInvoke.MorphologyEx(threshMat, openingMat, MorphOp.Open, kernel, new Point(-1, -1), 1, BorderType.Reflect, new MCvScalar());
+            // step 3
+            Mat sureBgMat = new Mat();
+            CvInvoke.MorphologyEx(openingMat, sureBgMat, MorphOp.Dilate, kernel, new Point(-1, -1), 1, BorderType.Reflect, new MCvScalar());
+            // step 4
+            Mat distTransformMat = new Mat();
+            CvInvoke.DistanceTransform(openingMat, distTransformMat, null, DistType.L2, 5);
+            // step 5
+            Mat sureFgMat = new Mat();
+            CvInvoke.Threshold(distTransformMat, sureFgMat, 0.5, 255, ThresholdType.Binary); ////////////////////
+            CvInvoke.MorphologyEx(sureFgMat, sureFgMat, MorphOp.Erode, kernel, new Point(-1, -1), 11, BorderType.Default, new MCvScalar());
+            // step 6
+            Mat unknownMat = new Mat();
+            sureFgMat.ConvertTo(sureFgMat, unknownMat.Depth);
+            CvInvoke.Subtract(sureBgMat, sureFgMat, unknownMat);
+            // step 7
+            Mat markersMat = new Mat();
+            CvInvoke.ConnectedComponents(sureFgMat, markersMat);
+            // step 8
+            resultMat.ConvertTo(resultMat, DepthType.Cv8U); // The input 8-bit 3-channel image
+            markersMat.ConvertTo(markersMat, DepthType.Cv32S); // The input/output Int32 depth single-channel image (map) of markers.
+            CvInvoke.Watershed(resultMat, markersMat);
+
+            Image<Rgb, byte> result = resultMat.ToImage<Rgb, byte>(false);
+
+            for (int i = 0; i < markersMat.Rows; ++i)
+            {
+                for (int j = 0; j < markersMat.Cols; ++j) result.Data[i, j, 0] = result.Data[i,j,2] = 220;
+            }
+
+
+            pw.Bitmap = result.ToBitmap();
+            //pw.toGrayscale();
+            pw.resetBitmap();
+            pw.resetLutTables();
+        }
+
         /*
          * Nie można wywoływać operacji używających setPixel po operacjach EmguCv
          */

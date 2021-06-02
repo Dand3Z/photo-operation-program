@@ -364,5 +364,14 @@ namespace APO_Projekt
             pw.resetLutTables();
             pw.resetBitmap();
         }
+
+        private void MenuWatershed_Click(object sender, EventArgs e)
+        {
+            PictureWindow pw = PictureWindow.LastActiveWindow;
+            if (pw == null) return;
+            Operations.watershed(pw);
+            pw.resetLutTables();
+            pw.resetBitmap();
+        }
     }
 }

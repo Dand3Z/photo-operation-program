@@ -131,6 +131,13 @@ namespace APO_Projekt
                 turquoise[i] = Math.Min(green[i], blue[i]);
                 allColors[i] = Math.Min(red[i], Math.Min(green[i], blue[i]));
             }
+        }
+
+        // ustawia wszystkie właściwości obrazu pod obraz monochromatyczny
+        public void toGrayscale()
+        {
+            isGrey = true;
+            if (histogramWindow != null) histogramWindow.toGrayscale();
 
         }
 
