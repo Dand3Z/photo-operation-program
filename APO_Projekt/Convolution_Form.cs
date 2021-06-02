@@ -13,13 +13,14 @@ using Emgu.CV.CvEnum;
 
 namespace APO_Projekt
 {
+    // do poprawy
     public partial class Convolution_Form : Form
     {
         private PictureWindow pw;
         private BorderType border;
-        private int[] mat0 = new int[9], mat1 = new int[9];
+        private double[] mat0 = new double[9], mat1 = new double[9];
         private bool[] validMat0 = new bool[9], validMat1 = new bool[9];
-        private bool use5x5Mask;
+        private bool use5x5Mask = false;
         public Convolution_Form(PictureWindow pw)
         {
             InitializeComponent();
@@ -70,12 +71,35 @@ namespace APO_Projekt
 
         private void oneStep()
         {
-
+            // merge 2 masks
         }
 
         private void twoStep()
         {
-            //CvInvoke.
+            Bitmap source = pw.Bitmap;
+            Image<Gray, byte> emguImage = source.ToImage<Gray, byte>();
+            applyMask(mat0, emguImage);
+            applyMask(mat1, emguImage);
+            pw.Bitmap = emguImage.ToBitmap();
+        }
+
+        private void applyMask(double[] mat, Image<Gray, byte> image)
+        {
+            double sum = mat.ToList().Sum();
+            for (int i = 0; i < mat.Length; ++i)
+            {
+                mat[i] /= sum;
+            }
+
+            Matrix<double> mask = new Matrix<double>(new double[3, 3]
+                { { mat[0] , mat[1], mat[2] },
+                { mat[3], mat[4], mat[5] },
+                { mat[6], mat[7], mat[8] } });
+
+            // wykonaj operację detekcji krawędzi
+            CvInvoke.Filter2D(image, image, mask, new Point(-1, -1), 0, border);
+
+            //Operations.linearSharpening(pw, mask, border);
         }
 
         private bool isMatValid(bool[] validMat)
@@ -88,109 +112,109 @@ namespace APO_Projekt
 
         private void txtFirst0_TextChanged(object sender, EventArgs e)
         {
-            validMat0[0] = int.TryParse(txtFirst0.Text, out mat0[0]);
+            validMat0[0] = double.TryParse(txtFirst0.Text, out mat0[0]);
             btnApply.Enabled = bothMatAreValid();
         }
 
         private void txtFirst1_TextChanged(object sender, EventArgs e)
         {
-            validMat0[1] = int.TryParse(txtFirst1.Text, out mat0[1]);
+            validMat0[1] = double.TryParse(txtFirst1.Text, out mat0[1]);
             btnApply.Enabled = bothMatAreValid();
         }
 
         private void txtFirst2_TextChanged(object sender, EventArgs e)
         {
-            validMat0[2] = int.TryParse(txtFirst2.Text, out mat0[2]);
+            validMat0[2] = double.TryParse(txtFirst2.Text, out mat0[2]);
             btnApply.Enabled = bothMatAreValid();
         }
 
         private void txtFirst3_TextChanged(object sender, EventArgs e)
         {
-            validMat0[3] = int.TryParse(txtFirst3.Text, out mat0[3]);
+            validMat0[3] = double.TryParse(txtFirst3.Text, out mat0[3]);
             btnApply.Enabled = bothMatAreValid();
         }
 
         private void txtFirst4_TextChanged(object sender, EventArgs e)
         {
-            validMat0[4] = int.TryParse(txtFirst4.Text, out mat0[4]);
+            validMat0[4] = double.TryParse(txtFirst4.Text, out mat0[4]);
             btnApply.Enabled = bothMatAreValid();
         }
 
         private void txtFirst5_TextChanged(object sender, EventArgs e)
         {
-            validMat0[5] = int.TryParse(txtFirst5.Text, out mat0[5]);
+            validMat0[5] = double.TryParse(txtFirst5.Text, out mat0[5]);
             btnApply.Enabled = bothMatAreValid();
         }
 
         private void txtFirst6_TextChanged(object sender, EventArgs e)
         {
-            validMat0[6] = int.TryParse(txtFirst6.Text, out mat0[6]);
+            validMat0[6] = double.TryParse(txtFirst6.Text, out mat0[6]);
             btnApply.Enabled = bothMatAreValid();
         }
 
         private void txtFirst7_TextChanged(object sender, EventArgs e)
         {
-            validMat0[7] = int.TryParse(txtFirst7.Text, out mat0[7]);
+            validMat0[7] = double.TryParse(txtFirst7.Text, out mat0[7]);
             btnApply.Enabled = bothMatAreValid();
         }
 
         private void txtFirst8_TextChanged(object sender, EventArgs e)
         {
-            validMat0[8] = int.TryParse(txtFirst8.Text, out mat0[8]);
+            validMat0[8] = double.TryParse(txtFirst8.Text, out mat0[8]);
             btnApply.Enabled = bothMatAreValid();
         }
 
         private void txtSecond0_TextChanged(object sender, EventArgs e)
         {
-            validMat1[0] = int.TryParse(txtSecond0.Text, out mat1[0]);
+            validMat1[0] = double.TryParse(txtSecond0.Text, out mat1[0]);
             btnApply.Enabled = bothMatAreValid();
         }
 
         private void txtSecond1_TextChanged(object sender, EventArgs e)
         {
-            validMat1[1] = int.TryParse(txtSecond1.Text, out mat1[1]);
+            validMat1[1] = double.TryParse(txtSecond1.Text, out mat1[1]);
             btnApply.Enabled = bothMatAreValid();
         }
 
         private void txtSecond2_TextChanged(object sender, EventArgs e)
         {
-            validMat1[2] = int.TryParse(txtSecond2.Text, out mat1[2]);
+            validMat1[2] = double.TryParse(txtSecond2.Text, out mat1[2]);
             btnApply.Enabled = bothMatAreValid();
         }
 
         private void txtSecond3_TextChanged(object sender, EventArgs e)
         {
-            validMat1[3] = int.TryParse(txtSecond3.Text, out mat1[3]);
+            validMat1[3] = double.TryParse(txtSecond3.Text, out mat1[3]);
             btnApply.Enabled = bothMatAreValid();
         }
 
         private void txtSecond4_TextChanged(object sender, EventArgs e)
         {
-            validMat1[4] = int.TryParse(txtSecond4.Text, out mat1[4]);
+            validMat1[4] = double.TryParse(txtSecond4.Text, out mat1[4]);
             btnApply.Enabled = bothMatAreValid();
         }
 
         private void txtSecond5_TextChanged(object sender, EventArgs e)
         {
-            validMat1[5] = int.TryParse(txtSecond5.Text, out mat1[5]);
+            validMat1[5] = double.TryParse(txtSecond5.Text, out mat1[5]);
             btnApply.Enabled = bothMatAreValid();
         }
 
         private void txtSecond6_TextChanged(object sender, EventArgs e)
         {
-            validMat1[6] = int.TryParse(txtSecond6.Text, out mat1[6]);
+            validMat1[6] = double.TryParse(txtSecond6.Text, out mat1[6]);
             btnApply.Enabled = bothMatAreValid();
         }
 
         private void txtSecond7_TextChanged(object sender, EventArgs e)
         {
-            validMat1[7] = int.TryParse(txtSecond7.Text, out mat1[7]);
+            validMat1[7] = double.TryParse(txtSecond7.Text, out mat1[7]);
             btnApply.Enabled = bothMatAreValid();
         }
 
         private void txtSecond8_TextChanged(object sender, EventArgs e)
         {
-            validMat1[8] = int.TryParse(txtSecond8.Text, out mat1[8]);
+            validMat1[8] = double.TryParse(txtSecond8.Text, out mat1[8]);
             btnApply.Enabled = bothMatAreValid();
         }
 

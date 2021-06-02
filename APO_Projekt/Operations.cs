@@ -414,6 +414,15 @@ namespace APO_Projekt
             pw.resetLutTables();
         }
 
+        public static void otsu(PictureWindow pw)
+        {
+            Image<Gray, byte> emguImage = pw.Bitmap.ToImage<Gray, byte>();
+            CvInvoke.Threshold(emguImage, emguImage, 0, 255, ThresholdType.Otsu);
+            pw.Bitmap = emguImage.ToBitmap();
+            pw.resetBitmap();
+            pw.resetLutTables();
+        }
+
         /*
          * Nie można wywoływać operacji używających setPixel po operacjach EmguCv
          */

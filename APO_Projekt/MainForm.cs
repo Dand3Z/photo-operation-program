@@ -340,5 +340,29 @@ namespace APO_Projekt
             Convolution_Form form = new Convolution_Form(pw);
             form.Show();
         }
+
+        private void MenuThreMan_Click(object sender, EventArgs e)
+        {
+            MenuThresholding_Click(sender, e);
+        }
+
+        private void MenuThreAdaptive_Click(object sender, EventArgs e)
+        {
+            PictureWindow pw = PictureWindow.LastActiveWindow;
+            if (pw == null) return;
+            if (!pw.IsGrey) return;
+            AdaptiveThresholding_Form form = new AdaptiveThresholding_Form(pw);
+            form.Show();
+        }
+
+        private void MenuOtsu_Click(object sender, EventArgs e)
+        {
+            PictureWindow pw = PictureWindow.LastActiveWindow;
+            if (pw == null) return;
+            if (!pw.IsGrey) return;
+            Operations.otsu(pw);
+            pw.resetLutTables();
+            pw.resetBitmap();
+        }
     }
 }

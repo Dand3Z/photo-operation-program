@@ -58,8 +58,15 @@ namespace APO_Projekt
             this.lab4ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuMathematicalMorphology = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuSkeletonize = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnLog = new System.Windows.Forms.Button();
             this.MenuConvolution = new System.Windows.Forms.ToolStripMenuItem();
+            this.lab5ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.thresholdingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuThreMan = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuThreAdaptive = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuOtsu = new System.Windows.Forms.ToolStripMenuItem();
+            this.lab6ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnProject = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnLog = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -70,7 +77,10 @@ namespace APO_Projekt
             this.lab1ToolStripMenuItem,
             this.lab2ToolStripMenuItem,
             this.MenuDirectionalEdgeDetection,
-            this.lab4ToolStripMenuItem});
+            this.lab4ToolStripMenuItem,
+            this.lab5ToolStripMenuItem,
+            this.lab6ToolStripMenuItem,
+            this.btnProject});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(518, 24);
@@ -297,6 +307,64 @@ namespace APO_Projekt
             this.MenuSkeletonize.Text = "Skeletonize";
             this.MenuSkeletonize.Click += new System.EventHandler(this.MenuSkeletonize_Click);
             // 
+            // MenuConvolution
+            // 
+            this.MenuConvolution.Name = "MenuConvolution";
+            this.MenuConvolution.Size = new System.Drawing.Size(216, 22);
+            this.MenuConvolution.Text = "Convolution";
+            this.MenuConvolution.Click += new System.EventHandler(this.MenuConvolution_Click);
+            // 
+            // lab5ToolStripMenuItem
+            // 
+            this.lab5ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.thresholdingToolStripMenuItem});
+            this.lab5ToolStripMenuItem.Name = "lab5ToolStripMenuItem";
+            this.lab5ToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.lab5ToolStripMenuItem.Text = "Lab5";
+            // 
+            // thresholdingToolStripMenuItem
+            // 
+            this.thresholdingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MenuThreMan,
+            this.MenuThreAdaptive,
+            this.MenuOtsu});
+            this.thresholdingToolStripMenuItem.Name = "thresholdingToolStripMenuItem";
+            this.thresholdingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.thresholdingToolStripMenuItem.Text = "Thresholding";
+            // 
+            // MenuThreMan
+            // 
+            this.MenuThreMan.Name = "MenuThreMan";
+            this.MenuThreMan.Size = new System.Drawing.Size(180, 22);
+            this.MenuThreMan.Text = "Manual";
+            this.MenuThreMan.Click += new System.EventHandler(this.MenuThreMan_Click);
+            // 
+            // MenuThreAdaptive
+            // 
+            this.MenuThreAdaptive.Name = "MenuThreAdaptive";
+            this.MenuThreAdaptive.Size = new System.Drawing.Size(180, 22);
+            this.MenuThreAdaptive.Text = "Adaptive";
+            this.MenuThreAdaptive.Click += new System.EventHandler(this.MenuThreAdaptive_Click);
+            // 
+            // MenuOtsu
+            // 
+            this.MenuOtsu.Name = "MenuOtsu";
+            this.MenuOtsu.Size = new System.Drawing.Size(180, 22);
+            this.MenuOtsu.Text = "Otsu";
+            this.MenuOtsu.Click += new System.EventHandler(this.MenuOtsu_Click);
+            // 
+            // lab6ToolStripMenuItem
+            // 
+            this.lab6ToolStripMenuItem.Name = "lab6ToolStripMenuItem";
+            this.lab6ToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.lab6ToolStripMenuItem.Text = "Lab6";
+            // 
+            // btnProject
+            // 
+            this.btnProject.Name = "btnProject";
+            this.btnProject.Size = new System.Drawing.Size(56, 20);
+            this.btnProject.Text = "Project";
+            // 
             // btnLog
             // 
             this.btnLog.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -307,13 +375,6 @@ namespace APO_Projekt
             this.btnLog.Text = "Log";
             this.btnLog.UseVisualStyleBackColor = true;
             this.btnLog.Click += new System.EventHandler(this.btnLog_Click);
-            // 
-            // MenuConvolution
-            // 
-            this.MenuConvolution.Name = "MenuConvolution";
-            this.MenuConvolution.Size = new System.Drawing.Size(216, 22);
-            this.MenuConvolution.Text = "Convolution";
-            this.MenuConvolution.Click += new System.EventHandler(this.MenuConvolution_Click);
             // 
             // MainWindow
             // 
@@ -365,6 +426,13 @@ namespace APO_Projekt
         private System.Windows.Forms.ToolStripMenuItem MenuMathematicalMorphology;
         private System.Windows.Forms.ToolStripMenuItem MenuSkeletonize;
         private System.Windows.Forms.ToolStripMenuItem MenuConvolution;
+        private System.Windows.Forms.ToolStripMenuItem lab5ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem lab6ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem btnProject;
+        private System.Windows.Forms.ToolStripMenuItem thresholdingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem MenuThreMan;
+        private System.Windows.Forms.ToolStripMenuItem MenuThreAdaptive;
+        private System.Windows.Forms.ToolStripMenuItem MenuOtsu;
     }
 }
 

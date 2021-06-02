@@ -58,6 +58,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdaptiveThresholding_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdaptiveThresholding_Form.Designer.cs">
+      <DependentUpon>AdaptiveThresholding_Form.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdjustableStretching_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -187,6 +193,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AdaptiveThresholding_Form.resx">
+      <DependentUpon>AdaptiveThresholding_Form.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AdjustableStretching_Form.resx">
       <DependentUpon>AdjustableStretching_Form.cs</DependentUpon>
     </EmbeddedResource>

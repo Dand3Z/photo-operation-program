@@ -44,6 +44,29 @@ namespace APO_Projekt
             return;
         }
 
+        private void btnApply_Click(object sender, EventArgs e)
+        {
+            double sum = maskValues.ToList().Sum();
+
+            BorderType border = getBorderType();
+
+            for (int i = 0; i < maskValues.Length; ++i)
+            {
+                maskValues[i] /= sum;
+            }
+
+            Matrix<double> mask = new Matrix<double>(new double[3, 3]
+            { {maskValues[0] , maskValues[1], maskValues[2] },
+            { maskValues[3], maskValues[4], maskValues[5] },
+            { maskValues[6], maskValues[7], maskValues[8] } });
+
+            Operations.linearSharpening(pw, mask, border);
+
+            pw.resetLutTables();
+            pw.resetBitmap();
+            Close();
+        }
+
         private void txt1_TextChanged(object sender, EventArgs e)
         {
             validValues[0] = double.TryParse(txt1.Text.Trim().ToString(), out maskValues[0]);
@@ -96,29 +119,6 @@ namespace APO_Projekt
         {
             validValues[8] = double.TryParse(txt9.Text.Trim().ToString(), out maskValues[8]);
             areAllFieldsValid();
-        }
-
-        private void btnApply_Click(object sender, EventArgs e)
-        {
-            double sum = maskValues.ToList().Sum();
-
-            BorderType border = getBorderType();
-
-            for(int i = 0; i < maskValues.Length; ++i)
-            {
-                maskValues[i] /= sum;
-            }
-
-            Matrix<double> mask = new Matrix<double>(new double[3, 3]
-            { {maskValues[0] , maskValues[1], maskValues[2] },
-            { maskValues[3], maskValues[4], maskValues[5] },
-            { maskValues[6], maskValues[7], maskValues[8] } });
-
-            Operations.linearSharpening(pw, mask, border);
-
-            pw.resetLutTables();
-            pw.resetBitmap();
-            Close();
         }
 
         private BorderType getBorderType()
