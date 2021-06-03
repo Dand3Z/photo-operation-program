@@ -252,13 +252,16 @@ namespace APO_Projekt
                 double scaleY = (double) Bitmap.Height / pictureBox.Height;
 
                 // wylicz wskazywany piksel
-                Color currentColor = bitmap.GetPixel( (int) (x * scaleX), (int) (y * scaleY));
-
-                // wypisz kolor aktualnie wskazywanego piksela
-                labelRed.Text = "Red: " + currentColor.R.ToString();
-                labelGreen.Text = "Green: " + currentColor.G.ToString();
-                labelBlue.Text = "Blue: " + currentColor.B.ToString();
-
+                Color currentColor;
+                try
+                {
+                    currentColor = bitmap.GetPixel((int)(x * scaleX), (int)(y * scaleY));
+                    // wypisz kolor aktualnie wskazywanego piksela
+                    labelRed.Text = "Red: " + currentColor.R.ToString();
+                    labelGreen.Text = "Green: " + currentColor.G.ToString();
+                    labelBlue.Text = "Blue: " + currentColor.B.ToString();
+                }
+                catch (AccessViolationException) { }
             }
             catch(Exception ex) {}
         }

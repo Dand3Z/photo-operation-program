@@ -77,29 +77,43 @@ namespace APO_Projekt
         private void twoStep()
         {
             Bitmap source = pw.Bitmap;
-            Image<Gray, byte> emguImage = source.ToImage<Gray, byte>();
-            applyMask(mat0, emguImage);
-            applyMask(mat1, emguImage);
-            pw.Bitmap = emguImage.ToBitmap();
+            Mat inputMat = source.ToImage<Gray, byte>().Mat;
+            Mat tempMap = new Mat();
+            Mat outputMat = new Mat();
+            tempMap = inputMat.Clone();
+            outputMat = inputMat.Clone();
+
+            applyMask(mat0, inputMat, tempMap);
+            applyMask(mat1, tempMap, outputMat);
+            pw.Bitmap = outputMat.ToImage<Gray, byte>().ToBitmap();
         }
 
-        private void applyMask(double[] mat, Image<Gray, byte> image)
+        private void applyMask(double[] mat, Mat src, Mat dst)
         {
             double sum = mat.ToList().Sum();
+            if (sum <= 0) sum = 1;
             for (int i = 0; i < mat.Length; ++i)
             {
                 mat[i] /= sum;
             }
+
+            foreach (double i in mat) Console.WriteLine(i); // testing
 
             Matrix<double> mask = new Matrix<double>(new double[3, 3]
                 { { mat[0] , mat[1], mat[2] },
                 { mat[3], mat[4], mat[5] },
                 { mat[6], mat[7], mat[8] } });
 
+            for (int i = 0; i < mask.Width; ++i)
+            {
+                for (int j = 0; j < mask.Height; ++j) Console.WriteLine(mask[i, j]);
+            } // testing
+
             // wykonaj operację detekcji krawędzi
-            CvInvoke.Filter2D(image, image, mask, new Point(-1, -1), 0, border);
+            CvInvoke.Filter2D(src, dst, mask, new Point(-1, -1), 0, border);
 
             //Operations.linearSharpening(pw, mask, border);
+            // wywala się bo dzieli przez 0 !!!!
         }
 
         private bool isMatValid(bool[] validMat)

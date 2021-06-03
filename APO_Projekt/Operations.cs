@@ -446,8 +446,8 @@ namespace APO_Projekt
             CvInvoke.DistanceTransform(openingMat, distTransformMat, null, DistType.L2, 5);
             // step 5
             Mat sureFgMat = new Mat();
-            CvInvoke.Threshold(distTransformMat, sureFgMat, 0.5, 255, ThresholdType.Binary); ////////////////////
-            CvInvoke.MorphologyEx(sureFgMat, sureFgMat, MorphOp.Erode, kernel, new Point(-1, -1), 11, BorderType.Default, new MCvScalar());
+            CvInvoke.Threshold(distTransformMat, sureFgMat, 0.5, 255, ThresholdType.Binary); 
+            CvInvoke.MorphologyEx(sureFgMat, sureFgMat, MorphOp.Erode, kernel, new Point(-1, -1), 9, BorderType.Default, new MCvScalar());
             // step 6
             Mat unknownMat = new Mat();
             sureFgMat.ConvertTo(sureFgMat, unknownMat.Depth);
@@ -455,21 +455,29 @@ namespace APO_Projekt
             // step 7
             Mat markersMat = new Mat();
             CvInvoke.ConnectedComponents(sureFgMat, markersMat);
+            // step 7.5
+            markersMat += 1;
+            Image<Gray, byte> markersImage = markersMat.ToImage<Gray, byte>();
+            Image<Gray, byte> unknownImage = unknownMat.ToImage<Gray, byte>();
+            for (int i = 0; i < markersImage.Rows; ++i)
+            {
+                for (int j = 0; j < markersImage.Cols; ++j)
+                {
+                    if (unknownImage.Data[i, j, 0] == 255) markersImage.Data[i, j, 0] = 0;
+                }
+            }
+            markersMat = markersImage.Mat;
+
             // step 8
             resultMat.ConvertTo(resultMat, DepthType.Cv8U); // The input 8-bit 3-channel image
             markersMat.ConvertTo(markersMat, DepthType.Cv32S); // The input/output Int32 depth single-channel image (map) of markers.
             CvInvoke.Watershed(resultMat, markersMat);
 
-            Image<Rgb, byte> result = resultMat.ToImage<Rgb, byte>(false);
-
-            for (int i = 0; i < markersMat.Rows; ++i)
-            {
-                for (int j = 0; j < markersMat.Cols; ++j) result.Data[i, j, 0] = result.Data[i,j,2] = 220;
-            }
-
-
-            pw.Bitmap = result.ToBitmap();
-            //pw.toGrayscale();
+            markersMat.ConvertTo(markersMat, DepthType.Cv8U);
+            markersMat *= 10;
+            CvInvoke.ApplyColorMap(markersMat, markersMat, Emgu.CV.CvEnum.ColorMapType.Jet);
+            
+            pw.Bitmap = markersMat.ToBitmap();
             pw.resetBitmap();
             pw.resetLutTables();
         }
