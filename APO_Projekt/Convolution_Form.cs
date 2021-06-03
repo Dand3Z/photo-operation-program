@@ -143,7 +143,16 @@ namespace APO_Projekt
             div0 = div0 == 0 ? 1 : div0;
             double div1 = mat1.ToList().Sum();
             div1 = div1 == 0 ? 1 : div1;
-            double div = div0 * div1;
+
+            double div = 0;
+            for (int i = 0; i < bigMatrix.Cols; ++i)
+            {
+                for (int j = 0; j < bigMatrix.Rows; ++j)
+                {
+                    div += bigMatrix[i, j];
+                }
+            }
+            div = div == 0 ?  div0 * div1 : div;
             Console.WriteLine("div: " + div);
 
             // test
