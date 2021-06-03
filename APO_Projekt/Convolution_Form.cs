@@ -19,6 +19,7 @@ namespace APO_Projekt
         private PictureWindow pw;
         private BorderType border;
         private double[] mat0 = new double[9], mat1 = new double[9];
+        private double[,] bigMat = new double[5,5];
         private bool[] validMat0 = new bool[9], validMat1 = new bool[9];
         private bool use5x5Mask = false;
         public Convolution_Form(PictureWindow pw)
@@ -71,21 +72,22 @@ namespace APO_Projekt
 
         private void oneStep()
         {
-            // merge 2 masks
+            Matrix<double> matrix = generate5x5Mask();
+            Mat inputMat = pw.Bitmap.ToImage<Rgb, byte>().Mat;
+            Mat outMat = inputMat.Clone();
+            CvInvoke.Filter2D(inputMat, outMat, matrix, new Point(-1, -1), 0, border);
+            pw.Bitmap = outMat.ToImage<Rgb, byte>().ToBitmap();
         }
 
         private void twoStep()
         {
-            Bitmap source = pw.Bitmap;
-            Mat inputMat = source.ToImage<Gray, byte>().Mat;
-            Mat tempMap = new Mat();
-            Mat outputMat = new Mat();
-            tempMap = inputMat.Clone();
-            outputMat = inputMat.Clone();
-
+            Mat inputMat = pw.Bitmap.ToImage<Rgb, byte>().Mat;
+            Mat tempMap = inputMat.Clone();
+            Mat outputMat = inputMat.Clone();
+            
             applyMask(mat0, inputMat, tempMap);
             applyMask(mat1, tempMap, outputMat);
-            pw.Bitmap = outputMat.ToImage<Gray, byte>().ToBitmap();
+            pw.Bitmap = outputMat.ToImage<Rgb, byte>().ToBitmap();
         }
 
         private void applyMask(double[] mat, Mat src, Mat dst)
@@ -109,11 +111,52 @@ namespace APO_Projekt
                 for (int j = 0; j < mask.Height; ++j) Console.WriteLine(mask[i, j]);
             } // testing
 
-            // wykonaj operację detekcji krawędzi
             CvInvoke.Filter2D(src, dst, mask, new Point(-1, -1), 0, border);
 
             //Operations.linearSharpening(pw, mask, border);
-            // wywala się bo dzieli przez 0 !!!!
+        }
+
+        private Matrix<double> generate5x5Mask()
+        {
+            Matrix<double> bigMatrix = new Matrix<double>(new double[5, 5]);
+            for (int i = 0; i < bigMatrix.Cols; ++i)
+            {
+                for (int j = 0; j < bigMatrix.Rows; ++j)
+                {
+                    bigMat[i, j] = 0;
+                    for (int f = -1; f < 2; ++f)
+                    {
+                        for (int g = -1; g < 2; ++g)
+                        {
+                            if (i + f - 1 >= 0 && i + f -1 < 3 && j + g - 1 >= 0 && j + g - 1 < 3)
+                            {
+                                //Console.WriteLine(((i + f - 1) * 3 + j + g - 1) + " " + ((1 + f) * 3 + 1 + g));
+                                bigMat[i, j] += mat0[(i + f - 1) * 3 + j + g - 1] * mat1[(1 + f) * 3 + 1 + g];
+                                bigMatrix[i, j] = Math.Round(mat0[(i + f - 1) * 3 + j + g - 1] * mat1[(1 + f) * 3 + 1 + g], 2);
+                            }
+                        }
+                    }
+                }
+            }
+
+            double div0 = mat0.ToList().Sum();
+            div0 = div0 == 0 ? 1 : div0;
+            double div1 = mat1.ToList().Sum();
+            div1 = div1 == 0 ? 1 : div1;
+            double div = div0 * div1;
+            Console.WriteLine("div: " + div);
+
+            // test
+            for (int i = 0; i < bigMatrix.Cols; ++i)
+            {
+                for (int j = 0; j < bigMatrix.Rows; ++j)
+                {
+                    bigMatrix[i, j] /= div;
+                    Console.WriteLine(bigMatrix[i, j]);
+                }
+            }
+
+            return bigMatrix;
         }
 
         private bool isMatValid(bool[] validMat)
