@@ -417,7 +417,7 @@ namespace APO_Projekt
         public static void otsu(PictureWindow pw)
         {
             Image<Gray, byte> emguImage = pw.Bitmap.ToImage<Gray, byte>();
-            CvInvoke.Threshold(emguImage, emguImage, 0, 255, ThresholdType.Otsu);
+            CvInvoke.Threshold(emguImage, emguImage, 0, 255, ThresholdType.Binary | ThresholdType.Otsu);
             pw.Bitmap = emguImage.ToBitmap();
             pw.resetBitmap();
             pw.resetLutTables();
@@ -432,8 +432,7 @@ namespace APO_Projekt
             CvInvoke.CvtColor(imageMat, grayMat, ColorConversion.Rgb2Gray);
             // step 1
             Mat threshMat = new Mat();
-            CvInvoke.Threshold(grayMat, threshMat, 0, 255, ThresholdType.Otsu);
-            CvInvoke.Threshold(threshMat, threshMat, 0, 255, ThresholdType.BinaryInv); // ewentualnie do zmiany
+            CvInvoke.Threshold(grayMat, threshMat, 0, 255, ThresholdType.BinaryInv | ThresholdType.Otsu);
             // step 2
             Mat openingMat = new Mat();
             Mat kernel = CvInvoke.GetStructuringElement(ElementShape.Rectangle, new Size(3, 3), new Point(-1, -1));
