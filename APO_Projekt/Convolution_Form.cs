@@ -62,6 +62,8 @@ namespace APO_Projekt
         private void btnApply_Click(object sender, EventArgs e)
         {
             getBorderType();
+            normalizeMat(mat0);
+            normalizeMat(mat1);
             if (use5x5Mask) oneStep();
             else twoStep();
 
@@ -84,13 +86,13 @@ namespace APO_Projekt
             Mat inputMat = pw.Bitmap.ToImage<Rgb, byte>().Mat;
             Mat tempMap = inputMat.Clone();
             Mat outputMat = inputMat.Clone();
-            
+
             applyMask(mat0, inputMat, tempMap);
             applyMask(mat1, tempMap, outputMat);
             pw.Bitmap = outputMat.ToImage<Rgb, byte>().ToBitmap();
         }
 
-        private void applyMask(double[] mat, Mat src, Mat dst)
+        private void normalizeMat(double[] mat)
         {
             double sum = mat.ToList().Sum();
             if (sum <= 0) sum = 1;
@@ -98,26 +100,21 @@ namespace APO_Projekt
             {
                 mat[i] /= sum;
             }
+        }
 
-            foreach (double i in mat) Console.WriteLine(i); // testing
-
+        private void applyMask(double[] mat, Mat src, Mat dst)
+        {
             Matrix<double> mask = new Matrix<double>(new double[3, 3]
                 { { mat[0] , mat[1], mat[2] },
                 { mat[3], mat[4], mat[5] },
                 { mat[6], mat[7], mat[8] } });
 
-            for (int i = 0; i < mask.Width; ++i)
-            {
-                for (int j = 0; j < mask.Height; ++j) Console.WriteLine(mask[i, j]);
-            } // testing
-
             CvInvoke.Filter2D(src, dst, mask, new Point(-1, -1), 0, border);
-
-            //Operations.linearSharpening(pw, mask, border);
         }
 
         private Matrix<double> generate5x5Mask()
         {
+            Console.WriteLine("generate5x5");
             Matrix<double> bigMatrix = new Matrix<double>(new double[5, 5]);
             for (int i = 0; i < bigMatrix.Cols; ++i)
             {
@@ -130,9 +127,7 @@ namespace APO_Projekt
                         {
                             if (i + f - 1 >= 0 && i + f -1 < 3 && j + g - 1 >= 0 && j + g - 1 < 3)
                             {
-                                //Console.WriteLine(((i + f - 1) * 3 + j + g - 1) + " " + ((1 + f) * 3 + 1 + g));
                                 bigMat[i, j] += mat0[(i + f - 1) * 3 + j + g - 1] * mat1[(1 + f) * 3 + 1 + g];
-                                bigMatrix[i, j] = Math.Round(mat0[(i + f - 1) * 3 + j + g - 1] * mat1[(1 + f) * 3 + 1 + g], 2);
                             }
                         }
                     }
@@ -145,26 +140,22 @@ namespace APO_Projekt
             div1 = div1 == 0 ? 1 : div1;
 
             double div = 0;
-            for (int i = 0; i < bigMatrix.Cols; ++i)
+            for (int i = 0; i < 5; ++i)
             {
-                for (int j = 0; j < bigMatrix.Rows; ++j)
+                for (int j = 0; j < 5; ++j)
                 {
-                    div += bigMatrix[i, j];
+                    div += bigMat[i, j];
                 }
             }
-            div = div == 0 ?  div0 * div1 : div;
-            Console.WriteLine("div: " + div);
+            div = div0*div1;
 
-            // test
-            for (int i = 0; i < bigMatrix.Cols; ++i)
+            for(int i = 0; i < bigMatrix.Cols; i++)
             {
-                for (int j = 0; j < bigMatrix.Rows; ++j)
+                for(int j = 0; j < bigMatrix.Rows; j++)
                 {
-                    bigMatrix[i, j] /= div;
-                    Console.WriteLine(bigMatrix[i, j]);
+                    bigMatrix[i, j] = bigMat[i, j];
                 }
             }
-
             return bigMatrix;
         }
 
