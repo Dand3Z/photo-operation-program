@@ -110,20 +110,20 @@ namespace APO_Projekt
             Image<Gray, byte> skel = new Image<Gray, byte>(newImage.Size);
 
             skel.SetValue(0);
-            CvInvoke.Threshold(newImage, newImage, 160, 256, 0);
-            bool done = false;
+            CvInvoke.Threshold(newImage, newImage, 127, 256, 0);
+            bool finished = false;
 
-            while (!done)
+            while (!finished)
             {
                 CvInvoke.Erode(newImage, eroded, structuringElement, new Point(-1, -1), 1, border, default(MCvScalar));
                 CvInvoke.Dilate(eroded, temp, structuringElement, new Point(-1, -1), 1, border, default(MCvScalar));
                 CvInvoke.Subtract(newImage, temp, temp);
                 CvInvoke.BitwiseOr(skel, temp, skel);
                 eroded.CopyTo(newImage);
-                if (CvInvoke.CountNonZero(newImage) == 0) done = true;
+                if (CvInvoke.CountNonZero(newImage) == 0) finished = true;
             }
 
-            pw.Bitmap = skel.ToBitmap();
+            pw.Bitmap = skel.Mat.ToImage<Rgb,byte>().ToBitmap();
             pw.resetBitmap();
             pw.resetLutTables();
         }

@@ -145,7 +145,7 @@ namespace APO_Projekt
             getBorderType();
             getOperation();
             getStructuringElement(getSize());
-            Image<Gray, byte> emguImage = pw.Bitmap.ToImage<Gray, byte>();
+            Image<Rgb, byte> emguImage = pw.Bitmap.ToImage<Rgb, byte>();
             CvInvoke.Threshold(emguImage, emguImage, 128, 256, 0);
             CvInvoke.MorphologyEx(emguImage, emguImage, operation, structuringElement, new Point(-1, -1), iterations, border, new MCvScalar());
             pw.Bitmap = emguImage.ToBitmap();

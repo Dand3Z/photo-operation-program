@@ -52,7 +52,8 @@ namespace APO_Projekt
         private void btnApply_Click(object sender, EventArgs e)
         {
             Image<Gray, byte> emguImage = pw.Bitmap.ToImage<Gray, byte>();
-            CvInvoke.Resize(secondImg, secondImg, new Size(emguImage.Width, emguImage.Height));
+            if (secondImg != null)
+                CvInvoke.Resize(secondImg, secondImg, new Size(emguImage.Width, emguImage.Height));
 
             switch (cbOperations.SelectedItem)
             {
@@ -89,7 +90,7 @@ namespace APO_Projekt
 
             }
 
-            Bitmap result = emguImage.ToBitmap();
+            Bitmap result = emguImage.Mat.ToImage<Rgb, byte>().ToBitmap();
             pw.Bitmap = result;
             pw.resetLutTables();
             pw.resetBitmap();

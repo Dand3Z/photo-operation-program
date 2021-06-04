@@ -266,7 +266,7 @@ namespace APO_Projekt
             // bitmapa źródłowa
             Bitmap source = pw.Bitmap;
             // przekonwertuj bitmapa na format emgu
-            Image<Gray, byte> emguImage = source.ToImage<Gray, byte>();
+            Image<Rgb, byte> emguImage = source.ToImage<Rgb, byte>();
             // wykonaj operację blur
             CvInvoke.Blur(emguImage, emguImage, kernelSize , new Point(-1, -1), borderType);
             // ponownie zmień typ na bitmap
@@ -287,7 +287,7 @@ namespace APO_Projekt
             // bitmapa źródłowa
             Bitmap source = pw.Bitmap;
             // przekonwertuj bitmapa na format emgu
-            Image<Gray, byte> emguImage = source.ToImage<Gray, byte>();
+            Image<Rgb, byte> emguImage = source.ToImage<Rgb, byte>();
             // wykonaj operację gaussianBlur
             CvInvoke.GaussianBlur(emguImage, emguImage, kernelSize, sigmaX, sigmaY, borderType);
             // ponownie zmień typ na bitmap
@@ -308,7 +308,7 @@ namespace APO_Projekt
             // wykonaj operację detekcji krawędzi
             CvInvoke.Laplacian(emguImage, emguImage, ddepth, kernel, 1, 0, border);
             // ponownie zmień typ na bitmap
-            Bitmap result = emguImage.ToBitmap();
+            Bitmap result = emguImage.Mat.ToImage<Rgb, byte>().ToBitmap();
             // zapisz rezulat w oknie wynikowym
             pw.Bitmap = result;
         }
@@ -323,9 +323,9 @@ namespace APO_Projekt
             // przekonwertuj bitmapa na format emgu
             Image<Gray, byte> emguImage = source.ToImage<Gray, byte>();
             // wykonaj operację detekcji krawędzi
-            CvInvoke.Sobel(emguImage, emguImage, ddepth, xorder, yorder, kernel, 1, 0, border); // 0,1; 1,0
+            CvInvoke.Sobel(emguImage, emguImage, ddepth, xorder, yorder, kernel, 1, 0, border);
             // ponownie zmień typ na bitmap
-            Bitmap result = emguImage.ToBitmap();
+            Bitmap result = emguImage.Mat.ToImage<Rgb, byte>().ToBitmap();
             // zapisz rezulat w oknie wynikowym
             pw.Bitmap = result;
         }
@@ -339,7 +339,7 @@ namespace APO_Projekt
             // wykonaj operację detekcji krawędzi
             CvInvoke.Canny(emguImage, emguImage, th1, th2);
             // ponownie zmień typ na bitmap
-            Bitmap result = emguImage.ToBitmap();
+            Bitmap result = emguImage.Mat.ToImage<Rgb, byte>().ToBitmap();
             // zapisz rezulat w oknie wynikowym
             pw.Bitmap = result;
         }
@@ -355,7 +355,7 @@ namespace APO_Projekt
             // bitmapa źródłowa
             Bitmap source = pw.Bitmap;
             // przekonwertuj bitmapa na format emgu
-            Image<Gray, byte> emguImage = source.ToImage<Gray, byte>();
+            Image<Rgb, byte> emguImage = source.ToImage<Rgb, byte>();
             // wykonaj operację detekcji krawędzi
             CvInvoke.Filter2D(emguImage, emguImage, maskSharp, new Point(-1, -1), 0, borderKind);
             // ponownie zmień typ na bitmap
@@ -375,7 +375,7 @@ namespace APO_Projekt
             // bitmapa źródłowa
             Bitmap source = pw.Bitmap;
             // przekonwertuj bitmapa na format emgu
-            Image<Gray, byte> emguImage = source.ToImage<Gray, byte>();
+            Image<Rgb, byte> emguImage = source.ToImage<Rgb, byte>();
             // wykonaj operację detekcji krawędzi
             CvInvoke.Filter2D(emguImage, emguImage, maskSharp, new Point(-1, -1), 0, borderKind);
             // ponownie zmień typ na bitmap
@@ -385,40 +385,11 @@ namespace APO_Projekt
             
         }
 
-
-        public static void skeletonize(PictureWindow pw)
-        {
-            Image<Gray, byte> emguImage = pw.Bitmap.ToImage<Gray, byte>();
-            Image<Gray, byte> newImage = (new Image<Gray, byte>(emguImage.Width, emguImage.Height, new Gray(255))).Sub(emguImage).Not();
-            Image<Gray, byte> eroded = new Image<Gray, byte>(newImage.Size);
-            Image<Gray, byte> temp = new Image<Gray, byte>(newImage.Size);
-            Image<Gray, byte> skel = new Image<Gray, byte>(newImage.Size);
-
-            skel.SetValue(0);
-            CvInvoke.Threshold(newImage, newImage, 160, 256, 0);
-            var element = CvInvoke.GetStructuringElement(ElementShape.Cross, new Size(3, 3), new Point(-1, -1));
-            bool done = false;
-
-            while (!done)
-            {
-                CvInvoke.Erode(newImage, eroded, element, new Point(-1, -1), 1, BorderType.Reflect, default(MCvScalar));
-                CvInvoke.Dilate(eroded, temp, element, new Point(-1, -1), 1, BorderType.Reflect, default(MCvScalar));
-                CvInvoke.Subtract(newImage, temp, temp);
-                CvInvoke.BitwiseOr(skel, temp, skel);
-                eroded.CopyTo(newImage);
-                if (CvInvoke.CountNonZero(newImage) == 0) done = true;
-            }
-
-            pw.Bitmap = skel.ToBitmap();
-            pw.resetBitmap();
-            pw.resetLutTables();
-        }
-
         public static void otsu(PictureWindow pw)
         {
             Image<Gray, byte> emguImage = pw.Bitmap.ToImage<Gray, byte>();
             CvInvoke.Threshold(emguImage, emguImage, 0, 255, ThresholdType.Binary | ThresholdType.Otsu);
-            pw.Bitmap = emguImage.ToBitmap();
+            pw.Bitmap = emguImage.Mat.ToImage<Rgb, byte>().ToBitmap();
             pw.resetBitmap();
             pw.resetLutTables();
         }

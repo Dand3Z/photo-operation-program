@@ -68,7 +68,7 @@ namespace APO_Projekt
 
         private void btnApply_Click(object sender, EventArgs e)
         {
-            Image<Gray, byte> emguImage = pw.Bitmap.ToImage<Gray, byte>();
+            Image<Rgb, byte> emguImage = pw.Bitmap.ToImage<Rgb, byte>();
             CvInvoke.MedianBlur(emguImage, emguImage, getKernelSize());
             Bitmap result = emguImage.ToBitmap();
             pw.Bitmap = result;

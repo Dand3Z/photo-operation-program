@@ -44,7 +44,7 @@ namespace APO_Projekt
             Image<Gray, byte> emguImage = pw.Bitmap.ToImage<Gray, byte>();
             CvInvoke.AdaptiveThreshold(emguImage, emguImage, 255, adaptiveType, thresholdType, value, 5);
             //CvInvoke.MorphologyEx(emguImage, emguImage, operation, structuringElement, new Point(-1, -1), iterations, border, new MCvScalar());
-            pw.Bitmap = emguImage.ToBitmap();
+            pw.Bitmap = emguImage.Mat.ToImage<Rgb,byte>().ToBitmap();
             pw.resetLutTables();
             pw.resetBitmap();
             Close();
