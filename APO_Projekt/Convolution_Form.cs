@@ -13,7 +13,6 @@ using Emgu.CV.CvEnum;
 
 namespace APO_Projekt
 {
-    // do poprawy
     public partial class Convolution_Form : Form
     {
         private PictureWindow pw;
@@ -114,7 +113,6 @@ namespace APO_Projekt
 
         private Matrix<double> generate5x5Mask()
         {
-            Console.WriteLine("generate5x5");
             Matrix<double> bigMatrix = new Matrix<double>(new double[5, 5]);
             for (int i = 0; i < bigMatrix.Cols; ++i)
             {

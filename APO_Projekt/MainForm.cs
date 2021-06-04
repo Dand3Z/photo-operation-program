@@ -85,11 +85,6 @@ namespace APO_Projekt
             new PictureWindow(pw).Show();
         }
 
-        private void btnLog_Click(object sender, EventArgs e)
-        {
-            logWindow.Show();
-        }
-
         private void MenuNegation_Click(object sender, EventArgs e)
         {
             // Weź ostatnie aktywne PictureWindow
@@ -372,6 +367,15 @@ namespace APO_Projekt
             Operations.watershed(pw);
             pw.resetLutTables();
             pw.resetBitmap();
+        }
+
+        private void MenuFindContours_Click(object sender, EventArgs e)
+        {
+            PictureWindow pw = PictureWindow.LastActiveWindow;
+            if (pw == null) return;
+            if (!pw.IsGrey) return;
+            var form = new FindContours_Form(pw);
+            form.Show();
         }
     }
 }

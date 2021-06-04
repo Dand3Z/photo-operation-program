@@ -100,6 +100,12 @@
     <Compile Include="EdgeDetection_Form.Designer.cs">
       <DependentUpon>EdgeDetection_Form.cs</DependentUpon>
     </Compile>
+    <Compile Include="FindContours_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FindContours_Form.Designer.cs">
+      <DependentUpon>FindContours_Form.cs</DependentUpon>
+    </Compile>
     <Compile Include="GaussianBlur_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -213,6 +219,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EdgeDetection_Form.resx">
       <DependentUpon>EdgeDetection_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FindContours_Form.resx">
+      <DependentUpon>FindContours_Form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GaussianBlur_Form.resx">
       <DependentUpon>GaussianBlur_Form.cs</DependentUpon>

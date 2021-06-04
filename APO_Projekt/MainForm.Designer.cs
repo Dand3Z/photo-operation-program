@@ -67,7 +67,7 @@ namespace APO_Projekt
             this.MenuWatershed = new System.Windows.Forms.ToolStripMenuItem();
             this.lab6ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnProject = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnLog = new System.Windows.Forms.Button();
+            this.MenuFindContours = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -331,39 +331,41 @@ namespace APO_Projekt
             this.MenuThreAdaptive,
             this.MenuOtsu});
             this.thresholdingToolStripMenuItem.Name = "thresholdingToolStripMenuItem";
-            this.thresholdingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.thresholdingToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.thresholdingToolStripMenuItem.Text = "Thresholding";
             // 
             // MenuThreMan
             // 
             this.MenuThreMan.Name = "MenuThreMan";
-            this.MenuThreMan.Size = new System.Drawing.Size(180, 22);
+            this.MenuThreMan.Size = new System.Drawing.Size(121, 22);
             this.MenuThreMan.Text = "Manual";
             this.MenuThreMan.Click += new System.EventHandler(this.MenuThreMan_Click);
             // 
             // MenuThreAdaptive
             // 
             this.MenuThreAdaptive.Name = "MenuThreAdaptive";
-            this.MenuThreAdaptive.Size = new System.Drawing.Size(180, 22);
+            this.MenuThreAdaptive.Size = new System.Drawing.Size(121, 22);
             this.MenuThreAdaptive.Text = "Adaptive";
             this.MenuThreAdaptive.Click += new System.EventHandler(this.MenuThreAdaptive_Click);
             // 
             // MenuOtsu
             // 
             this.MenuOtsu.Name = "MenuOtsu";
-            this.MenuOtsu.Size = new System.Drawing.Size(180, 22);
+            this.MenuOtsu.Size = new System.Drawing.Size(121, 22);
             this.MenuOtsu.Text = "Otsu";
             this.MenuOtsu.Click += new System.EventHandler(this.MenuOtsu_Click);
             // 
             // MenuWatershed
             // 
             this.MenuWatershed.Name = "MenuWatershed";
-            this.MenuWatershed.Size = new System.Drawing.Size(180, 22);
+            this.MenuWatershed.Size = new System.Drawing.Size(143, 22);
             this.MenuWatershed.Text = "Watershed";
             this.MenuWatershed.Click += new System.EventHandler(this.MenuWatershed_Click);
             // 
             // lab6ToolStripMenuItem
             // 
+            this.lab6ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MenuFindContours});
             this.lab6ToolStripMenuItem.Name = "lab6ToolStripMenuItem";
             this.lab6ToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.lab6ToolStripMenuItem.Text = "Lab6";
@@ -374,23 +376,18 @@ namespace APO_Projekt
             this.btnProject.Size = new System.Drawing.Size(56, 20);
             this.btnProject.Text = "Project";
             // 
-            // btnLog
+            // MenuFindContours
             // 
-            this.btnLog.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLog.Location = new System.Drawing.Point(431, 37);
-            this.btnLog.Name = "btnLog";
-            this.btnLog.Size = new System.Drawing.Size(75, 23);
-            this.btnLog.TabIndex = 1;
-            this.btnLog.Text = "Log";
-            this.btnLog.UseVisualStyleBackColor = true;
-            this.btnLog.Click += new System.EventHandler(this.btnLog_Click);
+            this.MenuFindContours.Name = "MenuFindContours";
+            this.MenuFindContours.Size = new System.Drawing.Size(180, 22);
+            this.MenuFindContours.Text = "Find Contours";
+            this.MenuFindContours.Click += new System.EventHandler(this.MenuFindContours_Click);
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(518, 72);
-            this.Controls.Add(this.btnLog);
+            this.ClientSize = new System.Drawing.Size(518, 34);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainWindow";
@@ -410,7 +407,6 @@ namespace APO_Projekt
         private System.Windows.Forms.ToolStripMenuItem lab1ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem lab2ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem MenuClone;
-        private System.Windows.Forms.Button btnLog;
         private System.Windows.Forms.ToolStripMenuItem MenuNegation;
         private System.Windows.Forms.ToolStripMenuItem MenuShowHistogram;
         private System.Windows.Forms.ToolStripMenuItem MenuShowLUT;
@@ -443,6 +439,7 @@ namespace APO_Projekt
         private System.Windows.Forms.ToolStripMenuItem MenuThreAdaptive;
         private System.Windows.Forms.ToolStripMenuItem MenuOtsu;
         private System.Windows.Forms.ToolStripMenuItem MenuWatershed;
+        private System.Windows.Forms.ToolStripMenuItem MenuFindContours;
     }
 }
 
