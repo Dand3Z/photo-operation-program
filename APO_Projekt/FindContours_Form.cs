@@ -93,7 +93,7 @@ namespace APO_Projekt
             cbApproxMethod.Items.Add("LinkRuns");
             cbApproxMethod.SelectedIndex = 0;
         }
-
+        // do poprawy
         private void btnApply_Click(object sender, EventArgs e)
         {
             getChainApproxMethod();

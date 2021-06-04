@@ -67,6 +67,7 @@ namespace APO_Projekt
 
             // save picture
             SaveFileDialog save = new SaveFileDialog();
+            save.Filter = "Bitmap Image (.bmp)|*.bmp|Gif Image (.gif)|*.gif|JPEG Image (.jpeg)|*.jpeg|Png Image (.png)|*.png|Tiff Image (.tiff)|*.tiff";
             if (save.ShowDialog() == DialogResult.OK)
             {
                 pw.savePicture(save);

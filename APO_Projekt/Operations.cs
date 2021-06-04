@@ -84,7 +84,7 @@ namespace APO_Projekt
             byte newMin = 0, newMax = 255;
 
             // zabezpieczenie
-            if (localMax < localMin) return;
+            if (localMax < localMin || localMax - localMin == 0) return;
 
             for (Int32 h = 0; h < bitmap.Height; ++h)
                 for (Int32 w = 0; w < bitmap.Width; ++w)

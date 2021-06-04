@@ -98,8 +98,30 @@ namespace APO_Projekt
         public void savePicture(SaveFileDialog save)
         {
             string FilePath = save.FileName;
-            pictureBox.Image.Save(FilePath, ImageFormat.Png);
-            // dodaj różne formaty później !!!
+            int index = save.FilterIndex;
+            ImageFormat format;
+            switch (index)
+            {
+                case 1:
+                    format = ImageFormat.Bmp;
+                    break;
+                case 2:
+                    format = ImageFormat.Gif;
+                    break;
+                case 3:
+                    format = ImageFormat.Jpeg;
+                    break;
+                case 4:
+                    format = ImageFormat.Png;
+                    break;
+                case 5:
+                    format = ImageFormat.Tiff;
+                    break;
+                default:
+                    format = ImageFormat.Png;
+                    break;
+            }
+            pictureBox.Image.Save(FilePath, format);
         }
 
         // na nowo wylicza wartości dla obrazka kolorowego
