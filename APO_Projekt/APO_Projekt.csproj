@@ -166,12 +166,6 @@
     <Compile Include="Threshold_Form.Designer.cs">
       <DependentUpon>Threshold_Form.cs</DependentUpon>
     </Compile>
-    <Compile Include="WzorHistogramuTEMP.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="WzorHistogramuTEMP.Designer.cs">
-      <DependentUpon>WzorHistogramuTEMP.cs</DependentUpon>
-    </Compile>
     <Compile Include="HistogramWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -252,9 +246,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Threshold_Form.resx">
       <DependentUpon>Threshold_Form.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="WzorHistogramuTEMP.resx">
-      <DependentUpon>WzorHistogramuTEMP.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HistogramWindow.resx">
       <DependentUpon>HistogramWindow.cs</DependentUpon>

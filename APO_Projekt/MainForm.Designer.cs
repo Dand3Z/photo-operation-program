@@ -34,6 +34,7 @@ namespace APO_Projekt
             this.MenuOpen = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuClone = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuSave = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuToGrayscale = new System.Windows.Forms.ToolStripMenuItem();
             this.lab1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuShowHistogram = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuShowLUT = new System.Windows.Forms.ToolStripMenuItem();
@@ -66,8 +67,8 @@ namespace APO_Projekt
             this.MenuOtsu = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuWatershed = new System.Windows.Forms.ToolStripMenuItem();
             this.lab6ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuMetrics = new System.Windows.Forms.ToolStripMenuItem();
             this.btnProject = new System.Windows.Forms.ToolStripMenuItem();
-            this.MenuFindContours = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -93,7 +94,8 @@ namespace APO_Projekt
             this.MenuFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MenuOpen,
             this.MenuClone,
-            this.MenuSave});
+            this.MenuSave,
+            this.MenuToGrayscale});
             this.MenuFile.Name = "MenuFile";
             this.MenuFile.Size = new System.Drawing.Size(37, 20);
             this.MenuFile.Text = "File";
@@ -101,23 +103,30 @@ namespace APO_Projekt
             // MenuOpen
             // 
             this.MenuOpen.Name = "MenuOpen";
-            this.MenuOpen.Size = new System.Drawing.Size(105, 22);
+            this.MenuOpen.Size = new System.Drawing.Size(139, 22);
             this.MenuOpen.Text = "Open";
             this.MenuOpen.Click += new System.EventHandler(this.MenuOpen_Click);
             // 
             // MenuClone
             // 
             this.MenuClone.Name = "MenuClone";
-            this.MenuClone.Size = new System.Drawing.Size(105, 22);
+            this.MenuClone.Size = new System.Drawing.Size(139, 22);
             this.MenuClone.Text = "Clone";
             this.MenuClone.Click += new System.EventHandler(this.MenuClone_Click);
             // 
             // MenuSave
             // 
             this.MenuSave.Name = "MenuSave";
-            this.MenuSave.Size = new System.Drawing.Size(105, 22);
+            this.MenuSave.Size = new System.Drawing.Size(139, 22);
             this.MenuSave.Text = "Save";
             this.MenuSave.Click += new System.EventHandler(this.MenuSave_Click);
+            // 
+            // MenuToGrayscale
+            // 
+            this.MenuToGrayscale.Name = "MenuToGrayscale";
+            this.MenuToGrayscale.Size = new System.Drawing.Size(139, 22);
+            this.MenuToGrayscale.Text = "To Grayscale";
+            this.MenuToGrayscale.Click += new System.EventHandler(this.MenuToGrayscale_Click);
             // 
             // lab1ToolStripMenuItem
             // 
@@ -365,23 +374,23 @@ namespace APO_Projekt
             // lab6ToolStripMenuItem
             // 
             this.lab6ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MenuFindContours});
+            this.MenuMetrics});
             this.lab6ToolStripMenuItem.Name = "lab6ToolStripMenuItem";
             this.lab6ToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.lab6ToolStripMenuItem.Text = "Lab6";
+            // 
+            // MenuMetrics
+            // 
+            this.MenuMetrics.Name = "MenuMetrics";
+            this.MenuMetrics.Size = new System.Drawing.Size(180, 22);
+            this.MenuMetrics.Text = "Metrics";
+            this.MenuMetrics.Click += new System.EventHandler(this.MenuFindContours_Click);
             // 
             // btnProject
             // 
             this.btnProject.Name = "btnProject";
             this.btnProject.Size = new System.Drawing.Size(56, 20);
             this.btnProject.Text = "Project";
-            // 
-            // MenuFindContours
-            // 
-            this.MenuFindContours.Name = "MenuFindContours";
-            this.MenuFindContours.Size = new System.Drawing.Size(180, 22);
-            this.MenuFindContours.Text = "Find Contours";
-            this.MenuFindContours.Click += new System.EventHandler(this.MenuFindContours_Click);
             // 
             // MainWindow
             // 
@@ -439,7 +448,8 @@ namespace APO_Projekt
         private System.Windows.Forms.ToolStripMenuItem MenuThreAdaptive;
         private System.Windows.Forms.ToolStripMenuItem MenuOtsu;
         private System.Windows.Forms.ToolStripMenuItem MenuWatershed;
-        private System.Windows.Forms.ToolStripMenuItem MenuFindContours;
+        private System.Windows.Forms.ToolStripMenuItem MenuMetrics;
+        private System.Windows.Forms.ToolStripMenuItem MenuToGrayscale;
     }
 }
 

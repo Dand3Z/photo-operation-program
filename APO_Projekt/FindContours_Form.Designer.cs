@@ -34,6 +34,7 @@ namespace APO_Projekt
             this.lbApproxMethod = new System.Windows.Forms.Label();
             this.cbApproxMethod = new System.Windows.Forms.ComboBox();
             this.btnApply = new System.Windows.Forms.Button();
+            this.txtMetrics = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // lbRetrType
@@ -74,20 +75,31 @@ namespace APO_Projekt
             // 
             // btnApply
             // 
-            this.btnApply.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnApply.Location = new System.Drawing.Point(405, 147);
+            this.btnApply.Location = new System.Drawing.Point(364, 12);
             this.btnApply.Name = "btnApply";
-            this.btnApply.Size = new System.Drawing.Size(75, 23);
+            this.btnApply.Size = new System.Drawing.Size(111, 78);
             this.btnApply.TabIndex = 4;
             this.btnApply.Text = "Apply";
             this.btnApply.UseVisualStyleBackColor = true;
             this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
             // 
+            // txtMetrics
+            // 
+            this.txtMetrics.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtMetrics.Location = new System.Drawing.Point(11, 116);
+            this.txtMetrics.Multiline = true;
+            this.txtMetrics.Name = "txtMetrics";
+            this.txtMetrics.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtMetrics.Size = new System.Drawing.Size(464, 337);
+            this.txtMetrics.TabIndex = 5;
+            // 
             // FindContours_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(492, 182);
+            this.ClientSize = new System.Drawing.Size(487, 465);
+            this.Controls.Add(this.txtMetrics);
             this.Controls.Add(this.btnApply);
             this.Controls.Add(this.cbApproxMethod);
             this.Controls.Add(this.lbApproxMethod);
@@ -107,5 +119,6 @@ namespace APO_Projekt
         private System.Windows.Forms.Label lbApproxMethod;
         private System.Windows.Forms.ComboBox cbApproxMethod;
         private System.Windows.Forms.Button btnApply;
+        private System.Windows.Forms.TextBox txtMetrics;
     }
 }

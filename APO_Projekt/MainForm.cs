@@ -378,5 +378,14 @@ namespace APO_Projekt
             var form = new FindContours_Form(pw);
             form.Show();
         }
+
+        private void MenuToGrayscale_Click(object sender, EventArgs e)
+        {
+            PictureWindow pw = PictureWindow.LastActiveWindow;
+            if (pw == null) return;
+            Operations.toGrayscale(pw);
+            pw.resetLutTables();
+            pw.resetBitmap();
+        }
     }
 }

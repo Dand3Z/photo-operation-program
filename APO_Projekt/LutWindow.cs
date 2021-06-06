@@ -86,7 +86,11 @@ namespace APO_Projekt
 
             resetLutTable();
         }
-
         
+        public void toGrayscale()
+        {
+            isGrey = true;
+            resetLutTable();
+        }
     }      
 }

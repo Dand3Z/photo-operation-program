@@ -160,6 +160,7 @@ namespace APO_Projekt
         {
             isGrey = true;
             if (histogramWindow != null) histogramWindow.toGrayscale();
+            if (lutWindow != null) lutWindow.toGrayscale();
 
         }
 

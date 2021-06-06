@@ -124,6 +124,8 @@ namespace APO_Projekt
             var localMinValue = cumLut[localMin];
             var localMaxValue = cumLut[localMax];
 
+            if (localMaxValue - localMinValue == 0) return;
+
             // normalizujemy wartości w histogramie
             for (int i = 0; i < cumLut.Length; ++i)
             {
@@ -452,8 +454,11 @@ namespace APO_Projekt
             pw.resetLutTables();
         }
 
-        /*
-         * Nie można wywoływać operacji używających setPixel po operacjach EmguCv
-         */
+        public static void toGrayscale(PictureWindow pw)
+        {
+            Mat imageMat = pw.Bitmap.ToImage<Gray, byte>().Mat;
+            pw.Bitmap = imageMat.ToImage<Rgb, byte>().ToBitmap();
+            pw.toGrayscale();
+        }
     }
 }
