@@ -387,5 +387,10 @@ namespace APO_Projekt
             pw.resetLutTables();
             pw.resetBitmap();
         }
+
+        private void MenuAbout_Click(object sender, EventArgs e)
+        {
+            new AboutMe_Form().Show();
+        }
     }
 }

@@ -58,6 +58,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AboutMe_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutMe_Form.Designer.cs">
+      <DependentUpon>AboutMe_Form.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdaptiveThresholding_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -193,6 +199,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AboutMe_Form.resx">
+      <DependentUpon>AboutMe_Form.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AdaptiveThresholding_Form.resx">
       <DependentUpon>AdaptiveThresholding_Form.cs</DependentUpon>
     </EmbeddedResource>

@@ -69,6 +69,7 @@ namespace APO_Projekt
             this.lab6ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuMetrics = new System.Windows.Forms.ToolStripMenuItem();
             this.btnProject = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -82,7 +83,8 @@ namespace APO_Projekt
             this.lab4ToolStripMenuItem,
             this.lab5ToolStripMenuItem,
             this.lab6ToolStripMenuItem,
-            this.btnProject});
+            this.btnProject,
+            this.MenuAbout});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(518, 24);
@@ -382,7 +384,7 @@ namespace APO_Projekt
             // MenuMetrics
             // 
             this.MenuMetrics.Name = "MenuMetrics";
-            this.MenuMetrics.Size = new System.Drawing.Size(180, 22);
+            this.MenuMetrics.Size = new System.Drawing.Size(113, 22);
             this.MenuMetrics.Text = "Metrics";
             this.MenuMetrics.Click += new System.EventHandler(this.MenuFindContours_Click);
             // 
@@ -391,6 +393,13 @@ namespace APO_Projekt
             this.btnProject.Name = "btnProject";
             this.btnProject.Size = new System.Drawing.Size(56, 20);
             this.btnProject.Text = "Project";
+            // 
+            // MenuAbout
+            // 
+            this.MenuAbout.Name = "MenuAbout";
+            this.MenuAbout.Size = new System.Drawing.Size(52, 20);
+            this.MenuAbout.Text = "About";
+            this.MenuAbout.Click += new System.EventHandler(this.MenuAbout_Click);
             // 
             // MainWindow
             // 
@@ -450,6 +459,7 @@ namespace APO_Projekt
         private System.Windows.Forms.ToolStripMenuItem MenuWatershed;
         private System.Windows.Forms.ToolStripMenuItem MenuMetrics;
         private System.Windows.Forms.ToolStripMenuItem MenuToGrayscale;
+        private System.Windows.Forms.ToolStripMenuItem MenuAbout;
     }
 }
 
