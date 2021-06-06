@@ -26,7 +26,6 @@ namespace APO_Projekt
             InitializeComponent();
             this.pw = pw;
             initFields();
-            btnApply.Enabled = false;
         }
 
 
@@ -56,6 +55,20 @@ namespace APO_Projekt
             cbBorderType.Items.Add("BORDER_ISOLATED");
             cbBorderType.Items.Add("BORDER_REFLECT");
             cbBorderType.SelectedIndex = 0;
+
+            txtFirst0.Text = txtFirst1.Text = txtFirst2.Text = txtFirst3.Text = txtFirst4.Text = txtFirst5.Text = txtFirst6.Text = txtFirst7.Text = txtFirst8.Text = "1";
+            mat0[0] = mat0[1] = mat0[2] = mat0[3] = mat0[4] = mat0[5] = mat0[6] = mat0[7] = mat0[8] = 1;
+            validMat0[0] = validMat0[1] = validMat0[2] = validMat0[3] = validMat0[4] = validMat0[5] = validMat0[6] = validMat0[7] = validMat0[8] = true;
+
+            txtSecond0.Text = txtSecond2.Text = txtSecond6.Text = txtSecond8.Text = "1";
+            mat1[0] = mat1[2] = mat1[6] = mat1[8] = 1;
+            txtSecond1.Text = txtSecond3.Text = txtSecond5.Text = txtSecond7.Text = "-2";
+            mat1[1] = mat1[3] = mat1[5] = mat1[7] = -2;
+            txtSecond4.Text = "5";
+            mat1[4] = 5;
+            validMat1[0] = validMat1[1] = validMat1[2] = validMat1[3] = validMat1[4] = validMat1[5] = validMat1[6] = validMat1[7] = validMat1[8] = true;
+            btnApply.Enabled = bothMatAreValid();
+           
         }
 
         private void btnApply_Click(object sender, EventArgs e)

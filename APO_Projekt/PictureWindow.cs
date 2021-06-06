@@ -245,6 +245,9 @@ namespace APO_Projekt
             if (histogramWindow != null && histogramWindow.IsClosed == false) histogramWindow.Close();
             // LutWindow istnieje i jest otwarte
             if (lutWindow != null && lutWindow.IsClosed == false) lutWindow.Close();
+
+            // ostatnio aktywne okno zostało zamknięte 
+            lastActiveWindow = null;
         }
 
         // gdy wybrane okno jest PictureWindow to zmień statyczne lastActiveWindow
@@ -290,9 +293,4 @@ namespace APO_Projekt
         }
 
     }
-
-    /**
-     * Do naprawy
-     * Gdy zamykam okno ustaw ostatnie aktywno okno na null
-     */
 }

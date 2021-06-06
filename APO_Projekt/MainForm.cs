@@ -13,25 +13,13 @@ namespace APO_Projekt
 {
     public partial class MainWindow : Form
     {
-        /**************************************************************
-         * Pola
-         ************************************************************/
-
         private LogWindow logWindow;
-
-        /**************************************************************
-         * Konstruktory
-         ************************************************************/
 
         public MainWindow()
         {
             InitializeComponent();
             logWindow = new LogWindow();
         }
-
-        /**************************************************************
-         * Zdarzenia
-         ************************************************************/
 
         private void MenuOpen_Click(object sender, EventArgs e)
         {
@@ -56,14 +44,15 @@ namespace APO_Projekt
             }
         }
 
-        // zapisz obraz - do dopracowania
         private void MenuSave_Click(object sender, EventArgs e)
         {
-            // Weź ostatnie aktywne PictureWindow
             PictureWindow pw = PictureWindow.LastActiveWindow;
 
-            // Czy jest na czym wykonywać operacje
-            if (pw == null) return;
+            if (pw == null)
+            {
+                MessageBox.Show("Image should be selected!", "Not selected image", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                return;
+            }
 
             // save picture
             SaveFileDialog save = new SaveFileDialog();
@@ -76,11 +65,14 @@ namespace APO_Projekt
 
         private void MenuClone_Click(object sender, EventArgs e)
         {
-            // weź ostatnie aktywne PictureWindow
             PictureWindow pw = PictureWindow.LastActiveWindow;
             
             // Czy jest co klonować, jeśli nie zakończ
-            if (pw == null) return;
+            if (pw == null)
+            {
+                MessageBox.Show("Image should be selected!", "Not selected image", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                return;
+            }
 
             // stwórz kopie
             new PictureWindow(pw).Show();
@@ -88,11 +80,13 @@ namespace APO_Projekt
 
         private void MenuNegation_Click(object sender, EventArgs e)
         {
-            // Weź ostatnie aktywne PictureWindow
             PictureWindow pw = PictureWindow.LastActiveWindow;
 
-            // Czy jest na czym wykonywać operacje
-            if (pw == null) return;
+            if (pw == null)
+            {
+                MessageBox.Show("Image should be selected!", "Not selected image", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                return;
+            }
 
             Operations.negation(pw.Bitmap, pw.IsGrey);
             pw.resetLutTables();
@@ -102,38 +96,45 @@ namespace APO_Projekt
         private void MenuShowHistogram_Click(object sender, EventArgs e)
         {
             // tylko jedno okno histogramu dla danego obrazka jest dopuszczalne
-
-            // Weź ostatnie aktywne PictureWindow
             PictureWindow pw = PictureWindow.LastActiveWindow;
 
-            // Czy jest na czym wykonywać operacje
-            if (pw == null) return;
+            if (pw == null)
+            {
+                MessageBox.Show("Image should be selected!", "Not selected image", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                return;
+            }
 
             pw.showHistogram();
-
         }
 
         private void MenuShowLUT_Click(object sender, EventArgs e)
         {
-            // Weź ostatnie aktywne PictureWindow
             PictureWindow pw = PictureWindow.LastActiveWindow;
 
-            // Czy jest na czym wykonywać operacje
-            if (pw == null) return;
+            if (pw == null)
+            {
+                MessageBox.Show("Image should be selected!", "Not selected image", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                return;
+            }
 
             pw.showLutTable();
         }
 
         private void MenuLinearStretching_Click(object sender, EventArgs e)
         {
-            // Weź ostatnie aktywne PictureWindow
             PictureWindow pw = PictureWindow.LastActiveWindow;
 
-            // Czy jest na czym wykonywać operacje
-            if (pw == null) return;
+            if (pw == null)
+            {
+                MessageBox.Show("Image should be selected!", "Not selected image", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                return;
+            }
 
-            // sprawdź czy obraz jest szaroodcieniowy
-            if (!pw.IsGrey) return;
+            if (!pw.IsGrey)
+            {
+                MessageBox.Show("Image should be grayscale!", "Not grayscale image", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                return;
+            }
 
             Operations.greyLinearStretching(pw.Bitmap, pw.Red);
             pw.resetLutTables();
@@ -143,15 +144,19 @@ namespace APO_Projekt
 
         private void MenuEqualization_Click(object sender, EventArgs e)
         {
-            // Weź ostatnie aktywne PictureWindow
             PictureWindow pw = PictureWindow.LastActiveWindow;
 
-            // Czy jest na czym wykonywać operacje
-            if (pw == null) return;
-            
-            // sprawdź czy obraz jest szaroodcieniowy
-            if (!pw.IsGrey) return;
+            if (pw == null)
+            {
+                MessageBox.Show("Image should be selected!", "Not selected image", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                return;
+            }
 
+            if (!pw.IsGrey)
+            {
+                MessageBox.Show("Image should be grayscale!", "Not grayscale image", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                return;
+            }
             Operations.greyEqualization(pw.Bitmap, pw.Red);
             pw.resetLutTables();
 
@@ -160,14 +165,19 @@ namespace APO_Projekt
 
         private void MenuThresholding_Click(object sender, EventArgs e)
         {
-            // Weź ostatnie aktywne PictureWindow
             PictureWindow pw = PictureWindow.LastActiveWindow;
 
-            // Czy jest na czym wykonywać operacje
-            if (pw == null) return;
+            if (pw == null)
+            {
+                MessageBox.Show("Image should be selected!", "Not selected image", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                return;
+            }
 
-            // sprawdź czy obraz jest szaroodcieniowy
-            if (!pw.IsGrey) return;
+            if (!pw.IsGrey)
+            {
+                MessageBox.Show("Image should be grayscale!", "Not grayscale image", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                return;
+            }
 
             Threshold_Form slider = new Threshold_Form(pw);
             slider.Show();
@@ -175,14 +185,18 @@ namespace APO_Projekt
 
         private void MenuPosterize_Click(object sender, EventArgs e)
         {
-            // Weź ostatnie aktywne PictureWindow
             PictureWindow pw = PictureWindow.LastActiveWindow;
 
-            // Czy jest na czym wykonywać operacje
-            if (pw == null) return;
-
-            // sprawdź czy obraz jest szaroodcieniowy
-            if (!pw.IsGrey) return;
+            if (pw == null)
+            {
+                MessageBox.Show("Image should be selected!", "Not selected image", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                return;
+            }
+            if (!pw.IsGrey)
+            {
+                MessageBox.Show("Image should be grayscale!", "Not grayscale image", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                return;
+            }
 
             PosterizeForm form = new PosterizeForm(pw);
             form.Show();
@@ -190,13 +204,17 @@ namespace APO_Projekt
 
         private void MenuBlur_Click(object sender, EventArgs e)
         {
-            // Weź ostatnie aktywne PictureWindow
             PictureWindow pw = PictureWindow.LastActiveWindow;
-
-            // Czy jest na czym wykonywać operacje
-            if (pw == null) return;
-            // sprawdź czy obraz jest szaroodcieniowy
-            if (!pw.IsGrey) return;
+            if (pw == null)
+            {
+                MessageBox.Show("Image should be selected!", "Not selected image", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                return;
+            }
+            if (!pw.IsGrey)
+            {
+                MessageBox.Show("Image should be grayscale!", "Not grayscale image", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                return;
+            }
 
             Blur_Form blur_Form = new Blur_Form(pw);
             blur_Form.Show();
@@ -206,14 +224,17 @@ namespace APO_Projekt
 
         private void MenuGaussianBlur_Click(object sender, EventArgs e)
         {
-            // Weź ostatnie aktywne PictureWindow
             PictureWindow pw = PictureWindow.LastActiveWindow;
-
-            // Czy jest na czym wykonywać operacje
-            if (pw == null) return;
-            // sprawdź czy obraz jest szaroodcieniowy
-            if (!pw.IsGrey) return;
-
+            if (pw == null)
+            {
+                MessageBox.Show("Image should be selected!", "Not selected image", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                return;
+            }
+            if (!pw.IsGrey)
+            {
+                MessageBox.Show("Image should be grayscale!", "Not grayscale image", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                return;
+            }
             GaussianBlur_Form gaussianBlur_Form = new GaussianBlur_Form(pw);
             gaussianBlur_Form.Show();
             pw.resetLutTables();
@@ -222,72 +243,102 @@ namespace APO_Projekt
 
         private void MenuLinearSharpening_Click(object sender, EventArgs e)
         {
-            // Weź ostatnie aktywne PictureWindow
             PictureWindow pw = PictureWindow.LastActiveWindow;
-            // Czy jest na czym wykonywać operacje
-            if (pw == null) return;
-            // sprawdź czy obraz jest szaroodcieniowy
-            if (!pw.IsGrey) return;
+            if (pw == null)
+            {
+                MessageBox.Show("Image should be selected!", "Not selected image", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                return;
+            }
+            if (!pw.IsGrey)
+            {
+                MessageBox.Show("Image should be grayscale!", "Not grayscale image", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                return;
+            }
             LinearSharpening_Form form = new LinearSharpening_Form(pw);
             form.Show();
         }
 
         private void MenuDirectionalEdge_Click(object sender, EventArgs e)
         {
-            // Weź ostatnie aktywne PictureWindow
             PictureWindow pw = PictureWindow.LastActiveWindow;
-            // Czy jest na czym wykonywać operacje
-            if (pw == null) return;
-            // sprawdź czy obraz jest szaroodcieniowy
-            if (!pw.IsGrey) return;
+            if (pw == null)
+            {
+                MessageBox.Show("Image should be selected!", "Not selected image", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                return;
+            }
+            if (!pw.IsGrey)
+            {
+                MessageBox.Show("Image should be grayscale!", "Not grayscale image", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                return;
+            }
             DirectionalEdgeDetection_Form form = new DirectionalEdgeDetection_Form(pw);
             form.Show();
         }
 
         private void MenuGrayLevelsThresholding_Click(object sender, EventArgs e)
         {
-            // Weź ostatnie aktywne PictureWindow
             PictureWindow pw = PictureWindow.LastActiveWindow;
-            // Czy jest na czym wykonywać operacje
-            if (pw == null) return;
-            // sprawdź czy obraz jest szaroodcieniowy
-            if (!pw.IsGrey) return;
+            if (pw == null)
+            {
+                MessageBox.Show("Image should be selected!", "Not selected image", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                return;
+            }
+            if (!pw.IsGrey)
+            {
+                MessageBox.Show("Image should be grayscale!", "Not grayscale image", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                return;
+            }
             GrayLevelsThresholding_Form slider = new GrayLevelsThresholding_Form(pw);
             slider.Show();
         }
 
         private void MenuAdjustableStretching_Click(object sender, EventArgs e)
         {
-            // Weź ostatnie aktywne PictureWindow
             PictureWindow pw = PictureWindow.LastActiveWindow;
-            // Czy jest na czym wykonywać operacje
-            if (pw == null) return;
-            // sprawdź czy obraz jest szaroodcieniowy
-            if (!pw.IsGrey) return;
+            if (pw == null)
+            {
+                MessageBox.Show("Image should be selected!", "Not selected image", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                return;
+            }
+            if (!pw.IsGrey)
+            {
+                MessageBox.Show("Image should be grayscale!", "Not grayscale image", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                return;
+            }
             AdjustableStretching_Form slider = new AdjustableStretching_Form(pw);
             slider.Show();
         }
 
         private void MenuEdgeDetection_Click(object sender, EventArgs e)
         {
-            // Weź ostatnie aktywne PictureWindow
             PictureWindow pw = PictureWindow.LastActiveWindow;
-            // Czy jest na czym wykonywać operacje
-            if (pw == null) return;
-            // sprawdź czy obraz jest szaroodcieniowy
-            if (!pw.IsGrey) return;
+            if (pw == null)
+            {
+                MessageBox.Show("Image should be selected!", "Not selected image", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                return;
+            }
+            if (!pw.IsGrey)
+            {
+                MessageBox.Show("Image should be grayscale!", "Not grayscale image", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                return;
+            }
             EdgeDetection_Form form = new EdgeDetection_Form(pw);
             form.Show();
         }
 
         private void MenuCustomMask_Click(object sender, EventArgs e)
         {
-            // Weź ostatnie aktywne PictureWindow
             PictureWindow pw = PictureWindow.LastActiveWindow;
-            // Czy jest na czym wykonywać operacje
-            if (pw == null) return;
-            // sprawdź czy obraz jest szaroodcieniowy
-            if (!pw.IsGrey) return;
+            if (pw == null)
+            {
+                MessageBox.Show("Image should be selected!", "Not selected image", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                return;
+            }
+            if (!pw.IsGrey)
+            {
+                MessageBox.Show("Image should be grayscale!", "Not grayscale image", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                return;
+            }
             CustomMask_Form form = new CustomMask_Form(pw);
             form.Show();
         }
@@ -295,8 +346,16 @@ namespace APO_Projekt
         private void MenuMedianBlur_Click(object sender, EventArgs e)
         {
             PictureWindow pw = PictureWindow.LastActiveWindow;
-            if (pw == null) return;
-            if (!pw.IsGrey) return;
+            if (pw == null)
+            {
+                MessageBox.Show("Image should be selected!", "Not selected image", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                return;
+            }
+            if (!pw.IsGrey)
+            {
+                MessageBox.Show("Image should be grayscale!", "Not grayscale image", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                return;
+            }
             MedianBlur_Form form = new MedianBlur_Form(pw);
             form.Show();
         }
@@ -304,8 +363,16 @@ namespace APO_Projekt
         private void MenuBinaryPointOperations_Click(object sender, EventArgs e)
         {// isGrey do zmiany
             PictureWindow pw = PictureWindow.LastActiveWindow;
-            if (pw == null) return;
-            if (!pw.IsGrey) return;
+            if (pw == null)
+            {
+                MessageBox.Show("Image should be selected!", "Not selected image", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                return;
+            }
+            if (!pw.IsGrey)
+            {
+                MessageBox.Show("Image should be grayscale!", "Not grayscale image", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                return;
+            }
             BinaryPointOperations_Form form = new BinaryPointOperations_Form(pw);
             form.Show();
         }
@@ -313,8 +380,16 @@ namespace APO_Projekt
         private void MenuMathematicalMorphology_Click(object sender, EventArgs e)
         {
             PictureWindow pw = PictureWindow.LastActiveWindow;
-            if (pw == null) return;
-            if (!pw.IsGrey) return;
+            if (pw == null)
+            {
+                MessageBox.Show("Image should be selected!", "Not selected image", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                return;
+            }
+            if (!pw.IsGrey)
+            {
+                MessageBox.Show("Image should be grayscale!", "Not grayscale image", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                return;
+            }
             MathematicalMorphology_Form form = new MathematicalMorphology_Form(pw);
             form.Show();
         }
@@ -322,8 +397,16 @@ namespace APO_Projekt
         private void MenuSkeletonize_Click(object sender, EventArgs e)
         {
             PictureWindow pw = PictureWindow.LastActiveWindow;
-            if (pw == null) return;
-            if (!pw.IsGrey) return;
+            if (pw == null)
+            {
+                MessageBox.Show("Image should be selected!", "Not selected image", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                return;
+            }
+            if (!pw.IsGrey)
+            {
+                MessageBox.Show("Image should be grayscale!", "Not grayscale image", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                return;
+            }
             Skeletonize_Form form = new Skeletonize_Form(pw);
             form.Show();
         }
@@ -331,8 +414,16 @@ namespace APO_Projekt
         private void MenuConvolution_Click(object sender, EventArgs e)
         {
             PictureWindow pw = PictureWindow.LastActiveWindow;
-            if (pw == null) return;
-            if (!pw.IsGrey) return;
+            if (pw == null)
+            {
+                MessageBox.Show("Image should be selected!", "Not selected image", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                return;
+            }
+            if (!pw.IsGrey)
+            {
+                MessageBox.Show("Image should be grayscale!", "Not grayscale image", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                return;
+            }
             Convolution_Form form = new Convolution_Form(pw);
             form.Show();
         }
@@ -345,8 +436,16 @@ namespace APO_Projekt
         private void MenuThreAdaptive_Click(object sender, EventArgs e)
         {
             PictureWindow pw = PictureWindow.LastActiveWindow;
-            if (pw == null) return;
-            if (!pw.IsGrey) return;
+            if (pw == null)
+            {
+                MessageBox.Show("Image should be selected!", "Not selected image", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                return;
+            }
+            if (!pw.IsGrey)
+            {
+                MessageBox.Show("Image should be grayscale!", "Not grayscale image", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                return;
+            }
             AdaptiveThresholding_Form form = new AdaptiveThresholding_Form(pw);
             form.Show();
         }
@@ -354,8 +453,16 @@ namespace APO_Projekt
         private void MenuOtsu_Click(object sender, EventArgs e)
         {
             PictureWindow pw = PictureWindow.LastActiveWindow;
-            if (pw == null) return;
-            if (!pw.IsGrey) return;
+            if (pw == null)
+            {
+                MessageBox.Show("Image should be selected!", "Not selected image", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                return;
+            }
+            if (!pw.IsGrey)
+            {
+                MessageBox.Show("Image should be grayscale!", "Not grayscale image", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                return;
+            }
             Operations.otsu(pw);
             pw.resetLutTables();
             pw.resetBitmap();
@@ -364,7 +471,11 @@ namespace APO_Projekt
         private void MenuWatershed_Click(object sender, EventArgs e)
         {
             PictureWindow pw = PictureWindow.LastActiveWindow;
-            if (pw == null) return;
+            if (pw == null)
+            {
+                MessageBox.Show("Image should be selected!", "Not selected image", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                return;
+            }
             Operations.watershed(pw);
             pw.resetLutTables();
             pw.resetBitmap();
@@ -373,8 +484,16 @@ namespace APO_Projekt
         private void MenuFindContours_Click(object sender, EventArgs e)
         {
             PictureWindow pw = PictureWindow.LastActiveWindow;
-            if (pw == null) return;
-            if (!pw.IsGrey) return;
+            if (pw == null)
+            {
+                MessageBox.Show("Image should be selected!", "Not selected image", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                return;
+            }
+            if (!pw.IsGrey)
+            {
+                MessageBox.Show("Image should be grayscale!", "Not grayscale image", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                return;
+            }
             var form = new FindContours_Form(pw);
             form.Show();
         }
@@ -382,7 +501,11 @@ namespace APO_Projekt
         private void MenuToGrayscale_Click(object sender, EventArgs e)
         {
             PictureWindow pw = PictureWindow.LastActiveWindow;
-            if (pw == null) return;
+            if (pw == null)
+            {
+                MessageBox.Show("Image should be selected!", "Not selected image", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                return;
+            }
             Operations.toGrayscale(pw);
             pw.resetLutTables();
             pw.resetBitmap();

@@ -17,8 +17,6 @@ namespace APO_Projekt
          * Pola
          ************************************************************/
 
-        // Tablice Lut - umieszczam tutaj, a nie w histogramie, gdyż nie będzie potrzeby tworzenia histogramu
-        // by przejrzeć wartości tablic Lut w oddzielnym Formsie.
         private readonly int[] red = null, green = null, blue = null;
         private readonly int[] yellow = null, pink = null, turquoise = null;
         private readonly int[] allColors = null;

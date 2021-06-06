@@ -25,7 +25,7 @@ namespace APO_Projekt
             InitializeComponent();
             this.pw = pw;
             initFields();
-            btnApply.Enabled = false;
+            txtIterations.Text = "2";
         }
 
         private void getBorderType()
