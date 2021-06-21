@@ -393,6 +393,7 @@ namespace APO_Projekt
             this.btnProject.Name = "btnProject";
             this.btnProject.Size = new System.Drawing.Size(56, 20);
             this.btnProject.Text = "Project";
+            this.btnProject.Click += new System.EventHandler(this.btnProject_Click);
             // 
             // MenuAbout
             // 

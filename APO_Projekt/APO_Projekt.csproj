@@ -160,6 +160,12 @@
     <Compile Include="LutWindow.Designer.cs">
       <DependentUpon>LutWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Project\Project_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Project\Project_Form.Designer.cs">
+      <DependentUpon>Project_Form.cs</DependentUpon>
+    </Compile>
     <Compile Include="Skeletonize_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -249,6 +255,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="LutWindow.resx">
       <DependentUpon>LutWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Project\Project_Form.resx">
+      <DependentUpon>Project_Form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Skeletonize_Form.resx">
       <DependentUpon>Skeletonize_Form.cs</DependentUpon>

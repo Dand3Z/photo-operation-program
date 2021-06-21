@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using APO_Projekt.Project;
+
 
 namespace APO_Projekt
 {
@@ -514,6 +516,11 @@ namespace APO_Projekt
         private void MenuAbout_Click(object sender, EventArgs e)
         {
             new AboutMe_Form().Show();
+        }
+
+        private void btnProject_Click(object sender, EventArgs e)
+        {
+            new Project_Form().Show();
         }
     }
 }
