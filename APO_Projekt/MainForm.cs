@@ -27,7 +27,7 @@ namespace APO_Projekt
             OpenFileDialog open = new OpenFileDialog();
             
             // flitry obrazu
-            open.Filter = "Image Files(*jpg; *.jpeg; *.gif; *.bmp; *.png; *.tif)|*jpg; *.jpeg; *.gif; *.bmp; *png; *.tif";
+            open.Filter = "Image Files(*jpg; *.jpeg; *.gif; *.bmp; *.png; *.tiff)|*jpg; *.jpeg; *.gif; *.bmp; *png; *.tiff";
             if (open.ShowDialog() == DialogResult.OK)
             {
                 // stwórz Picture window

@@ -24,7 +24,7 @@ namespace APO_Projekt
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("Aplikacja zbiorcza z ćwiczeń laboratoryjnych i projektu." + Environment.NewLine);
-            sb.Append("Program do konstrukcji obrazów monochromatycznych z obrazów kolorowych według wskazań użytkownika co do konswersji koloru." + Environment.NewLine);
+            sb.Append("Program do konstrukcji obrazów monochromatycznych z obrazów kolorowych według wskazań użytkownika co do konwersji koloru." + Environment.NewLine);
 
             sb.Append(Environment.NewLine);
             sb.Append("Autor: Daniel Delegacz" + Environment.NewLine);
