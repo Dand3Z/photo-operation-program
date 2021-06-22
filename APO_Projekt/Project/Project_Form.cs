@@ -16,6 +16,8 @@ namespace APO_Projekt.Project
 {
     public partial class Project_Form : Form
     {
+        private static readonly Random random = new Random();
+
         private Image<Bgr, byte> colorImg;
         private Image<Gray, byte> grayImg;
 
@@ -246,6 +248,18 @@ namespace APO_Projekt.Project
             pictureWindow.setPicture(grayImg.ToBitmap());
             pictureWindow.Show();
             Close();
+        }
+
+        private void btnRandom_Click(object sender, EventArgs e)
+        {
+            tbBlue.Value = random.Next(0, 101);
+            int maxGreen = Math.Min(101, 101 - tbBlue.Value);
+            tbGreen.Value = tbBlue.Value == 100 ? 0 : random.Next(0, maxGreen);
+            tbRed.Value = 100 - tbBlue.Value - tbGreen.Value;
+
+            tbBlue_Scroll(sender, e);
+            tbGreen_Scroll(sender, e);
+            tbRed_Scroll(sender, e);
         }
     }
 }
