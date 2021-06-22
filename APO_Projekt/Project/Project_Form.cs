@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Emgu.CV;
 using Emgu.CV.Structure;
 using Emgu.CV.CvEnum;
+using System.Drawing.Imaging;
 
 namespace APO_Projekt.Project
 {
@@ -24,6 +25,7 @@ namespace APO_Projekt.Project
         public Project_Form()
         {
             InitializeComponent();
+            CenterToScreen();
             removeChartLegend();
         }
 
@@ -177,6 +179,51 @@ namespace APO_Projekt.Project
             chtColHis.Series[6].IsVisibleInLegend = false;
 
             chtGrayHis.Series[0].IsVisibleInLegend = false;
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            if (grayImg == null)
+            {
+                MessageBox.Show("Image has not been opened!", "Not opened image", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                return;
+            }
+
+            SaveFileDialog save = new SaveFileDialog();
+            save.Filter = "Bitmap Image (.bmp)|*.bmp|Gif Image (.gif)|*.gif|JPEG Image (.jpeg)|*.jpeg|Png Image (.png)|*.png|Tiff Image (.tiff)|*.tiff";
+            if (save.ShowDialog() == DialogResult.OK)
+            {
+                savePicture(save);
+            }
+        }
+
+        private void savePicture(SaveFileDialog save)
+        {
+            string FilePath = save.FileName;
+            int index = save.FilterIndex;
+            ImageFormat format;
+            switch (index)
+            {
+                case 1:
+                    format = ImageFormat.Bmp;
+                    break;
+                case 2:
+                    format = ImageFormat.Gif;
+                    break;
+                case 3:
+                    format = ImageFormat.Jpeg;
+                    break;
+                case 4:
+                    format = ImageFormat.Png;
+                    break;
+                case 5:
+                    format = ImageFormat.Tiff;
+                    break;
+                default:
+                    format = ImageFormat.Png;
+                    break;
+            }
+            grayImg.ToBitmap().Save(FilePath, format);
         }
     }
 }
