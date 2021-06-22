@@ -225,5 +225,14 @@ namespace APO_Projekt.Project
             }
             grayImg.ToBitmap().Save(FilePath, format);
         }
+
+        private void btnDefault_Click(object sender, EventArgs e)
+        {
+            tbBlue.Value = 11; tbGreen.Value = 59; tbRed.Value = 30;
+
+            tbBlue_Scroll(sender, e);
+            tbGreen_Scroll(sender, e);
+            tbRed_Scroll(sender, e);
+        }
     }
 }
