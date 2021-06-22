@@ -24,6 +24,7 @@ namespace APO_Projekt.Project
         public Project_Form()
         {
             InitializeComponent();
+            removeChartLegend();
         }
 
         // invoke in open button
@@ -51,12 +52,50 @@ namespace APO_Projekt.Project
             red = denseHistogram.GetBinValues();  // BLUE
             denseHistogram.Clear();
 
+            printColorHistogram(blue,green,red);
+        }
 
-            ////////// 
-            hisBoxColor.ClearHistogram();
-            hisBoxColor.GenerateHistograms(colorImg, 256);
-            //hisBoxColor.
-            hisBoxColor.Refresh();
+        private void printColorHistogram(float[] blue, float[] green, float[] red)
+        {
+            float[] yellow = new float[256], pink = new float[256], turquoise = new float[256], allColors = new float[256];
+
+            chtColHis.Series["red"].Points.Clear();
+            chtColHis.Series["green"].Points.Clear();
+            chtColHis.Series["blue"].Points.Clear();
+            chtColHis.Series["red+green"].Points.Clear();
+            chtColHis.Series["green+blue"].Points.Clear();
+            chtColHis.Series["red+blue"].Points.Clear();
+            chtColHis.Series["red+green+blue"].Points.Clear();
+
+            for (int i = 0; i < blue.Length; ++i)
+            {
+                yellow[i] = Math.Min(red[i], green[i]);
+                pink[i] = Math.Min(red[i], blue[i]);
+                turquoise[i] = Math.Min(green[i], blue[i]);
+                allColors[i] = Math.Min(red[i], Math.Min(green[i], blue[i]));
+            }
+
+            for (int i = 0; i < yellow.Length; ++i)
+            {
+                yellow[i] = Math.Min(red[i], green[i]);
+                pink[i] = Math.Min(red[i], blue[i]);
+                turquoise[i] = Math.Min(green[i], blue[i]);
+                allColors[i] = Math.Min(red[i], Math.Min(green[i], blue[i]));
+            }
+
+
+            for (int i = 0; i < 256; ++i)
+            {
+                chtColHis.Series["red"].Points.AddXY(i, red[i]);
+                chtColHis.Series["green"].Points.AddXY(i, green[i]);
+                chtColHis.Series["blue"].Points.AddXY(i, blue[i]);
+                chtColHis.Series["red+green"].Points.AddXY(i, yellow[i]);
+                chtColHis.Series["green+blue"].Points.AddXY(i, turquoise[i]);
+                chtColHis.Series["red+blue"].Points.AddXY(i, pink[i]);
+                chtColHis.Series["red+green+blue"].Points.AddXY(i, allColors[i]);
+
+            }
+            chtColHis.Invalidate();
         }
 
         private void btnOpen_Click(object sender, EventArgs e)
@@ -105,6 +144,17 @@ namespace APO_Projekt.Project
         {
             colorValidity[0] = tbBlue.Value / 100d;
             lbBlueValue.Text = "Value = " + colorValidity[0];
+        }
+
+        private void removeChartLegend()
+        {
+            chtColHis.Series[0].IsVisibleInLegend = false;
+            chtColHis.Series[1].IsVisibleInLegend = false;
+            chtColHis.Series[2].IsVisibleInLegend = false;
+            chtColHis.Series[3].IsVisibleInLegend = false;
+            chtColHis.Series[4].IsVisibleInLegend = false;
+            chtColHis.Series[5].IsVisibleInLegend = false;
+            chtColHis.Series[6].IsVisibleInLegend = false;
         }
     }
 }
