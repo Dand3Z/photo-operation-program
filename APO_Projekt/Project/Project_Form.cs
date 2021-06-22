@@ -29,7 +29,6 @@ namespace APO_Projekt.Project
             removeChartLegend();
         }
 
-        // invoke in open button
         private void calculateColorHistogram()
         {
             float[] blue;
@@ -153,19 +152,19 @@ namespace APO_Projekt.Project
         private void tbRed_Scroll(object sender, EventArgs e)
         {
             colorValidity[2] = tbRed.Value / 100d;
-            lbRedValue.Text = "Value = " + colorValidity[2];
+            lbRedValue.Text = "Percentages = " + colorValidity[2] * 100 + "%";
         }
 
         private void tbGreen_Scroll(object sender, EventArgs e)
         {
             colorValidity[1] = tbGreen.Value / 100d;
-            lbGreenValue.Text = "Value = " + colorValidity[1];
+            lbGreenValue.Text = "Percentages = " + colorValidity[1] * 100 + "%";
         }
 
         private void tbBlue_Scroll(object sender, EventArgs e)
         {
             colorValidity[0] = tbBlue.Value / 100d;
-            lbBlueValue.Text = "Value = " + colorValidity[0];
+            lbBlueValue.Text = "Percentages = " + colorValidity[0] * 100 + "%";
         }
 
         private void removeChartLegend()
