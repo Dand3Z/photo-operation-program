@@ -75,15 +75,6 @@ namespace APO_Projekt.Project
                 allColors[i] = Math.Min(red[i], Math.Min(green[i], blue[i]));
             }
 
-            for (int i = 0; i < yellow.Length; ++i)
-            {
-                yellow[i] = Math.Min(red[i], green[i]);
-                pink[i] = Math.Min(red[i], blue[i]);
-                turquoise[i] = Math.Min(green[i], blue[i]);
-                allColors[i] = Math.Min(red[i], Math.Min(green[i], blue[i]));
-            }
-
-
             for (int i = 0; i < 256; ++i)
             {
                 chtColHis.Series["red"].Points.AddXY(i, red[i]);
@@ -98,6 +89,34 @@ namespace APO_Projekt.Project
             chtColHis.Invalidate();
         }
 
+        private void calculateGrayHistogram()
+        {
+            float[] gray;
+
+            DenseHistogram denseHistogram = new DenseHistogram(256, new RangeF(0, 256));
+
+            Image<Gray, Byte> imgGray = grayImg[0];
+
+            denseHistogram.Calculate(new Image<Gray, Byte>[] { imgGray }, true, null);
+            gray = denseHistogram.GetBinValues();  // GRAY
+            denseHistogram.Clear();
+
+            printGrayHistogram(gray);
+        }
+        
+        private void printGrayHistogram(float[] gray)
+        {
+            chtGrayHis.Series["gray"].Points.Clear();
+
+            for (int i = 0; i < 256; ++i)
+            {
+                chtGrayHis.Series["gray"].Points.AddXY(i, gray[i]);
+
+            }
+            chtColHis.Invalidate();
+        }
+        
+
         private void btnOpen_Click(object sender, EventArgs e)
         {
             OpenFileDialog open = new OpenFileDialog();
@@ -109,6 +128,7 @@ namespace APO_Projekt.Project
                 pbColImg.Image = colorImg;
                 calculateColorHistogram();
                 calcutateGrayImage();
+                calculateGrayHistogram();
             }
         }
 
@@ -155,6 +175,8 @@ namespace APO_Projekt.Project
             chtColHis.Series[4].IsVisibleInLegend = false;
             chtColHis.Series[5].IsVisibleInLegend = false;
             chtColHis.Series[6].IsVisibleInLegend = false;
+
+            chtGrayHis.Series[0].IsVisibleInLegend = false;
         }
     }
 }
