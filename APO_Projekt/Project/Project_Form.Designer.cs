@@ -30,19 +30,20 @@ namespace APO_Projekt.Project
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series17 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series18 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series19 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series20 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series21 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series22 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series23 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series24 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea17 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend17 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series65 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea18 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend18 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series66 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series67 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series68 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series69 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series70 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series71 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series72 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.btnPanel = new System.Windows.Forms.Panel();
+            this.btnRandom = new System.Windows.Forms.Button();
             this.btnOpen = new System.Windows.Forms.Button();
             this.btnToPicWin = new System.Windows.Forms.Button();
             this.btnDefault = new System.Windows.Forms.Button();
@@ -66,7 +67,10 @@ namespace APO_Projekt.Project
             this.lblRed = new System.Windows.Forms.Label();
             this.tbRed = new System.Windows.Forms.TrackBar();
             this.lblValTitle = new System.Windows.Forms.Label();
-            this.btnRandom = new System.Windows.Forms.Button();
+            this.pnLUT = new System.Windows.Forms.Panel();
+            this.lvLUT = new System.Windows.Forms.ListView();
+            this.Level = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Gray = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnPanel.SuspendLayout();
             this.grayImgPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbGrayImg)).BeginInit();
@@ -80,6 +84,7 @@ namespace APO_Projekt.Project
             ((System.ComponentModel.ISupportInitialize)(this.tbBlue)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbGreen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbRed)).BeginInit();
+            this.pnLUT.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnPanel
@@ -95,6 +100,16 @@ namespace APO_Projekt.Project
             this.btnPanel.Name = "btnPanel";
             this.btnPanel.Size = new System.Drawing.Size(900, 38);
             this.btnPanel.TabIndex = 0;
+            // 
+            // btnRandom
+            // 
+            this.btnRandom.Location = new System.Drawing.Point(508, 3);
+            this.btnRandom.Name = "btnRandom";
+            this.btnRandom.Size = new System.Drawing.Size(92, 32);
+            this.btnRandom.TabIndex = 4;
+            this.btnRandom.Text = "Random";
+            this.btnRandom.UseVisualStyleBackColor = true;
+            this.btnRandom.Click += new System.EventHandler(this.btnRandom_Click);
             // 
             // btnOpen
             // 
@@ -166,19 +181,19 @@ namespace APO_Projekt.Project
             // 
             // chtGrayHis
             // 
-            chartArea5.Name = "ChartArea1";
-            this.chtGrayHis.ChartAreas.Add(chartArea5);
+            chartArea17.Name = "ChartArea1";
+            this.chtGrayHis.ChartAreas.Add(chartArea17);
             this.chtGrayHis.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend5.Name = "Legend1";
-            this.chtGrayHis.Legends.Add(legend5);
+            legend17.Name = "Legend1";
+            this.chtGrayHis.Legends.Add(legend17);
             this.chtGrayHis.Location = new System.Drawing.Point(0, 0);
             this.chtGrayHis.Name = "chtGrayHis";
-            series17.ChartArea = "ChartArea1";
-            series17.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
-            series17.Color = System.Drawing.Color.Gray;
-            series17.Legend = "Legend1";
-            series17.Name = "gray";
-            this.chtGrayHis.Series.Add(series17);
+            series65.ChartArea = "ChartArea1";
+            series65.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
+            series65.Color = System.Drawing.Color.Gray;
+            series65.Legend = "Legend1";
+            series65.Name = "gray";
+            this.chtGrayHis.Series.Add(series65);
             this.chtGrayHis.Size = new System.Drawing.Size(456, 247);
             this.chtGrayHis.TabIndex = 0;
             this.chtGrayHis.Text = "chart1";
@@ -216,54 +231,54 @@ namespace APO_Projekt.Project
             // chtColHis
             // 
             this.chtColHis.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            chartArea6.Name = "ChartArea1";
-            this.chtColHis.ChartAreas.Add(chartArea6);
+            chartArea18.Name = "ChartArea1";
+            this.chtColHis.ChartAreas.Add(chartArea18);
             this.chtColHis.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend6.Name = "Legend1";
-            this.chtColHis.Legends.Add(legend6);
+            legend18.Name = "Legend1";
+            this.chtColHis.Legends.Add(legend18);
             this.chtColHis.Location = new System.Drawing.Point(0, 0);
             this.chtColHis.Name = "chtColHis";
-            series18.ChartArea = "ChartArea1";
-            series18.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
-            series18.Color = System.Drawing.Color.Red;
-            series18.Legend = "Legend1";
-            series18.Name = "red";
-            series19.ChartArea = "ChartArea1";
-            series19.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
-            series19.Color = System.Drawing.Color.LimeGreen;
-            series19.Legend = "Legend1";
-            series19.Name = "green";
-            series20.ChartArea = "ChartArea1";
-            series20.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
-            series20.Legend = "Legend1";
-            series20.Name = "blue";
-            series21.ChartArea = "ChartArea1";
-            series21.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
-            series21.Color = System.Drawing.Color.Yellow;
-            series21.Legend = "Legend1";
-            series21.Name = "red+green";
-            series22.ChartArea = "ChartArea1";
-            series22.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
-            series22.Color = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            series22.Legend = "Legend1";
-            series22.Name = "green+blue";
-            series23.ChartArea = "ChartArea1";
-            series23.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
-            series23.Color = System.Drawing.Color.Fuchsia;
-            series23.Legend = "Legend1";
-            series23.Name = "red+blue";
-            series24.ChartArea = "ChartArea1";
-            series24.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
-            series24.Color = System.Drawing.Color.Black;
-            series24.Legend = "Legend1";
-            series24.Name = "red+green+blue";
-            this.chtColHis.Series.Add(series18);
-            this.chtColHis.Series.Add(series19);
-            this.chtColHis.Series.Add(series20);
-            this.chtColHis.Series.Add(series21);
-            this.chtColHis.Series.Add(series22);
-            this.chtColHis.Series.Add(series23);
-            this.chtColHis.Series.Add(series24);
+            series66.ChartArea = "ChartArea1";
+            series66.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
+            series66.Color = System.Drawing.Color.Red;
+            series66.Legend = "Legend1";
+            series66.Name = "red";
+            series67.ChartArea = "ChartArea1";
+            series67.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
+            series67.Color = System.Drawing.Color.LimeGreen;
+            series67.Legend = "Legend1";
+            series67.Name = "green";
+            series68.ChartArea = "ChartArea1";
+            series68.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
+            series68.Legend = "Legend1";
+            series68.Name = "blue";
+            series69.ChartArea = "ChartArea1";
+            series69.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
+            series69.Color = System.Drawing.Color.Yellow;
+            series69.Legend = "Legend1";
+            series69.Name = "red+green";
+            series70.ChartArea = "ChartArea1";
+            series70.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
+            series70.Color = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            series70.Legend = "Legend1";
+            series70.Name = "green+blue";
+            series71.ChartArea = "ChartArea1";
+            series71.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
+            series71.Color = System.Drawing.Color.Fuchsia;
+            series71.Legend = "Legend1";
+            series71.Name = "red+blue";
+            series72.ChartArea = "ChartArea1";
+            series72.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
+            series72.Color = System.Drawing.Color.Black;
+            series72.Legend = "Legend1";
+            series72.Name = "red+green+blue";
+            this.chtColHis.Series.Add(series66);
+            this.chtColHis.Series.Add(series67);
+            this.chtColHis.Series.Add(series68);
+            this.chtColHis.Series.Add(series69);
+            this.chtColHis.Series.Add(series70);
+            this.chtColHis.Series.Add(series71);
+            this.chtColHis.Series.Add(series72);
             this.chtColHis.Size = new System.Drawing.Size(327, 171);
             this.chtColHis.TabIndex = 1;
             this.chtColHis.Text = "chart1";
@@ -386,21 +401,45 @@ namespace APO_Projekt.Project
             this.lblValTitle.TabIndex = 0;
             this.lblValTitle.Text = "Select Color Validity";
             // 
-            // btnRandom
+            // pnLUT
             // 
-            this.btnRandom.Location = new System.Drawing.Point(508, 3);
-            this.btnRandom.Name = "btnRandom";
-            this.btnRandom.Size = new System.Drawing.Size(92, 32);
-            this.btnRandom.TabIndex = 4;
-            this.btnRandom.Text = "Random";
-            this.btnRandom.UseVisualStyleBackColor = true;
-            this.btnRandom.Click += new System.EventHandler(this.btnRandom_Click);
+            this.pnLUT.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnLUT.Controls.Add(this.lvLUT);
+            this.pnLUT.Location = new System.Drawing.Point(476, 12);
+            this.pnLUT.Name = "pnLUT";
+            this.pnLUT.Size = new System.Drawing.Size(101, 356);
+            this.pnLUT.TabIndex = 6;
+            // 
+            // lvLUT
+            // 
+            this.lvLUT.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Level,
+            this.Gray});
+            this.lvLUT.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lvLUT.FullRowSelect = true;
+            this.lvLUT.GridLines = true;
+            this.lvLUT.HideSelection = false;
+            this.lvLUT.Location = new System.Drawing.Point(0, 0);
+            this.lvLUT.Name = "lvLUT";
+            this.lvLUT.Size = new System.Drawing.Size(99, 354);
+            this.lvLUT.TabIndex = 0;
+            this.lvLUT.UseCompatibleStateImageBehavior = false;
+            // 
+            // Level
+            // 
+            this.Level.Width = 30;
+            // 
+            // Gray
+            // 
+            this.Gray.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Gray.Width = 30;
             // 
             // Project_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(929, 670);
+            this.Controls.Add(this.pnLUT);
             this.Controls.Add(this.colValPanel);
             this.Controls.Add(this.colHisPanel);
             this.Controls.Add(this.colImgPanel);
@@ -423,6 +462,7 @@ namespace APO_Projekt.Project
             ((System.ComponentModel.ISupportInitialize)(this.tbBlue)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbGreen)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbRed)).EndInit();
+            this.pnLUT.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -454,5 +494,9 @@ namespace APO_Projekt.Project
         private System.Windows.Forms.DataVisualization.Charting.Chart chtColHis;
         private System.Windows.Forms.DataVisualization.Charting.Chart chtGrayHis;
         private System.Windows.Forms.Button btnRandom;
+        private System.Windows.Forms.Panel pnLUT;
+        private System.Windows.Forms.ListView lvLUT;
+        private System.Windows.Forms.ColumnHeader Level;
+        private System.Windows.Forms.ColumnHeader Gray;
     }
 }

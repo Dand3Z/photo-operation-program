@@ -105,6 +105,7 @@ namespace APO_Projekt.Project
             denseHistogram.Clear();
 
             printGrayHistogram(gray);
+            calculateGrayLUT(gray);
         }
         
         private void printGrayHistogram(float[] gray)
@@ -148,6 +149,17 @@ namespace APO_Projekt.Project
             }
 
             pbGrayImg.Image = grayImg;
+        }
+
+        private void calculateGrayLUT(float[] gray)
+        {
+            lvLUT.Items.Clear();
+            for (int i = 0; i < gray.Length; ++i)
+            {
+                ListViewItem item = new ListViewItem(i.ToString());
+                item.SubItems.Add(gray[i].ToString());
+                lvLUT.Items.Add(item);
+            }
         }
 
 
