@@ -260,6 +260,14 @@ namespace APO_Projekt.Project
             tbBlue_Scroll(sender, e);
             tbGreen_Scroll(sender, e);
             tbRed_Scroll(sender, e);
+
+
+            // testing
+            if (colorImg != null && grayImg != null)
+            {
+                calcutateGrayImage();
+                calculateGrayHistogram();
+            }
         }
     }
 }
