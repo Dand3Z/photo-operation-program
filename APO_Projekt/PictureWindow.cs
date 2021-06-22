@@ -90,6 +90,21 @@ namespace APO_Projekt
             resetLutTables();
         }
 
+        public void setPicture(Bitmap b)
+        {
+            bitmap = b;
+            isGrey = Operations.isGrayScale(bitmap);
+
+            if (isGrey)
+            {
+                var rect = new Rectangle(0, 0, bitmap.Width, bitmap.Height);
+                bitmap = bitmap.Clone(rect, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+            }
+
+            pictureBox.Image = bitmap;
+            resetLutTables();
+        }
+
         // zapisz obraz
         public void savePicture(SaveFileDialog save)
         {

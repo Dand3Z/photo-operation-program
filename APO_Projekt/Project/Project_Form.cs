@@ -234,5 +234,19 @@ namespace APO_Projekt.Project
             tbGreen_Scroll(sender, e);
             tbRed_Scroll(sender, e);
         }
+
+        private void btnToPicWin_Click(object sender, EventArgs e)
+        {
+            if (grayImg == null)
+            {
+                MessageBox.Show("Image has not been opened!", "Not opened image", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                return;
+            }
+
+            PictureWindow pictureWindow = new PictureWindow();
+            pictureWindow.setPicture(grayImg.ToBitmap());
+            pictureWindow.Show();
+            Close();
+        }
     }
 }
