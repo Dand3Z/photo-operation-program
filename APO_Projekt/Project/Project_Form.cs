@@ -29,26 +29,33 @@ namespace APO_Projekt.Project
         // invoke in open button
         private void calculateColorHistogram()
         {
-            /*
-            float[] red;
-            float[] green;
             float[] blue;
+            float[] green;
+            float[] red;
 
-            DenseHistogram colorHistogram = new DenseHistogram(255, new RangeF(0, 255));
+            DenseHistogram denseHistogram = new DenseHistogram(256, new RangeF(0, 256));
 
-            Image<Gray, Byte> imgRed = colorImg[0];
+            Image<Gray, Byte> imgBlue = colorImg[0];
             Image<Gray, Byte> imgGreen = colorImg[1];
-            Image<Gray, Byte> imgBlue = colorImg[2];
+            Image<Gray, Byte> imgRed = colorImg[2];
+            
+            denseHistogram.Calculate(new Image<Gray, Byte>[] { imgBlue }, true, null);
+            blue = denseHistogram.GetBinValues();  // BLUE
+            denseHistogram.Clear();
 
-            colorHistogram.Calculate(new Image<Gray, Byte>[] { imgRed }, true, null);
-            red = new float[256];
-            colorHistogram.Ma
+            denseHistogram.Calculate(new Image<Gray, Byte>[] { imgGreen }, true, null);
+            green = denseHistogram.GetBinValues();  // GREEN
+            denseHistogram.Clear();
 
-            */
+            denseHistogram.Calculate(new Image<Gray, Byte>[] { imgRed }, true, null);
+            red = denseHistogram.GetBinValues();  // BLUE
+            denseHistogram.Clear();
+
 
             ////////// 
             hisBoxColor.ClearHistogram();
             hisBoxColor.GenerateHistograms(colorImg, 256);
+            //hisBoxColor.
             hisBoxColor.Refresh();
         }
 
