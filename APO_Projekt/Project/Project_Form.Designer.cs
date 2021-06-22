@@ -126,6 +126,7 @@ namespace APO_Projekt.Project
             // 
             // pbGrayImg
             // 
+            this.pbGrayImg.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pbGrayImg.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbGrayImg.Location = new System.Drawing.Point(0, 0);
             this.pbGrayImg.Name = "pbGrayImg";
@@ -136,6 +137,7 @@ namespace APO_Projekt.Project
             // 
             // grayHisPanel
             // 
+            this.grayHisPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.grayHisPanel.Location = new System.Drawing.Point(12, 276);
             this.grayHisPanel.Name = "grayHisPanel";
             this.grayHisPanel.Size = new System.Drawing.Size(458, 249);
@@ -152,6 +154,7 @@ namespace APO_Projekt.Project
             // 
             // pbColImg
             // 
+            this.pbColImg.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pbColImg.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbColImg.Location = new System.Drawing.Point(0, 0);
             this.pbColImg.Name = "pbColImg";
@@ -171,6 +174,7 @@ namespace APO_Projekt.Project
             // 
             // hisBoxColor
             // 
+            this.hisBoxColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.hisBoxColor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.hisBoxColor.Location = new System.Drawing.Point(0, 0);
             this.hisBoxColor.Name = "hisBoxColor";
@@ -182,6 +186,7 @@ namespace APO_Projekt.Project
             // colValPanel
             // 
             this.colValPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.colValPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.colValPanel.Controls.Add(this.lbBlueValue);
             this.colValPanel.Controls.Add(this.lblBlue);
             this.colValPanel.Controls.Add(this.tbBlue);
