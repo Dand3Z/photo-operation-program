@@ -410,7 +410,7 @@ namespace APO_Projekt.Project
             {
                 if (sum > 100) btnToPicWin.Enabled = btnRefresh.Enabled = btnSave.Enabled = btnOpen.Enabled = false;
             }
-            if (sum <= 100)
+            if (sum <= 100 || mode == Mode.Unlimited)
             {
                 btnToPicWin.Enabled = btnRefresh.Enabled = btnSave.Enabled = btnOpen.Enabled = true;
             }
@@ -473,7 +473,9 @@ namespace APO_Projekt.Project
 
             if (cbSupportMode.Checked == cbRestrictiveMode.Checked && cbRestrictiveMode.Checked == cbUnlimitedMode.Checked
                 && cbUnlimitedMode.Checked == false) cbSupportMode.Checked = true;
-            
+
+            refreshSliders();
+
         }
 
         private void cbRestrictiveMode_CheckedChanged(object sender, EventArgs e)
@@ -486,6 +488,8 @@ namespace APO_Projekt.Project
 
             if (cbSupportMode.Checked == cbRestrictiveMode.Checked && cbRestrictiveMode.Checked == cbUnlimitedMode.Checked
                 && cbUnlimitedMode.Checked == false) cbSupportMode.Checked = true;
+
+            refreshSliders();
         }
 
         private void cbUnlimitedMode_CheckedChanged(object sender, EventArgs e)
@@ -498,6 +502,8 @@ namespace APO_Projekt.Project
 
             if (cbSupportMode.Checked == cbRestrictiveMode.Checked && cbRestrictiveMode.Checked == cbUnlimitedMode.Checked
                 && cbUnlimitedMode.Checked == false) cbSupportMode.Checked = true;
+
+            refreshSliders();
         }
     }
 
