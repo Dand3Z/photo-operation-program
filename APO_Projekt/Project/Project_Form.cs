@@ -281,5 +281,14 @@ namespace APO_Projekt.Project
                 calculateGrayHistogram();
             }
         }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            if (colorImg != null && grayImg != null)
+            {
+                calcutateGrayImage();
+                calculateGrayHistogram();
+            }
+        }
     }
 }
