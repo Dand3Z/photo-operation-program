@@ -74,9 +74,10 @@ namespace APO_Projekt.Project
             this.pnOptions = new System.Windows.Forms.Panel();
             this.lbOptions = new System.Windows.Forms.Label();
             this.cbSupportMode = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.cbRestrictive = new System.Windows.Forms.CheckBox();
+            this.cbUnlimited = new System.Windows.Forms.CheckBox();
             this.btnRefresh = new System.Windows.Forms.Button();
+            this.lbUnsafe = new System.Windows.Forms.Label();
             this.btnPanel.SuspendLayout();
             this.grayImgPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbGrayImg)).BeginInit();
@@ -450,8 +451,9 @@ namespace APO_Projekt.Project
             // pnOptions
             // 
             this.pnOptions.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnOptions.Controls.Add(this.checkBox2);
-            this.pnOptions.Controls.Add(this.checkBox1);
+            this.pnOptions.Controls.Add(this.lbUnsafe);
+            this.pnOptions.Controls.Add(this.cbUnlimited);
+            this.pnOptions.Controls.Add(this.cbRestrictive);
             this.pnOptions.Controls.Add(this.cbSupportMode);
             this.pnOptions.Controls.Add(this.lbOptions);
             this.pnOptions.Location = new System.Drawing.Point(13, 531);
@@ -482,27 +484,27 @@ namespace APO_Projekt.Project
             this.cbSupportMode.Text = "Support mode";
             this.cbSupportMode.UseVisualStyleBackColor = true;
             // 
-            // checkBox1
+            // cbRestrictive
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.checkBox1.Location = new System.Drawing.Point(160, 49);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(129, 24);
-            this.checkBox1.TabIndex = 3;
-            this.checkBox1.Text = "Support mode";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.cbRestrictive.AutoSize = true;
+            this.cbRestrictive.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.cbRestrictive.Location = new System.Drawing.Point(160, 49);
+            this.cbRestrictive.Name = "cbRestrictive";
+            this.cbRestrictive.Size = new System.Drawing.Size(146, 24);
+            this.cbRestrictive.TabIndex = 3;
+            this.cbRestrictive.Text = "Restrictive mode";
+            this.cbRestrictive.UseVisualStyleBackColor = true;
             // 
-            // checkBox2
+            // cbUnlimited
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.checkBox2.Location = new System.Drawing.Point(323, 49);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(129, 24);
-            this.checkBox2.TabIndex = 4;
-            this.checkBox2.Text = "Support mode";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.cbUnlimited.AutoSize = true;
+            this.cbUnlimited.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.cbUnlimited.Location = new System.Drawing.Point(323, 49);
+            this.cbUnlimited.Name = "cbUnlimited";
+            this.cbUnlimited.Size = new System.Drawing.Size(138, 24);
+            this.cbUnlimited.TabIndex = 4;
+            this.cbUnlimited.Text = "Unlimited mode";
+            this.cbUnlimited.UseVisualStyleBackColor = true;
             // 
             // btnRefresh
             // 
@@ -513,6 +515,17 @@ namespace APO_Projekt.Project
             this.btnRefresh.Text = "Refresh";
             this.btnRefresh.UseVisualStyleBackColor = true;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
+            // lbUnsafe
+            // 
+            this.lbUnsafe.AutoSize = true;
+            this.lbUnsafe.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lbUnsafe.ForeColor = System.Drawing.Color.DarkRed;
+            this.lbUnsafe.Location = new System.Drawing.Point(352, 28);
+            this.lbUnsafe.Name = "lbUnsafe";
+            this.lbUnsafe.Size = new System.Drawing.Size(65, 18);
+            this.lbUnsafe.TabIndex = 5;
+            this.lbUnsafe.Text = "Unsafe!";
             // 
             // Project_Form
             // 
@@ -583,9 +596,10 @@ namespace APO_Projekt.Project
         private System.Windows.Forms.ColumnHeader Gray;
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.Panel pnOptions;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox cbUnlimited;
+        private System.Windows.Forms.CheckBox cbRestrictive;
         private System.Windows.Forms.CheckBox cbSupportMode;
         private System.Windows.Forms.Label lbOptions;
+        private System.Windows.Forms.Label lbUnsafe;
     }
 }
