@@ -404,6 +404,16 @@ namespace APO_Projekt.Project
 
             colorValidity[2] = tbRed.Value / 100d;
             lbRedValue.Text = "Percentages = " + colorValidity[2] * 100 + "%";
+
+            int sum = tbBlue.Value + tbGreen.Value + tbRed.Value;
+            if (mode == Mode.Restrictive)
+            {
+                if (sum > 100) btnToPicWin.Enabled = btnRefresh.Enabled = btnSave.Enabled = btnOpen.Enabled = false;
+            }
+            if (sum <= 100)
+            {
+                btnToPicWin.Enabled = btnRefresh.Enabled = btnSave.Enabled = btnOpen.Enabled = true;
+            }
         }
 
         private void btnToPicWin_Click(object sender, EventArgs e)
