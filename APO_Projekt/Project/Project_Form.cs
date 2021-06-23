@@ -33,9 +33,9 @@ namespace APO_Projekt.Project
             CenterToScreen();
             removeChartLegend();
 
-            this.timer = new Timer();
-            this.timer.Interval = 500;
-            this.timer.Tick += this.Timer_Tick;
+            timer = new Timer();
+            timer.Interval = 500;
+            timer.Tick += this.Timer_Tick;
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -48,8 +48,6 @@ namespace APO_Projekt.Project
                 refreshGray();
                 
             }
-            
-            //this.label1.Text = this.updateCount.ToString();
         }
 
         private void calculateColorHistogram()
@@ -165,7 +163,9 @@ namespace APO_Projekt.Project
             {
                 for (int c = 0; c < colorImg.Cols; ++c)
                 {
-                    grayImg.Data[r, c, 0] = (byte) (colorImg.Data[r, c, 0] * colorValidity[0] + colorImg.Data[r, c, 1] * colorValidity[1] + colorImg.Data[r, c, 2] * colorValidity[2]);
+                    int newValue = (int) (colorImg.Data[r, c, 0] * colorValidity[0] + colorImg.Data[r, c, 1] * colorValidity[1] + colorImg.Data[r, c, 2] * colorValidity[2]);
+                    newValue = (newValue > 255 && mode == Mode.Unlimited && !cbUnsafe.Checked) ? 255 : newValue;
+                    grayImg.Data[r, c, 0] = (byte) newValue;
                 }
             }
 
@@ -186,8 +186,8 @@ namespace APO_Projekt.Project
 
         private void tbRed_Scroll(object sender, EventArgs e)
         {
-            this.timer.Stop();
-            this.timer.Start();
+            timer.Stop();
+            timer.Start();
             if (mode == Mode.Support)
             {
                 double prevValue = colorValidity[2] * 100;
@@ -237,8 +237,8 @@ namespace APO_Projekt.Project
 
         private void tbGreen_Scroll(object sender, EventArgs e)
         {
-            this.timer.Stop();
-            this.timer.Start();
+            timer.Stop();
+            timer.Start();
             if (mode == Mode.Support)
             {
                 double prevValue = colorValidity[1] * 100;
@@ -288,8 +288,8 @@ namespace APO_Projekt.Project
 
         private void tbBlue_Scroll(object sender, EventArgs e)
         {
-            this.timer.Stop();
-            this.timer.Start();
+            timer.Stop();
+            timer.Start();
             if (mode == Mode.Support)
             {
                 double prevValue = colorValidity[0] * 100;
@@ -500,7 +500,7 @@ namespace APO_Projekt.Project
                 && cbUnlimitedMode.Checked == false) cbSupportMode.Checked = true;
 
             refreshSliders();
-
+            cbUnsafe.Enabled = false;
         }
 
         private void cbRestrictiveMode_CheckedChanged(object sender, EventArgs e)
@@ -515,6 +515,7 @@ namespace APO_Projekt.Project
                 && cbUnlimitedMode.Checked == false) cbSupportMode.Checked = true;
 
             refreshSliders();
+            cbUnsafe.Enabled = false;
         }
 
         private void cbUnlimitedMode_CheckedChanged(object sender, EventArgs e)
@@ -526,8 +527,20 @@ namespace APO_Projekt.Project
             }
 
             if (cbSupportMode.Checked == cbRestrictiveMode.Checked && cbRestrictiveMode.Checked == cbUnlimitedMode.Checked
-                && cbUnlimitedMode.Checked == false) cbSupportMode.Checked = true;
+                && cbUnlimitedMode.Checked == false)
+            { 
+                cbSupportMode.Checked = true;
+                cbUnsafe.Enabled = false;
+                return;
+            }
 
+            refreshSliders();
+            refreshGray();
+            cbUnsafe.Enabled = true;
+        }
+
+        private void cbUnsafe_CheckedChanged(object sender, EventArgs e)
+        {
             refreshSliders();
             refreshGray();
         }

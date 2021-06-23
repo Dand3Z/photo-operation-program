@@ -30,19 +30,20 @@ namespace APO_Projekt.Project
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series17 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series18 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series19 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series20 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series21 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series22 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series23 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series24 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series13 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series14 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series15 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series16 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.btnPanel = new System.Windows.Forms.Panel();
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.btnRandom = new System.Windows.Forms.Button();
             this.btnOpen = new System.Windows.Forms.Button();
             this.btnToPicWin = new System.Windows.Forms.Button();
@@ -72,12 +73,11 @@ namespace APO_Projekt.Project
             this.Lv = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Gray = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pnOptions = new System.Windows.Forms.Panel();
-            this.lbModes = new System.Windows.Forms.Label();
-            this.cbSupportMode = new System.Windows.Forms.CheckBox();
-            this.cbRestrictiveMode = new System.Windows.Forms.CheckBox();
             this.cbUnlimitedMode = new System.Windows.Forms.CheckBox();
-            this.btnRefresh = new System.Windows.Forms.Button();
-            this.lbUnsafe = new System.Windows.Forms.Label();
+            this.cbRestrictiveMode = new System.Windows.Forms.CheckBox();
+            this.cbSupportMode = new System.Windows.Forms.CheckBox();
+            this.lbModes = new System.Windows.Forms.Label();
+            this.cbUnsafe = new System.Windows.Forms.CheckBox();
             this.btnPanel.SuspendLayout();
             this.grayImgPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbGrayImg)).BeginInit();
@@ -107,8 +107,18 @@ namespace APO_Projekt.Project
             this.btnPanel.Controls.Add(this.btnSave);
             this.btnPanel.Location = new System.Drawing.Point(12, 620);
             this.btnPanel.Name = "btnPanel";
-            this.btnPanel.Size = new System.Drawing.Size(903, 38);
+            this.btnPanel.Size = new System.Drawing.Size(899, 38);
             this.btnPanel.TabIndex = 0;
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Location = new System.Drawing.Point(410, 3);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(92, 32);
+            this.btnRefresh.TabIndex = 5;
+            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // btnRandom
             // 
@@ -190,19 +200,19 @@ namespace APO_Projekt.Project
             // 
             // chtGrayHis
             // 
-            chartArea5.Name = "ChartArea1";
-            this.chtGrayHis.ChartAreas.Add(chartArea5);
+            chartArea3.Name = "ChartArea1";
+            this.chtGrayHis.ChartAreas.Add(chartArea3);
             this.chtGrayHis.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend5.Name = "Legend1";
-            this.chtGrayHis.Legends.Add(legend5);
+            legend3.Name = "Legend1";
+            this.chtGrayHis.Legends.Add(legend3);
             this.chtGrayHis.Location = new System.Drawing.Point(0, 0);
             this.chtGrayHis.Name = "chtGrayHis";
-            series17.ChartArea = "ChartArea1";
-            series17.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
-            series17.Color = System.Drawing.Color.Gray;
-            series17.Legend = "Legend1";
-            series17.Name = "gray";
-            this.chtGrayHis.Series.Add(series17);
+            series9.ChartArea = "ChartArea1";
+            series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
+            series9.Color = System.Drawing.Color.Gray;
+            series9.Legend = "Legend1";
+            series9.Name = "gray";
+            this.chtGrayHis.Series.Add(series9);
             this.chtGrayHis.Size = new System.Drawing.Size(456, 247);
             this.chtGrayHis.TabIndex = 0;
             this.chtGrayHis.Text = "chart1";
@@ -240,54 +250,54 @@ namespace APO_Projekt.Project
             // chtColHis
             // 
             this.chtColHis.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            chartArea6.Name = "ChartArea1";
-            this.chtColHis.ChartAreas.Add(chartArea6);
+            chartArea4.Name = "ChartArea1";
+            this.chtColHis.ChartAreas.Add(chartArea4);
             this.chtColHis.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend6.Name = "Legend1";
-            this.chtColHis.Legends.Add(legend6);
+            legend4.Name = "Legend1";
+            this.chtColHis.Legends.Add(legend4);
             this.chtColHis.Location = new System.Drawing.Point(0, 0);
             this.chtColHis.Name = "chtColHis";
-            series18.ChartArea = "ChartArea1";
-            series18.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
-            series18.Color = System.Drawing.Color.Red;
-            series18.Legend = "Legend1";
-            series18.Name = "red";
-            series19.ChartArea = "ChartArea1";
-            series19.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
-            series19.Color = System.Drawing.Color.LimeGreen;
-            series19.Legend = "Legend1";
-            series19.Name = "green";
-            series20.ChartArea = "ChartArea1";
-            series20.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
-            series20.Legend = "Legend1";
-            series20.Name = "blue";
-            series21.ChartArea = "ChartArea1";
-            series21.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
-            series21.Color = System.Drawing.Color.Yellow;
-            series21.Legend = "Legend1";
-            series21.Name = "red+green";
-            series22.ChartArea = "ChartArea1";
-            series22.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
-            series22.Color = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            series22.Legend = "Legend1";
-            series22.Name = "green+blue";
-            series23.ChartArea = "ChartArea1";
-            series23.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
-            series23.Color = System.Drawing.Color.Fuchsia;
-            series23.Legend = "Legend1";
-            series23.Name = "red+blue";
-            series24.ChartArea = "ChartArea1";
-            series24.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
-            series24.Color = System.Drawing.Color.Black;
-            series24.Legend = "Legend1";
-            series24.Name = "red+green+blue";
-            this.chtColHis.Series.Add(series18);
-            this.chtColHis.Series.Add(series19);
-            this.chtColHis.Series.Add(series20);
-            this.chtColHis.Series.Add(series21);
-            this.chtColHis.Series.Add(series22);
-            this.chtColHis.Series.Add(series23);
-            this.chtColHis.Series.Add(series24);
+            series10.ChartArea = "ChartArea1";
+            series10.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
+            series10.Color = System.Drawing.Color.Red;
+            series10.Legend = "Legend1";
+            series10.Name = "red";
+            series11.ChartArea = "ChartArea1";
+            series11.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
+            series11.Color = System.Drawing.Color.LimeGreen;
+            series11.Legend = "Legend1";
+            series11.Name = "green";
+            series12.ChartArea = "ChartArea1";
+            series12.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
+            series12.Legend = "Legend1";
+            series12.Name = "blue";
+            series13.ChartArea = "ChartArea1";
+            series13.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
+            series13.Color = System.Drawing.Color.Yellow;
+            series13.Legend = "Legend1";
+            series13.Name = "red+green";
+            series14.ChartArea = "ChartArea1";
+            series14.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
+            series14.Color = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            series14.Legend = "Legend1";
+            series14.Name = "green+blue";
+            series15.ChartArea = "ChartArea1";
+            series15.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
+            series15.Color = System.Drawing.Color.Fuchsia;
+            series15.Legend = "Legend1";
+            series15.Name = "red+blue";
+            series16.ChartArea = "ChartArea1";
+            series16.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
+            series16.Color = System.Drawing.Color.Black;
+            series16.Legend = "Legend1";
+            series16.Name = "red+green+blue";
+            this.chtColHis.Series.Add(series10);
+            this.chtColHis.Series.Add(series11);
+            this.chtColHis.Series.Add(series12);
+            this.chtColHis.Series.Add(series13);
+            this.chtColHis.Series.Add(series14);
+            this.chtColHis.Series.Add(series15);
+            this.chtColHis.Series.Add(series16);
             this.chtColHis.Size = new System.Drawing.Size(327, 171);
             this.chtColHis.TabIndex = 1;
             this.chtColHis.Text = "chart1";
@@ -454,7 +464,7 @@ namespace APO_Projekt.Project
             // pnOptions
             // 
             this.pnOptions.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnOptions.Controls.Add(this.lbUnsafe);
+            this.pnOptions.Controls.Add(this.cbUnsafe);
             this.pnOptions.Controls.Add(this.cbUnlimitedMode);
             this.pnOptions.Controls.Add(this.cbRestrictiveMode);
             this.pnOptions.Controls.Add(this.cbSupportMode);
@@ -464,17 +474,29 @@ namespace APO_Projekt.Project
             this.pnOptions.Size = new System.Drawing.Size(457, 83);
             this.pnOptions.TabIndex = 7;
             // 
-            // lbModes
+            // cbUnlimitedMode
             // 
-            this.lbModes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbModes.AutoSize = true;
-            this.lbModes.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lbModes.Location = new System.Drawing.Point(164, 9);
-            this.lbModes.Name = "lbModes";
-            this.lbModes.Size = new System.Drawing.Size(132, 25);
-            this.lbModes.TabIndex = 1;
-            this.lbModes.Text = "Select Mode";
+            this.cbUnlimitedMode.AutoSize = true;
+            this.cbUnlimitedMode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.cbUnlimitedMode.Location = new System.Drawing.Point(323, 49);
+            this.cbUnlimitedMode.Name = "cbUnlimitedMode";
+            this.cbUnlimitedMode.Size = new System.Drawing.Size(138, 24);
+            this.cbUnlimitedMode.TabIndex = 4;
+            this.cbUnlimitedMode.Text = "Unlimited mode";
+            this.cbUnlimitedMode.UseVisualStyleBackColor = true;
+            this.cbUnlimitedMode.CheckedChanged += new System.EventHandler(this.cbUnlimitedMode_CheckedChanged);
+            // 
+            // cbRestrictiveMode
+            // 
+            this.cbRestrictiveMode.AutoSize = true;
+            this.cbRestrictiveMode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.cbRestrictiveMode.Location = new System.Drawing.Point(160, 49);
+            this.cbRestrictiveMode.Name = "cbRestrictiveMode";
+            this.cbRestrictiveMode.Size = new System.Drawing.Size(146, 24);
+            this.cbRestrictiveMode.TabIndex = 3;
+            this.cbRestrictiveMode.Text = "Restrictive mode";
+            this.cbRestrictiveMode.UseVisualStyleBackColor = true;
+            this.cbRestrictiveMode.CheckedChanged += new System.EventHandler(this.cbRestrictiveMode_CheckedChanged);
             // 
             // cbSupportMode
             // 
@@ -490,50 +512,31 @@ namespace APO_Projekt.Project
             this.cbSupportMode.UseVisualStyleBackColor = true;
             this.cbSupportMode.CheckedChanged += new System.EventHandler(this.cbSupportMode_CheckedChanged);
             // 
-            // cbRestrictiveMode
+            // lbModes
             // 
-            this.cbRestrictiveMode.AutoSize = true;
-            this.cbRestrictiveMode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.cbRestrictiveMode.Location = new System.Drawing.Point(160, 49);
-            this.cbRestrictiveMode.Name = "cbRestrictiveMode";
-            this.cbRestrictiveMode.Size = new System.Drawing.Size(146, 24);
-            this.cbRestrictiveMode.TabIndex = 3;
-            this.cbRestrictiveMode.Text = "Restrictive mode";
-            this.cbRestrictiveMode.UseVisualStyleBackColor = true;
-            this.cbRestrictiveMode.CheckedChanged += new System.EventHandler(this.cbRestrictiveMode_CheckedChanged);
+            this.lbModes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbModes.AutoSize = true;
+            this.lbModes.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lbModes.Location = new System.Drawing.Point(164, 9);
+            this.lbModes.Name = "lbModes";
+            this.lbModes.Size = new System.Drawing.Size(132, 25);
+            this.lbModes.TabIndex = 1;
+            this.lbModes.Text = "Select Mode";
             // 
-            // cbUnlimitedMode
+            // cbUnsafe
             // 
-            this.cbUnlimitedMode.AutoSize = true;
-            this.cbUnlimitedMode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.cbUnlimitedMode.Location = new System.Drawing.Point(323, 49);
-            this.cbUnlimitedMode.Name = "cbUnlimitedMode";
-            this.cbUnlimitedMode.Size = new System.Drawing.Size(138, 24);
-            this.cbUnlimitedMode.TabIndex = 4;
-            this.cbUnlimitedMode.Text = "Unlimited mode";
-            this.cbUnlimitedMode.UseVisualStyleBackColor = true;
-            this.cbUnlimitedMode.CheckedChanged += new System.EventHandler(this.cbUnlimitedMode_CheckedChanged);
-            // 
-            // btnRefresh
-            // 
-            this.btnRefresh.Location = new System.Drawing.Point(410, 3);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(92, 32);
-            this.btnRefresh.TabIndex = 5;
-            this.btnRefresh.Text = "Refresh";
-            this.btnRefresh.UseVisualStyleBackColor = true;
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
-            // 
-            // lbUnsafe
-            // 
-            this.lbUnsafe.AutoSize = true;
-            this.lbUnsafe.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lbUnsafe.ForeColor = System.Drawing.Color.DarkRed;
-            this.lbUnsafe.Location = new System.Drawing.Point(352, 28);
-            this.lbUnsafe.Name = "lbUnsafe";
-            this.lbUnsafe.Size = new System.Drawing.Size(65, 18);
-            this.lbUnsafe.TabIndex = 5;
-            this.lbUnsafe.Text = "Unsafe!";
+            this.cbUnsafe.AutoSize = true;
+            this.cbUnsafe.Enabled = false;
+            this.cbUnsafe.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.cbUnsafe.ForeColor = System.Drawing.Color.Red;
+            this.cbUnsafe.Location = new System.Drawing.Point(347, 30);
+            this.cbUnsafe.Name = "cbUnsafe";
+            this.cbUnsafe.Size = new System.Drawing.Size(70, 20);
+            this.cbUnsafe.TabIndex = 6;
+            this.cbUnsafe.Text = "Unsafe";
+            this.cbUnsafe.UseVisualStyleBackColor = true;
+            this.cbUnsafe.CheckedChanged += new System.EventHandler(this.cbUnsafe_CheckedChanged);
             // 
             // Project_Form
             // 
@@ -608,6 +611,6 @@ namespace APO_Projekt.Project
         private System.Windows.Forms.CheckBox cbRestrictiveMode;
         private System.Windows.Forms.CheckBox cbSupportMode;
         private System.Windows.Forms.Label lbModes;
-        private System.Windows.Forms.Label lbUnsafe;
+        private System.Windows.Forms.CheckBox cbUnsafe;
     }
 }
