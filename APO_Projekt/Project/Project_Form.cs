@@ -20,8 +20,9 @@ namespace APO_Projekt.Project
 
         private Image<Bgr, byte> colorImg;
         private Image<Gray, byte> grayImg;
-
         private double[] colorValidity = { 0.11, 0.59, 0.30 }; // B, G, R
+        private bool[] sliderTurn = { true, true, true }; // B, G, R
+        private Mode mode = Mode.Support;
 
 
         public Project_Form()
@@ -165,20 +166,168 @@ namespace APO_Projekt.Project
 
         private void tbRed_Scroll(object sender, EventArgs e)
         {
-            colorValidity[2] = tbRed.Value / 100d;
-            lbRedValue.Text = "Percentages = " + colorValidity[2] * 100 + "%";
+            if (mode == Mode.Support)
+            {
+                double prevValue = colorValidity[2] * 100;
+                double diff = tbRed.Value - prevValue;
+                if (diff == 0) { }
+                else if (diff > 0)
+                { // new value is bigger
+                    while(diff > 0)
+                    {
+                        if (sliderTurn[2])
+                        {
+                            _ = tbGreen.Value > 0 ? --tbGreen.Value : --tbBlue.Value;
+                        }
+                        else
+                        {
+                            _ = tbBlue.Value > 0 ? --tbBlue.Value : --tbGreen.Value;
+                        }
+                        sliderTurn[2] = !sliderTurn[2];
+                        --diff;
+                    }
+                }
+                else
+                {
+                    while(diff < 0)
+                    {
+                        if (sliderTurn[2])
+                        {
+                            _ = tbGreen.Value < 100 ? ++tbGreen.Value : ++tbBlue.Value;
+                        }
+                        else
+                        {
+                            _ = tbBlue.Value < 100 ? ++tbBlue.Value : ++tbGreen.Value;
+                        }
+                        sliderTurn[2] = !sliderTurn[2];
+                        ++diff;
+                    }
+                }
+
+                if (tbBlue.Value + tbGreen.Value + tbRed.Value != 100)
+                {
+                    fillValues(tbRed, tbGreen, tbBlue);
+                }
+
+            }
+            refreshSliders();
         }
 
         private void tbGreen_Scroll(object sender, EventArgs e)
         {
-            colorValidity[1] = tbGreen.Value / 100d;
-            lbGreenValue.Text = "Percentages = " + colorValidity[1] * 100 + "%";
+            if (mode == Mode.Support)
+            {
+                double prevValue = colorValidity[1] * 100;
+                double diff = tbGreen.Value - prevValue;
+                if (diff == 0) { }
+                else if (diff > 0)
+                { // new value is bigger
+                    while(diff > 0)
+                    {
+                        if (sliderTurn[1])
+                        {
+                            _ = tbRed.Value > 0 ? --tbRed.Value : --tbBlue.Value;
+                        }
+                        else
+                        {
+                            _ = tbBlue.Value > 0 ? --tbBlue.Value : --tbRed.Value;
+                        }
+                        sliderTurn[1] = !sliderTurn[1];
+                        --diff;
+                    }
+                }
+                else
+                {
+                    while(diff < 0)
+                    {
+                        if (sliderTurn[1])
+                        {
+                            _ = tbRed.Value < 100 ? ++tbRed.Value : ++tbBlue.Value;
+                        }
+                        else
+                        {
+                            _ = tbBlue.Value < 100 ? ++tbBlue.Value : ++tbRed.Value;
+                        }
+                        sliderTurn[1] = !sliderTurn[1];
+                        ++diff;
+                    }
+                }
+
+                if (tbBlue.Value + tbGreen.Value + tbRed.Value != 100)
+                {
+                    fillValues(tbGreen, tbBlue, tbRed);
+                }
+
+            }
+            refreshSliders();
         }
 
         private void tbBlue_Scroll(object sender, EventArgs e)
         {
-            colorValidity[0] = tbBlue.Value / 100d;
-            lbBlueValue.Text = "Percentages = " + colorValidity[0] * 100 + "%";
+            if (mode == Mode.Support)
+            {
+                double prevValue = colorValidity[0] * 100;
+                double diff = tbBlue.Value - prevValue;
+                if (diff == 0) { }
+                else if (diff > 0)
+                { // new value is bigger
+                    while (diff > 0)
+                    {
+                        if (sliderTurn[0])
+                        {
+                            _ = tbRed.Value > 0 ? --tbRed.Value : --tbGreen.Value;
+                        }
+                        else
+                        {
+                            _ = tbGreen.Value > 0 ? --tbGreen.Value : --tbRed.Value;
+                        }
+                        sliderTurn[0] = !sliderTurn[0];
+                        --diff;
+                    }
+                }
+                else
+                {
+                    while (diff < 0)
+                    {
+                        if (sliderTurn[0])
+                        {
+                            _ = tbRed.Value < 100 ? ++tbRed.Value : ++tbGreen.Value;
+                        }
+                        else
+                        {
+                            _ = tbGreen.Value < 100 ? ++tbGreen.Value : ++tbRed.Value;
+                        }
+                        sliderTurn[0] = !sliderTurn[0];
+                        ++diff;
+                    }
+                }
+                if (tbBlue.Value + tbGreen.Value + tbRed.Value != 100)
+                {
+                    fillValues(tbBlue, tbRed, tbGreen);
+                }
+            }
+            refreshSliders();
+        }
+
+        private void fillValues(TrackBar movedSlider, TrackBar s1, TrackBar s2)
+        {
+            int diff = 100 - (movedSlider.Value + s1.Value + s2.Value);
+            if (diff > 0) // too little
+            {
+                while (diff > 0)
+                {
+                    _ = s1.Value < 100 ? ++s1.Value : ++s2.Value;
+                    --diff;
+                }
+            }
+            else
+            {
+                while (diff < 0)
+                {
+                    _ = s1.Value > 0 ? --s1.Value : --s2.Value;
+                    ++diff;
+                }
+            }
         }
 
         private void removeChartLegend()
@@ -242,10 +391,19 @@ namespace APO_Projekt.Project
         private void btnDefault_Click(object sender, EventArgs e)
         {
             tbBlue.Value = 11; tbGreen.Value = 59; tbRed.Value = 30;
+            refreshSliders();
+        }
 
-            tbBlue_Scroll(sender, e);
-            tbGreen_Scroll(sender, e);
-            tbRed_Scroll(sender, e);
+        private void refreshSliders()
+        {
+            colorValidity[0] = tbBlue.Value / 100d;
+            lbBlueValue.Text = "Percentages = " + colorValidity[0] * 100 + "%";
+
+            colorValidity[1] = tbGreen.Value / 100d;
+            lbGreenValue.Text = "Percentages = " + colorValidity[1] * 100 + "%";
+
+            colorValidity[2] = tbRed.Value / 100d;
+            lbRedValue.Text = "Percentages = " + colorValidity[2] * 100 + "%";
         }
 
         private void btnToPicWin_Click(object sender, EventArgs e)
@@ -269,12 +427,14 @@ namespace APO_Projekt.Project
             tbGreen.Value = tbBlue.Value == 100 ? 0 : random.Next(0, maxGreen);
             tbRed.Value = 100 - tbBlue.Value - tbGreen.Value;
 
-            tbBlue_Scroll(sender, e);
-            tbGreen_Scroll(sender, e);
-            tbRed_Scroll(sender, e);
-
+            refreshSliders();
 
             // testing
+            refreshGray();
+        }
+
+        private void refreshGray()
+        {
             if (colorImg != null && grayImg != null)
             {
                 calcutateGrayImage();
@@ -284,11 +444,57 @@ namespace APO_Projekt.Project
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-            if (colorImg != null && grayImg != null)
+            if (grayImg == null)
             {
-                calcutateGrayImage();
-                calculateGrayHistogram();
+                MessageBox.Show("Image has not been opened!", "Not opened image", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                return;
             }
+            refreshGray();
         }
+
+        private void cbSupportMode_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbSupportMode.Checked)
+            {
+                btnDefault_Click(sender, e);
+                mode = Mode.Support;
+                cbRestrictiveMode.Checked = cbUnlimitedMode.Checked = false;
+            }
+
+            if (cbSupportMode.Checked == cbRestrictiveMode.Checked && cbRestrictiveMode.Checked == cbUnlimitedMode.Checked
+                && cbUnlimitedMode.Checked == false) cbSupportMode.Checked = true;
+            
+        }
+
+        private void cbRestrictiveMode_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbRestrictiveMode.Checked)
+            {
+                mode = Mode.Restrictive;
+                cbSupportMode.Checked = cbUnlimitedMode.Checked = false;
+            }
+
+            if (cbSupportMode.Checked == cbRestrictiveMode.Checked && cbRestrictiveMode.Checked == cbUnlimitedMode.Checked
+                && cbUnlimitedMode.Checked == false) cbSupportMode.Checked = true;
+        }
+
+        private void cbUnlimitedMode_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbUnlimitedMode.Checked)
+            {
+                mode = Mode.Unlimited;
+                cbSupportMode.Checked = cbRestrictiveMode.Checked = false;
+            }
+
+            if (cbSupportMode.Checked == cbRestrictiveMode.Checked && cbRestrictiveMode.Checked == cbUnlimitedMode.Checked
+                && cbUnlimitedMode.Checked == false) cbSupportMode.Checked = true;
+        }
+    }
+
+    public enum Mode
+    {
+        Support,
+        Restrictive,
+        Unlimited
     }
 }
