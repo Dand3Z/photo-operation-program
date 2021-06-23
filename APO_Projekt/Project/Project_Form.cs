@@ -24,12 +24,32 @@ namespace APO_Projekt.Project
         private bool[] sliderTurn = { true, true, true }; // B, G, R
         private Mode mode = Mode.Support;
 
+        private int updateCount;
+        private Timer timer;
 
         public Project_Form()
         {
             InitializeComponent();
             CenterToScreen();
             removeChartLegend();
+
+            this.timer = new Timer();
+            this.timer.Interval = 500;
+            this.timer.Tick += this.Timer_Tick;
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            this.timer.Stop();
+
+            this.updateCount++;
+            if (mode != Mode.Restrictive || btnRefresh.Enabled)
+            {
+                refreshGray();
+                
+            }
+            
+            //this.label1.Text = this.updateCount.ToString();
         }
 
         private void calculateColorHistogram()
@@ -166,6 +186,8 @@ namespace APO_Projekt.Project
 
         private void tbRed_Scroll(object sender, EventArgs e)
         {
+            this.timer.Stop();
+            this.timer.Start();
             if (mode == Mode.Support)
             {
                 double prevValue = colorValidity[2] * 100;
@@ -215,6 +237,8 @@ namespace APO_Projekt.Project
 
         private void tbGreen_Scroll(object sender, EventArgs e)
         {
+            this.timer.Stop();
+            this.timer.Start();
             if (mode == Mode.Support)
             {
                 double prevValue = colorValidity[1] * 100;
@@ -264,6 +288,8 @@ namespace APO_Projekt.Project
 
         private void tbBlue_Scroll(object sender, EventArgs e)
         {
+            this.timer.Stop();
+            this.timer.Start();
             if (mode == Mode.Support)
             {
                 double prevValue = colorValidity[0] * 100;
@@ -392,6 +418,7 @@ namespace APO_Projekt.Project
         {
             tbBlue.Value = 11; tbGreen.Value = 59; tbRed.Value = 30;
             refreshSliders();
+            refreshGray();
         }
 
         private void refreshSliders()
@@ -438,8 +465,6 @@ namespace APO_Projekt.Project
             tbRed.Value = 100 - tbBlue.Value - tbGreen.Value;
 
             refreshSliders();
-
-            // testing
             refreshGray();
         }
 
@@ -504,6 +529,7 @@ namespace APO_Projekt.Project
                 && cbUnlimitedMode.Checked == false) cbSupportMode.Checked = true;
 
             refreshSliders();
+            refreshGray();
         }
     }
 
