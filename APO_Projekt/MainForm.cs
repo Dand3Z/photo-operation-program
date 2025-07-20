@@ -23,23 +23,14 @@ namespace APO_Projekt
 
         private void MenuOpen_Click(object sender, EventArgs e)
         {
-            // open file dialog
             OpenFileDialog open = new OpenFileDialog();
             
-            // flitry obrazu
             open.Filter = "Image Files(*jpg; *.jpeg; *.gif; *.bmp; *.png; *.tiff)|*jpg; *.jpeg; *.gif; *.bmp; *png; *.tiff";
             if (open.ShowDialog() == DialogResult.OK)
             {
-                // stwórz Picture window
                 PictureWindow pictureWindow = new PictureWindow();
-
-                // wyświetl obraz w picture box
                 pictureWindow.setPicture(open);
-
-                // wyświetl okno
                 pictureWindow.Show();
-
-                // for testing
                 logWindow.addLog("Opened Picture isGrey:" + (pictureWindow.IsGrey).ToString() + Environment.NewLine);
             }
         }
@@ -54,7 +45,6 @@ namespace APO_Projekt
                 return;
             }
 
-            // save picture
             SaveFileDialog save = new SaveFileDialog();
             save.Filter = "Bitmap Image (.bmp)|*.bmp|Gif Image (.gif)|*.gif|JPEG Image (.jpeg)|*.jpeg|Png Image (.png)|*.png|Tiff Image (.tiff)|*.tiff";
             if (save.ShowDialog() == DialogResult.OK)
@@ -66,15 +56,11 @@ namespace APO_Projekt
         private void MenuClone_Click(object sender, EventArgs e)
         {
             PictureWindow pw = PictureWindow.LastActiveWindow;
-            
-            // Czy jest co klonować, jeśli nie zakończ
             if (pw == null)
             {
                 MessageBox.Show("Image should be selected!", "Not selected image", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                 return;
             }
-
-            // stwórz kopie
             new PictureWindow(pw).Show();
         }
 
@@ -95,35 +81,29 @@ namespace APO_Projekt
 
         private void MenuShowHistogram_Click(object sender, EventArgs e)
         {
-            // tylko jedno okno histogramu dla danego obrazka jest dopuszczalne
             PictureWindow pw = PictureWindow.LastActiveWindow;
-
             if (pw == null)
             {
                 MessageBox.Show("Image should be selected!", "Not selected image", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                 return;
             }
-
             pw.showHistogram();
         }
 
         private void MenuShowLUT_Click(object sender, EventArgs e)
         {
             PictureWindow pw = PictureWindow.LastActiveWindow;
-
             if (pw == null)
             {
                 MessageBox.Show("Image should be selected!", "Not selected image", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                 return;
             }
-
             pw.showLutTable();
         }
 
         private void MenuLinearStretching_Click(object sender, EventArgs e)
         {
             PictureWindow pw = PictureWindow.LastActiveWindow;
-
             if (pw == null)
             {
                 MessageBox.Show("Image should be selected!", "Not selected image", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
@@ -138,7 +118,6 @@ namespace APO_Projekt
 
             Operations.greyLinearStretching(pw.Bitmap, pw.Red);
             pw.resetLutTables();
-
             pw.resetBitmap();
         }
 
@@ -159,7 +138,6 @@ namespace APO_Projekt
             }
             Operations.greyEqualization(pw.Bitmap, pw.Red);
             pw.resetLutTables();
-
             pw.resetBitmap();
         }
 
@@ -186,7 +164,6 @@ namespace APO_Projekt
         private void MenuPosterize_Click(object sender, EventArgs e)
         {
             PictureWindow pw = PictureWindow.LastActiveWindow;
-
             if (pw == null)
             {
                 MessageBox.Show("Image should be selected!", "Not selected image", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
@@ -361,7 +338,7 @@ namespace APO_Projekt
         }
 
         private void MenuBinaryPointOperations_Click(object sender, EventArgs e)
-        {// isGrey do zmiany
+        {
             PictureWindow pw = PictureWindow.LastActiveWindow;
             if (pw == null)
             {

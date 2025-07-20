@@ -15,24 +15,16 @@ using Emgu.CV.CvEnum;
 
 namespace APO_Projekt
 {
-    /**
-     * Klasa zawierająca różnego rodzaju metody do wykonywania na obrazach
-     */
     public class Operations
     {
-        /**************************************************************
-         * Metody
-         ************************************************************/
-        // zwraca informację o tym czy wskazany obraz jest czarno-biały
+        
         public static Boolean isGrayScale(Bitmap img)
         {
             Boolean result = true;
-            // iteracja po wszystkich pikselach
             for (Int32 h = 0; h < img.Height; h++)
                 for (Int32 w = 0; w < img.Width; w++)
                 {
                     Color color = img.GetPixel(w, h);
-                    // nie mają tych samych wartości i aktualnie rozpatrywana wartość nie jest czernią
                     if ((color.R != color.G || color.G != color.B || color.R != color.B) && color.A != 0)
                     {
                         result = false;
@@ -43,10 +35,8 @@ namespace APO_Projekt
             return result;
         }
 
-        // neguje wartości wszystkich pikseli wskazanego obrazu
         public static void negation(Bitmap bitmap, bool isGrey)
         {
-            // szary obraz
             if (isGrey)
             {
                 for (Int32 h = 0; h < bitmap.Height; h++)
@@ -57,7 +47,6 @@ namespace APO_Projekt
                         bitmap.SetPixel(w, h, Color.FromArgb(color.A, negRed, negRed, negRed));
                     }
             }
-            // kolorowy obraz
             else
             {
                 for (Int32 h = 0; h < bitmap.Height; h++)
@@ -73,17 +62,12 @@ namespace APO_Projekt
             }
         }
 
-        // liniowe rozciąganie histogramu obrazy szaroodcieniowego
         public static void greyLinearStretching(Bitmap bitmap, int[] greyLut)
         {
-            // znajdź pierwsze min i ostatnie max dla których wartości są niezerowe
             byte localMin = findMin(greyLut);
             byte localMax = findMax(greyLut);
-
-            // definicja nowego minimum i maksimum
             byte newMin = 0, newMax = 255;
 
-            // zabezpieczenie
             if (localMax < localMin || localMax - localMin == 0) return;
 
             for (Int32 h = 0; h < bitmap.Height; ++h)
@@ -94,39 +78,29 @@ namespace APO_Projekt
                     bitmap.SetPixel(w, h, Color.FromArgb(color.A, newValue, newValue, newValue));
                 }
         }
-        // operacja pomocnicza do wyliczania liniowego rozciągania histogramu
         private static byte calcNewLinearIntensity(byte current, byte localMin, byte localMax, byte newMax)
         {
             return (byte) ( ((current - localMin) * newMax) / (localMax - localMin) );
         }
         
-        //*******************EQUALIZACJA******************************************
-
-        // wyrównanie histogramu przez equalizację
         public static void greyEqualization(Bitmap bitmap, int[] greyLut)
         {
-            // wylicz histogram skumulowany
             int[] cumLut = cumsum(greyLut);
             foreach (int i in cumLut) Console.WriteLine(i);
 
-            // indeksy
             byte localMin = findMin(cumLut);
             byte localMax = findMax(cumLut);
 
-            // zabezpieczenie
             if (localMax < localMin) return;
 
-            // ponownie przelicz indeksy
             localMin = findMin(cumLut);
             localMax = findMax(cumLut);
 
-            // zapisz wartości indexu min i max
             var localMinValue = cumLut[localMin];
             var localMaxValue = cumLut[localMax];
 
             if (localMaxValue - localMinValue == 0) return;
 
-            // normalizujemy wartości w histogramie
             for (int i = 0; i < cumLut.Length; ++i)
             {
                 int newValue = ((cumLut[i] - localMinValue) * 255) / (localMaxValue - localMinValue);
@@ -143,8 +117,6 @@ namespace APO_Projekt
                 }
         }
 
-        // formuła do wyliczenia skumulowanego histogramu
-        // zwraca tablicę na podstawie, której taki histogram można stworzyć
         private static int[] cumsum(int[] greyLut)
         {
             int[] cumLut = new int[256];
@@ -157,7 +129,6 @@ namespace APO_Projekt
             return cumLut;
         }
 
-        // znajdź pierwszą niezerową wartość
         private static byte findMin(int[] lutTable)
         {
             byte localMin = 0;
@@ -165,7 +136,6 @@ namespace APO_Projekt
             return localMin;
         }
 
-        // znajdź ostatnią niezerową wartość
         private static byte findMax(int[] lutTable)
         {
             byte localMax = 0;
@@ -173,7 +143,6 @@ namespace APO_Projekt
             return localMax;
         }
 
-        //*******************THRESHOLDING******************************************
         public static void thresholding(Bitmap bitmap, byte threshold)
         {
             for (Int32 h = 0; h < bitmap.Height; ++h)
@@ -185,10 +154,6 @@ namespace APO_Projekt
                     bitmap.SetPixel(w, h, Color.FromArgb(color.A, newValue, newValue, newValue));
                 }
         }
-
-
-        //*******************THRESHOLDING WITH GRAY LEVELS************************
-        // progowanie z zachowaniem poziomów szarości
 
         public static void grayLevelsThresholding(Bitmap bitmap, byte threshold)
         {
@@ -202,22 +167,16 @@ namespace APO_Projekt
                 }
         }
 
-        //*******************POSTERIZE********************************************
         public static void posterize(Bitmap bitmap, byte binsAmount)
         {
-            // dla np. 8 zwraca 32
             byte binSize = (byte) Math.Round(255.0 / binsAmount);
-
-            // inicjalizcja tablicy odpowiedniej długości
             byte[] myBins = new byte[binsAmount - 1];
 
-            // np. 32,64,96,128,160,192,224
             for(byte i = 0; i < binsAmount-1; ++i)
             {
                 myBins[i] = (byte) (binSize *(i+1));
             }
 
-            // ustawienie odpowiednich wartości obrazu
             for (Int32 h = 0; h < bitmap.Height; ++h)
                 for (Int32 w = 0; w < bitmap.Width; ++w)
                 {
@@ -237,7 +196,6 @@ namespace APO_Projekt
             return 255;
         }
 
-        //*******************Adjustable Stretching********************************
         public static void adjustableStretching(Bitmap bitmap, byte p1, byte p2, byte q3, byte q4)
         {
             if (p2 < p1 && q4 < q3) return;
@@ -258,131 +216,79 @@ namespace APO_Projekt
                 }
         }
 
-        //-----------------------------------------OPEN_CV------------------------------------
-        // Blurowanie
-        
         public static void blur(PictureWindow pw, Size kernel, BorderType borderType)
         {
-            // rozmiar filtra
             Size kernelSize = kernel;
-            // bitmapa źródłowa
             Bitmap source = pw.Bitmap;
-            // przekonwertuj bitmapa na format emgu
             Image<Rgb, byte> emguImage = source.ToImage<Rgb, byte>();
-            // wykonaj operację blur
             CvInvoke.Blur(emguImage, emguImage, kernelSize , new Point(-1, -1), borderType);
-            // ponownie zmień typ na bitmap
             Bitmap result = emguImage.ToBitmap();
-            // zapisz rezulat w oknie wynikowym
             pw.Bitmap = result;
         }
 
         public static void gaussianBlur(PictureWindow pw, Size size, BorderType borderType, double sX, double sY)
         {
-            // rozmiar filtra
             Size kernelSize = new Size(5, 5);
-            // odch. std. w kierunku X;
             double sigmaX = 0;
-            // odch. std. w kierunku Y
             double sigmaY = sigmaX;
 
-            // bitmapa źródłowa
             Bitmap source = pw.Bitmap;
-            // przekonwertuj bitmapa na format emgu
             Image<Rgb, byte> emguImage = source.ToImage<Rgb, byte>();
-            // wykonaj operację gaussianBlur
             CvInvoke.GaussianBlur(emguImage, emguImage, kernelSize, sigmaX, sigmaY, borderType);
-            // ponownie zmień typ na bitmap
             Bitmap result = emguImage.ToBitmap();
-            // zapisz rezulat w oknie wynikowym
             pw.Bitmap = result;
         }
 
         public static void laplacian(PictureWindow pw, int kernel, BorderType border)
         {
-            // format obrazu wyjściowego
             var ddepth = DepthType.Cv8U;
-
-            // bitmapa źródłowa
             Bitmap source = pw.Bitmap;
-            // przekonwertuj bitmapa na format emgu
             Image<Gray, byte> emguImage = source.ToImage<Gray, byte>();
-            // wykonaj operację detekcji krawędzi
             CvInvoke.Laplacian(emguImage, emguImage, ddepth, kernel, 1, 0, border);
-            // ponownie zmień typ na bitmap
             Bitmap result = emguImage.Mat.ToImage<Rgb, byte>().ToBitmap();
-            // zapisz rezulat w oknie wynikowym
             pw.Bitmap = result;
         }
 
         public static void sobel(PictureWindow pw, int kernel, int xorder, int yorder, BorderType border)
         {
-            // format obrazu wyjściowego
             var ddepth = DepthType.Cv8U;
-
-            // bitmapa źródłowa
             Bitmap source = pw.Bitmap;
-            // przekonwertuj bitmapa na format emgu
             Image<Gray, byte> emguImage = source.ToImage<Gray, byte>();
-            // wykonaj operację detekcji krawędzi
             CvInvoke.Sobel(emguImage, emguImage, ddepth, xorder, yorder, kernel, 1, 0, border);
-            // ponownie zmień typ na bitmap
             Bitmap result = emguImage.Mat.ToImage<Rgb, byte>().ToBitmap();
-            // zapisz rezulat w oknie wynikowym
             pw.Bitmap = result;
         }
 
         public static void canny(PictureWindow pw, double th1, double th2)
         {
-            // bitmapa źródłowa
             Bitmap source = pw.Bitmap;
-            // przekonwertuj bitmapa na format emgu
             Image<Gray, byte> emguImage = source.ToImage<Gray, byte>();
-            // wykonaj operację detekcji krawędzi
             CvInvoke.Canny(emguImage, emguImage, th1, th2);
-            // ponownie zmień typ na bitmap
             Bitmap result = emguImage.Mat.ToImage<Rgb, byte>().ToBitmap();
-            // zapisz rezulat w oknie wynikowym
             pw.Bitmap = result;
         }
 
-        // Wyostrzanie liniowe
         public static void linearSharpening(PictureWindow pw, Matrix<double> matrix, BorderType border)
         {
-            // przypisanie maski
             var maskSharp = matrix;
-            // przypisanie operacji brzegowych
             var borderKind = border;
 
-            // bitmapa źródłowa
             Bitmap source = pw.Bitmap;
-            // przekonwertuj bitmapa na format emgu
             Image<Rgb, byte> emguImage = source.ToImage<Rgb, byte>();
-            // wykonaj operację detekcji krawędzi
             CvInvoke.Filter2D(emguImage, emguImage, maskSharp, new Point(-1, -1), 0, borderKind);
-            // ponownie zmień typ na bitmap
             Bitmap result = emguImage.ToBitmap();
-            // zapisz rezulat w oknie wynikowym
             pw.Bitmap = result;
         }
 
-        // Kierunkowa detekcja krawędzi
         public static void directionalEdgeDetection(PictureWindow pw, Matrix<double> matrix, BorderType border)
         {
-            // przypisanie maski
             var maskSharp = matrix;
-            // przypisanie operacji brzegowych
             var borderKind = border;
 
-            // bitmapa źródłowa
             Bitmap source = pw.Bitmap;
-            // przekonwertuj bitmapa na format emgu
             Image<Rgb, byte> emguImage = source.ToImage<Rgb, byte>();
-            // wykonaj operację detekcji krawędzi
             CvInvoke.Filter2D(emguImage, emguImage, maskSharp, new Point(-1, -1), 0, borderKind);
-            // ponownie zmień typ na bitmap
             Bitmap result = emguImage.ToBitmap();
-            // zapisz rezulat w oknie wynikowym
             pw.Bitmap = result;
             
         }
@@ -403,31 +309,31 @@ namespace APO_Projekt
             Mat grayMat = new Mat();
 
             CvInvoke.CvtColor(imageMat, grayMat, ColorConversion.Rgb2Gray);
-            // step 1
+            
             Mat threshMat = new Mat();
             CvInvoke.Threshold(grayMat, threshMat, 0, 255, ThresholdType.BinaryInv | ThresholdType.Otsu);
-            // step 2
+            
             Mat openingMat = new Mat();
             Mat kernel = CvInvoke.GetStructuringElement(ElementShape.Rectangle, new Size(3, 3), new Point(-1, -1));
             CvInvoke.MorphologyEx(threshMat, openingMat, MorphOp.Open, kernel, new Point(-1, -1), 1, BorderType.Reflect, new MCvScalar());
-            // step 3
+            
             Mat sureBgMat = new Mat();
             CvInvoke.MorphologyEx(openingMat, sureBgMat, MorphOp.Dilate, kernel, new Point(-1, -1), 1, BorderType.Reflect, new MCvScalar());
-            // step 4
+            
             Mat distTransformMat = new Mat();
             CvInvoke.DistanceTransform(openingMat, distTransformMat, null, DistType.L2, 5);
-            // step 5
+            
             Mat sureFgMat = new Mat();
             CvInvoke.Threshold(distTransformMat, sureFgMat, 0.5, 255, ThresholdType.Binary); 
             CvInvoke.MorphologyEx(sureFgMat, sureFgMat, MorphOp.Erode, kernel, new Point(-1, -1), 9, BorderType.Default, new MCvScalar());
-            // step 6
+            
             Mat unknownMat = new Mat();
             sureFgMat.ConvertTo(sureFgMat, unknownMat.Depth);
             CvInvoke.Subtract(sureBgMat, sureFgMat, unknownMat);
-            // step 7
+            
             Mat markersMat = new Mat();
             CvInvoke.ConnectedComponents(sureFgMat, markersMat);
-            // step 7.5
+            
             markersMat += 1;
             Image<Gray, byte> markersImage = markersMat.ToImage<Gray, byte>();
             Image<Gray, byte> unknownImage = unknownMat.ToImage<Gray, byte>();
@@ -440,9 +346,9 @@ namespace APO_Projekt
             }
             markersMat = markersImage.Mat;
 
-            // step 8
-            resultMat.ConvertTo(resultMat, DepthType.Cv8U); // The input 8-bit 3-channel image
-            markersMat.ConvertTo(markersMat, DepthType.Cv32S); // The input/output Int32 depth single-channel image (map) of markers.
+            
+            resultMat.ConvertTo(resultMat, DepthType.Cv8U);
+            markersMat.ConvertTo(markersMat, DepthType.Cv32S); 
             CvInvoke.Watershed(resultMat, markersMat);
 
             markersMat.ConvertTo(markersMat, DepthType.Cv8U);

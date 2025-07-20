@@ -13,26 +13,17 @@ namespace APO_Projekt
     public partial class HistogramWindow : Form
     {
 
-        /**************************************************************
-         * Pola
-         ************************************************************/
-
         private readonly int[] red = null, green = null, blue = null;
         private readonly int[] yellow = null, pink = null, turquoise = null;
         private readonly int[] allColors = null;
 
-        // zmienia się na true, gdy zamkniem
         private bool isClosed = false;
         private bool isGrey;
-
-        /**************************************************************
-         * Konstruktory
-         ************************************************************/
 
         public HistogramWindow(PictureWindow pictureWindow)
         {
             InitializeComponent();
-            // Ustaw wszystkie LutTables
+
             red = pictureWindow.Red;
             green = pictureWindow.Green;
             blue = pictureWindow.Blue;
@@ -42,32 +33,22 @@ namespace APO_Projekt
             allColors = pictureWindow.AllColors;
             isGrey = pictureWindow.IsGrey;
 
-            // ustaw wartości na histogramie
             printChart();
         }
 
-        /**************************************************************
-         * Metody
-         ************************************************************/
-
-        // histogram został zamknięty przez użytkownika
         private void HistogramWindow_FormClosed(object sender, FormClosedEventArgs e)
         {
-            // okno zostało zamknięte
             isClosed = true;
         }
         
-        // ustawia aktualne wartości na histogramie
         public void printChart()
         {
             if (isGrey) showGreyHistogram(); 
             else showColorHistogram();
         }
         
-        // ustawia wartości na kolorowym histogramie
         private void showColorHistogram()
         {
-            // czyszczenie wartości histogramu
             chart.Series["red"].Points.Clear();
             chart.Series["green"].Points.Clear();
             chart.Series["blue"].Points.Clear();
@@ -76,7 +57,6 @@ namespace APO_Projekt
             chart.Series["red+blue"].Points.Clear();
             chart.Series["red+green+blue"].Points.Clear();
             
-            // wstawianie nowych wartości
             for(int i = 0; i < 256; ++i)
             {
                 chart.Series["red"].Points.AddXY(i, red[i]);
@@ -91,10 +71,8 @@ namespace APO_Projekt
             chart.Invalidate();
         }
 
-        // ustawia wartości na szaroodcieniowym histogramie
         private void showGreyHistogram()
         {
-            // wyłącza niepotrzebne barwy
             chart.Series["green"].Enabled = false;
             chart.Series["blue"].Enabled = false;
             chart.Series["red+green"].Enabled = false;
@@ -102,7 +80,6 @@ namespace APO_Projekt
             chart.Series["red+blue"].Enabled = false;
             chart.Series["red+green+blue"].Enabled = false;
 
-            // operacje wykonywane tylko dla jednego kanału
             chart.Series["red"].Points.Clear();
             for (int i = 0; i < 256; ++i)
             {
@@ -121,10 +98,6 @@ namespace APO_Projekt
             chart.Series["red+green+blue"].Enabled = false;
             chart.Invalidate();
         }
-
-        /**************************************************************
-         * Właściwości
-         ************************************************************/
 
         public bool IsClosed { get { return this.isClosed; } }
     }

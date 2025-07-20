@@ -87,17 +87,14 @@ namespace APO_Projekt
         {
             if (cbBorderType.SelectedItem.Equals("Replicate"))
             {
-                //Console.WriteLine("Replicate dziala");
                 return BorderType.Replicate;
             }
             else if (cbBorderType.SelectedItem.Equals("Isolated"))
             {
-                //Console.WriteLine("Isolated dziala");
                 return BorderType.Isolated;
             }
             else
             {
-                //Console.WriteLine("Reflect dziala");
                 return BorderType.Reflect;
             }
         }

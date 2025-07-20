@@ -16,7 +16,6 @@ namespace APO_Projekt
     public partial class CustomMask_Form : Form
     {
         private PictureWindow pw;
-        // private Matrix<double> mask;
         private double[] maskValues = new double[9];
         private bool[] validValues = new bool[9];
         public CustomMask_Form(PictureWindow pw)
@@ -125,17 +124,14 @@ namespace APO_Projekt
         {
             if (cbBorderType.SelectedItem.Equals("Replicate"))
             {
-                //Console.WriteLine("Replicate dziala");
                 return BorderType.Replicate;
             }
             else if (cbBorderType.SelectedItem.Equals("Isolated"))
             {
-                //Console.WriteLine("Isolated dziala");
                 return BorderType.Isolated;
             }
             else
             {
-                //Console.WriteLine("Reflect dziala");
                 return BorderType.Reflect;
             }
         }

@@ -122,17 +122,7 @@ namespace APO_Projekt
             cbSize.Items.Add("21");
             cbSize.SelectedIndex = 0;
         }
-/*
-        private bool isBinary()
-        {
-            if (pw.IsGrey)
-            {
-                Operations.thresholding(pw.Bitmap, 127);
-                return true;
-            }
-            return false;
-        }
-*/
+
         private void txtIterations_TextChanged(object sender, EventArgs e)
         {
             int.TryParse(txtIterations.Text.Trim(), out iterations);

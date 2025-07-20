@@ -18,7 +18,7 @@ namespace APO_Projekt
         PictureWindow pw;
 
         private static Dictionary<int, Matrix<double>> mats = new Dictionary<int, Matrix<double>>
-        {// maski
+        {
             {1,  new Matrix<double> (new double[3, 3] { { 0, -1, 0 },{ -1, 5, -1 },{ 0, -1, 0 } })},
             {2,  new Matrix<double> (new double[3, 3] {{ -1,-1,-1 },{ -1, 9, -1 },{ -1, -1, -1 } })},
             {3,  new Matrix<double> (new double[3, 3] { { 1, -2, 1 },{ -2,5,-2 },{ 1, -2, 1 } })},
@@ -77,17 +77,14 @@ namespace APO_Projekt
         {
             if (cbBorderType.SelectedItem.Equals("Replicate"))
             {
-                Console.WriteLine("Replicate dziala");
                 return BorderType.Replicate;
             }
             else if (cbBorderType.SelectedItem.Equals("Isolated"))
             {
-                Console.WriteLine("Isolated dziala");
                 return BorderType.Isolated;
             }
             else
             {
-                Console.WriteLine("Reflect dziala");
                 return BorderType.Reflect;
             }
         }

@@ -12,17 +12,8 @@ namespace APO_Projekt
 {
     public partial class LutWindow : Form
     {
-        /**************************************************************
-         * Pola
-         ************************************************************/
-
-        // trzyma 3 referencje do tablic podstawowych kolorów
         private readonly int[] red = null, green = null, blue = null;
         private bool isGrey, isClosed = false;
-
-        /**************************************************************
-         * Konstruktory
-         ************************************************************/
 
         public LutWindow(PictureWindow pw)
         {
@@ -33,45 +24,27 @@ namespace APO_Projekt
             isGrey = pw.IsGrey;
         }
 
-        /**************************************************************
-         * Metody
-         ************************************************************/
-
-        // zresetuj wyświetalne wartości po zmianie na obrazie
         public void resetLutTable()
             {
-            // wyczyść aktualną zawartość
             LutList.Items.Clear();
 
             for (int i = 0; i < red.Length; ++i)
             {
                 ListViewItem item = new ListViewItem(i.ToString());
                 item.SubItems.Add(red[i].ToString());
-                // jeżeli nie jest szaroodcieniowy to licz dla trzech kanałów
                 if (!isGrey)
                 {
                     item.SubItems.Add(green[i].ToString());
                     item.SubItems.Add(blue[i].ToString());
                 }
-                // dodaj nowy wiersz wynikowy
                 LutList.Items.Add(item);
             }
         }
 
-        /**************************************************************
-         * Właściwości
-         ************************************************************/
-
         public bool IsClosed { get { return this.isClosed; } }
-
-
-        /**************************************************************
-         * Zdarzenia
-         ************************************************************/
 
         private void LutWindow_FormClosed(object sender, FormClosedEventArgs e)
         {
-            // okno zostało zamknięte
             isClosed = true;
         }
 
@@ -79,9 +52,9 @@ namespace APO_Projekt
         {
             if (isGrey)
             {
-                LutList.Columns.RemoveAt(2); // usuń green
-                LutList.Columns.RemoveAt(2); // usuń blue
-                LutList.Columns[1].Text = "Grey"; // przemianuj Red na Grey
+                LutList.Columns.RemoveAt(2);
+                LutList.Columns.RemoveAt(2);
+                LutList.Columns[1].Text = "Grey";
             }
 
             resetLutTable();
